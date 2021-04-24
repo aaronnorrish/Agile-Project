@@ -20,6 +20,7 @@
         {% endblock %}
     </head>
     <body>
+      {% set active_page = active_page|default('index') -%}
         <nav class="navbar navbar-expand-sm navbar-light bg-white">
         <!-- <nav class="navbar navbar-expand-sm navbar-light bg-white shadow-sm"> -->
             <a class="navbar-brand" href="{{ url_for('index') }}">
@@ -31,13 +32,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbar">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li {% if active_page=="index" %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
                   <a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li {% if active_page=="login" %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
                   <a class="btn btn-outline-secondary" href="{{ url_for('login') }}">Log in</a>
                 </li>
-                <li class="nav-item">
+                <li {% if active_page=="signup" %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
                   <a class="btn btn-outline-secondary" href="{{ url_for('signup') }}">Sign up</a>
                 </li>
               </ul>
