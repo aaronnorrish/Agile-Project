@@ -22,7 +22,7 @@
     <body>
         <nav class="navbar navbar-expand-sm navbar-light bg-white">
         <!-- <nav class="navbar navbar-expand-sm navbar-light bg-white shadow-sm"> -->
-            <a class="navbar-brand" href="/index.html">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
                 <img class="logo d-inline-block align-top" src="static/bootstrap.svg" alt="Bootstrap" width="24" height="24">
                 Learn Italian
             </a>
@@ -32,13 +32,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item log-in-sign-in">
-                  <a class="btn btn-outline-secondary" href="/log-in.html">Log in</a>
+                  <a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="btn btn-outline-secondary" href="/sign-up.html">Sign up</a>
+                  <a class="btn btn-outline-secondary" href="{{ url_for('login') }}">Log in</a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-outline-secondary" href="{{ url_for('signup') }}">Sign up</a>
                 </li>
               </ul>
             </div>
