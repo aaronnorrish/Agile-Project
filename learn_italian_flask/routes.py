@@ -5,7 +5,6 @@ from learn_italian_flask import app
 @app.route('/index')
 def index():
     return render_template('index.html', title="Learn Italian")
-    # return render_template('dashboard.html', title="Dashboard", user={'name': '[placeholder]'})
 
 @app.route('/login')
 def login():
@@ -14,3 +13,11 @@ def login():
 @app.route('/signup')
 def signup():
     return render_template('sign-up.html', title="Learn Italian - Sign up")
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html', title="Dashboard", user={'name': '[placeholder]'})
+
+@app.route('/learn')
+def learn():
+    return render_template('learn.html', title="Learn")
