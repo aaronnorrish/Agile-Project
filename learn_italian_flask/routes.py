@@ -1,14 +1,19 @@
-from flask import render_template
+from flask import render_template, redirect, url_for
 from learn_italian_flask import app
+from learn_italian_flask.forms import LoginForm
 
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html', title="Learn Italian")
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('log-in.html', title="Learn Italian - Log in")
+    form = LoginForm()
+    # TODO haven't added a flash error as in the tutorial
+    if form.validate_on_submit():
+        return redirect(url_for('dashboard'))
+    return render_template('log-in.html', title="Learn Italian - Log in", form=form)
 
 @app.route('/signup')
 def signup():
