@@ -1,6 +1,7 @@
 from flask import render_template, redirect, url_for, flash
 from learn_italian_flask import app
-from learn_italian_flask.forms import LoginForm
+from learn_italian_flask import db
+from learn_italian_flask.forms import LoginForm, SignupForm
 from flask_login import current_user, login_user, logout_user, login_required
 from learn_italian_flask.models import User
 
@@ -28,9 +29,20 @@ def login():
         return redirect(url_for('dashboard'))
     return render_template('log-in.html', title="Learn Italian - Log in", form=form)
 
-@app.route('/signup')
+@app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    return render_template('sign-up.html', title="Learn Italian - Sign up")
+    if current_user.is_authenticated:
+        return redirect(url_for('dashboard'))
+    form = SignupForm()
+    if form.validate_on_submit():
+        user = User(name=form.name.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        login_user(user)
+        # flash('Sign up was successful!')
+        return redirect(url_for('dashboard'))
+    return render_template('sign-up.html', title="Learn Italian - Sign up", form=form)
 
 @app.route('/logout')
 def logout():
