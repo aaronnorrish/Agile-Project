@@ -58,3 +58,8 @@ def dashboard():
 @login_required 
 def learn():
     return render_template('learn.html', title="Learn")
+
+@app.route('/alphabet')
+@login_required 
+def alphabet():
+    return render_template('alphabet.html', title="Alphabet")
