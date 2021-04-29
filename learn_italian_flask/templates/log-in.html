@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% set active_page = "login" %}
+
+
+{% block styling %}
+<style>
+    html, 
+    body {
+        height: 100%;
+    }
+
+    nav {
+        height: auto;
+    }
+
+    .container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        /* dont know if necessary */
+        /* padding-top: 40px; */
+        padding-bottom: 10rem;
+    }
+    
+    .form-login{
+        margin: auto;
+        max-width: 330px;
+        padding: 15px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .form-login .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .form-login .form-control:focus {
+        z-index: 2;
+    }
+
+    .form-login input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-login input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+</style>
+{% endblock %}
+
+{% block main_content %}
+<div class="container">
+    <form class="form-login" method="post" action="">
+    <!-- <form class="form-login" action="" method="post" novalidate> -->
+        {{ form.hidden_tag() }}
+        <img class="mb-3" src="static/bootstrap.svg" alt="Bootstrap" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
+        {{ form.email.label(class="sr-only")}}
+        {{ form.email(id="inputEmail", class="form-control", placeholder="Email address", autofocus="")}}
+        {{ form.password.label(class="sr-only")}}
+        {{ form.password(id="inputPassword", class="form-control", placeholder="Password")}}
+
+        <!-- TODO using browser validation so might be able to get rid of this? -->
+        {% for error in form.email.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        {% for error in form.password.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        {{ form.submit(class="btn btn-lg btn-primary btn-block")}}
+
+        <!-- <p class="mt-5 mb-3 text-muted">© 2017-2018</p> -->
+    </form>
+</div>
+{% endblock %}
