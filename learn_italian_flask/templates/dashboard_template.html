@@ -25,16 +25,16 @@
                 <img class="logo d-inline-block align-top" src="static/bootstrap.svg" alt="Bootstrap" width="24" height="24">
                 Learn Italian
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbar">
+            </button> -->
+            <!-- <div class="collapse navbar-collapse" id="navbar"> -->
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                   <a class="btn btn-outline-secondary" href="{{ url_for('logout') }}">Sign out</a>
                 </li>
               </ul>
-            </div>
+            <!-- </div> -->
         </nav>
 
         {% set active_page = active_page|default('dashboard') -%}
