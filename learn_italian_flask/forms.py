@@ -24,10 +24,26 @@ class SignupForm(FlaskForm):
         if user is not None:
             raise ValidationError('This email has already been used.')
 
-class AlphabetQuizForm(FlaskForm):
+class TestQuizForm(FlaskForm):
     # question1 = RadioField("Choose the correct option:", choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')], validators=[DataRequired()], render_kw={'disabled':'false'})
     question1 = RadioField("Choose the correct option:", choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')], validators=[DataRequired()])
     # question2 = StringField("Enter:", validators=[DataRequired()], render_kw={'disabled':'false'})
     question2 = StringField("Enter:", validators=[DataRequired()])
     # submit = SubmitField('Submit Answers!', render_kw={'disabled':'false'})
+    submit = SubmitField('Submit Answers!')
+
+from wtforms import widgets, SelectMultipleField
+
+class MultiCheckboxField(SelectMultipleField):
+    """
+    Helper class for rendering multiple checkboxes within one field.
+    """
+    widget = widgets.ListWidget(prefix_label=False)
+    option_widget = widgets.CheckboxInput()
+
+class AlphabetQuizForm(FlaskForm):
+    question1 = StringField("There are __ letters in the Italian Alphabet:", validators=[DataRequired()])
+    question2 = RadioField("The letter W is in the Italian Alphabet.", choices=[('1', 'True'), ('2', 'False')], validators=[DataRequired()])
+    question3 = MultiCheckboxField("Which of the following letters are in the Italian Alphabet?", choices=[("0", "a"), ("1", "s"), ("2", "d"), ("3", "y")])
+    question4 = MultiCheckboxField("Which of the following letters are NOT in the Italian Alphabet?", choices=[("0", "j"), ("1", "q"), ("2", "u"), ("3", "z")])
     submit = SubmitField('Submit Answers!')

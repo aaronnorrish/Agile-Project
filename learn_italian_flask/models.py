@@ -53,9 +53,17 @@ class TestQuiz(db.Model):
     # id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
 # class AlphabetQuiz(db.Model, Test):
-# class AlphabetQuiz(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
-#     q1 = db.Column(db.Integer)
-#     q2 = db.Column(db.BOOLEAN)
-#     q3 = db.Column(db.String(20))
+class AlphabetQuiz(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    # integer corresponding to choice selected
+    q1 = db.Column(db.Integer)
+    # integer corresponding to choice selected
+    q2 = db.Column(db.Integer)
+    # binary string corresponding to which options were selected
+    # bin_string[0] == the first option
+    q3 = db.Column(db.String(4))
+    # binary string corresponding to which options were selected
+    q4 = db.Column(db.String(4))
+    # the user's score for this quiz (between 0 and 1)
+    score = db.Column(db.Float, nullable=True)

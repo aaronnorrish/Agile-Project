@@ -6,7 +6,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from learn_italian_flask.models import User
 
 from learn_italian_flask.forms import AlphabetQuizForm
-from learn_italian_flask.models import TestQuiz
+from learn_italian_flask.models import AlphabetQuiz
 
 @app.route('/')
 @app.route('/index')
@@ -82,27 +82,70 @@ def alphabet():
 def alphabet_quiz():
     form = AlphabetQuizForm()
     completed = False
-    prev_attempt = TestQuiz.query.filter_by(testee_id=current_user.id).first()
+    prev_attempt = AlphabetQuiz.query.filter_by(testee_id=current_user.id).first()
     solution = None
     if prev_attempt is not None:
         completed = True
+
+        # populate the form with the user's answers
         form.question1.data = prev_attempt.q1
-        # form.question1.render_kw['disabled'] = 'true'
-        form.question2.data = prev_attempt.q2
-        # form.question2.render_kw['disabled'] = 'true'
-        # form.submit.render_kw['disabled'] = 'true'
-        solution = TestQuiz.query.filter_by(id=99).first()
-        solution = {"q1": solution.q1, "q1_correct": solution.q1 == prev_attempt.q1, "q2": solution.q2, "q2_correct": solution.q2 == prev_attempt.q2}
+        form.question2.data = str(prev_attempt.q2)
+        form.question3.data = [str(i) for i in range(len(prev_attempt.q3)) if prev_attempt.q3[i] == "1"]
+        form.question4.data = [str(i) for i in range(len(prev_attempt.q4)) if prev_attempt.q4[i] == "1"]
+        
+        # for debugging
+        print(prev_attempt.q1, prev_attempt.q2, prev_attempt.q3, prev_attempt.q4)
+
+        # get the quiz solution
+        solution = AlphabetQuiz.query.filter_by(id=1).first()
+
+        # construct object to be used to display the correct answers
+        sol_q3 = [True if prev_attempt.q3[i] == solution.q3[i] else False for i in range(len(prev_attempt.q3))]
+        sol_q4 = [True if prev_attempt.q4[i] == solution.q4[i] else False for i in range(len(prev_attempt.q4))]
+
+        solution = {"q1": solution.q1, 
+                    "q1_correct": solution.q1 == prev_attempt.q1, 
+                    "q2": solution.q2, 
+                    "q2_correct": solution.q2 == prev_attempt.q2, 
+                    "q3": sol_q3,
+                    "q4": sol_q4}
+
     elif form.validate_on_submit():
-        answer1 = form.question1.data
-        answer2 = form.question2.data
-        print(answer1, answer2)
-        curr_id = current_user.id
-        sol = TestQuiz.query.filter_by(id=99).first()
+        # get the user's submitted answers
+        answer1 = int(form.question1.data)
+        answer2 = int(form.question2.data)
+        answer3 = form.question3.data
+        answer4 = form.question4.data
+        
+        # convert checkbox selections into a binary string
+        bin_ans3 = "".join(["1" if str(i) in answer3 else "0" for i in range(4)])
+        bin_ans4 = "".join(["1" if str(i) in answer4 else "0" for i in range(4)])
+
+        # get the quiz solution
+        sol = AlphabetQuiz.query.filter_by(id=1).first()
+        
+        # calculate the user's score
+        score = 0
+        score = score + 1 if answer1 == sol.q1 else score
+        score = score + 1 if answer2 == sol.q2 else score
+        score += sum([0.25 if bin_ans3[i] == sol.q3[i] else 0 for i in range(4)])
+        score += sum([0.25 if bin_ans4[i] == sol.q4[i] else 0 for i in range(4)])
+        score /= 4
+
+        # for debugging only
         ans1_correct = answer1 == sol.q1
         ans2_correct = answer2 == sol.q2
-        score = sum([1 if ans == True else 0 for ans in [ans1_correct, ans2_correct]]) / 2
-        attempt = TestQuiz(testee_id=curr_id, q1=answer1, q1_correct=ans1_correct, q2=answer2, q2_correct=ans2_correct, score=score)
+        ans3_correct = bin_ans3 == sol.q3
+        ans4_correct = bin_ans4 == sol.q4
+
+        print(answer1, answer2, bin_ans3, bin_ans4)
+        print(sol.q1, sol.q2, sol.q3, sol.q4)
+        # print(ans1_correct, ans2_correct, ans3_correct, ans4_correct)
+        print(score)
+        # debugging end
+
+        # add the user's attempt to the database
+        attempt = AlphabetQuiz(testee_id=current_user.id, q1=answer1, q2=answer2, q3=bin_ans3, q4=bin_ans4, score=score)
         db.session.add(attempt)
         db.session.commit()
-    return render_template("quiz/test_quiz.html", title="Quiz - Alphabet", form=form, completed=completed, solution=solution)
+    return render_template("quiz/alphabet_quiz.html", title="Quiz - Alphabet", form=form, completed=completed, solution=solution)
