@@ -17,7 +17,7 @@ class SignupForm(FlaskForm):
     email = EmailField('Email address', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirmPassword = PasswordField('Password confirmation', validators=[DataRequired()])
-    submit = SubmitField('Log in')
+    submit = SubmitField('Sign up')
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()

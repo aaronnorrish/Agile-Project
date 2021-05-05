@@ -1,57 +1,18 @@
-{% extends "base.html" %}
+{% extends "pre-log-in-template.html" %}
 
 {% set active_page = "login" %}
 
-
 {% block styling %}
+<link rel="stylesheet" href="static/login-signup.css" />
+
 <style>
-    html, 
-    body {
-        height: 100%;
-    }
-
-    nav {
-        height: auto;
-    }
-
-    .container {
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        /* dont know if necessary */
-        /* padding-top: 40px; */
-        padding-bottom: 10rem;
-    }
-    
-    .form-login{
-        margin: auto;
-        max-width: 330px;
-        padding: 15px;
-        text-align: center;
-        width: 100%;
-    }
-
-    .form-login .form-control {
-        position: relative;
-        box-sizing: border-box;
-        height: auto;
-        padding: 10px;
-        font-size: 16px;
-    }
-
-    .form-login .form-control:focus {
-        z-index: 2;
-    }
-
-    .form-login input[type="email"] {
+    .form-login-signup input[type="email"] {
         margin-bottom: -1px;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
     }
 
-    .form-login input[type="password"] {
+    .form-login-signup input[type="password"] {
         margin-bottom: 10px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
@@ -61,7 +22,7 @@
 
 {% block main_content %}
 <div class="container">
-    <form class="form-login" method="post" action="">
+    <form class="form-login-signup" method="post" action="">
     <!-- <form class="form-login" action="" method="post" novalidate> -->
         {{ form.hidden_tag() }}
         <img class="mb-3" src="static/bootstrap.svg" alt="Bootstrap" width="72" height="72">
