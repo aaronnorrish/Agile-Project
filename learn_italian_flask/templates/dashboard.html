@@ -4,6 +4,9 @@
 
 {% block styling %}
 <style>
+  .card {
+    margin-top: 1.5rem;
+  }
 </style>
 {% endblock %}
 
@@ -25,17 +28,14 @@
 {% block  main_content %}
 <h3>Up next</h3>
 <div class="progress">
-  <div class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuemin="0" aria-valuemax="100"></div>
+  <div class="progress-bar bg-success" role="progressbar" style="width: {{progress}}%" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<div class="row">
+  {% for card in modules %}
+    {% include card %}
+  {% endfor %}
 </div>
 {% endblock %}
 
 {% block script %}
-  <script>
-    let numCompleted = 3;
-    let numModules = 8;
-    let progress = numCompleted/numModules * 100;
-    $(document).ready(function() {
-      $(".progress-bar").css("width", progress + "%");
-    });
-  </script>  
 {% endblock %}

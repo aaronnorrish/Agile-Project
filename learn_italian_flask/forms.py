@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, RadioField
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired, Email, ValidationError, EqualTo
 from learn_italian_flask.models import User
@@ -23,3 +23,11 @@ class SignupForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('This email has already been used.')
+
+class AlphabetQuizForm(FlaskForm):
+    # question1 = RadioField("Choose the correct option:", choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')], validators=[DataRequired()], render_kw={'disabled':'false'})
+    question1 = RadioField("Choose the correct option:", choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')], validators=[DataRequired()])
+    # question2 = StringField("Enter:", validators=[DataRequired()], render_kw={'disabled':'false'})
+    question2 = StringField("Enter:", validators=[DataRequired()])
+    # submit = SubmitField('Submit Answers!', render_kw={'disabled':'false'})
+    submit = SubmitField('Submit Answers!')
