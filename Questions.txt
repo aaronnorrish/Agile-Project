@@ -1,0 +1,80 @@
+Questions
+Italian Alphabet
+There are __ letters in the Italian Alphabet.
+21
+T/F The letter V is in the Italian Alphabet.
+False
+Multi: Which of the following letters are in the Italian Alphabet (Multiple Answers allowed) [a, s, d, y]
+All but y
+Multi: Which of the following letters are NOT in the Italian Alphabet? [j, q, u, z]
+j
+
+Numbers
+Multi: Seven [ uno, tre, sei, sette]
+Sette
+Multi: Quattro [1, 2, 3, 4]
+4
+Multi: Nine [ quattro, due, nove, tre]
+nove
+Five in italian is ____
+cinque
+Multi: Which of the following numbers is even?
+
+Greetings
+T/F Buon Giorno means good evening?
+F
+Translate Good Night
+Buona Notte
+Which one is How are you in Italian [ciao, come stai]
+Come Stai
+Ciao means
+Hi (informal)
+Translate Good Evening
+Buonasera
+
+Colours
+Orange in Italian
+Arancione
+Rosa in Italian [red, pink]
+Pink
+Translate Blue
+Blu
+Which one of the following is black? [bianco, verde, nero, giallo]
+Nero
+Viola in Italian is?
+Puruple
+
+Definite Articles
+Which of the words would precede zio (il/lo/l’)
+Lo
+Which of the words would precede gatti (il/lo/l’)
+Il 
+Which of the words would precede casa (la/l’)
+La 
+__ aereo
+L’
+__ studente
+Lo
+Indefinite Articles
+Which of the words would precede palla (una/un’)
+Una
+Which of the words would precede isola (una/un’)
+Un
+Which of the words would precede zaino (un/uno)
+Uno
+__ treno
+Un
+__ macchina
+Una 
+
+Common Verbs
+T/F: Mangiare means to eat
+T
+Ascolatare means to..
+To Listen
+Translate mettere
+To put
+Sapere means?	
+To know
+Which one means to speak? [avere, volere, parlare, sentire]
+parlare
