@@ -71,9 +71,9 @@
         {{ field }}
         {% endif %}
         {{ field.label }}
-        {% if solution.q3[field.data|int] %}
+        {% if solution and solution.q3[field.data|int] %}
         <i class="fas fa-check"></i>
-        {% else %}
+        {% elif solution %}
         <i class="fas fa-times"></i>
         {% endif %}
     {% endfor %}
@@ -89,9 +89,9 @@
         {{ field }}
         {% endif %}
         {{ field.label }}
-        {% if solution.q4[field.data|int] %}
+        {% if solution and solution.q4[field.data|int] %}
         <i class="fas fa-check"></i>
-        {% else %}
+        {% elif solution %}
         <i class="fas fa-times"></i>
         {% endif %}
     {% endfor %}
