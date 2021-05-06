@@ -27,14 +27,15 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
     def get_progress(self):
-        test_quiz_completed = TestQuiz.query.filter_by(testee_id=self.id).first() is not None
+        # test_quiz_completed = TestQuiz.query.filter_by(testee_id=self.id).first() is not None
+        alphabet_quiz_completed = AlphabetQuiz.query.filter_by(testee_id=self.id).first() is not None
         # do for each quiz type
-        quizzes = [test_quiz_completed]
+        quizzes = [alphabet_quiz_completed]
         current_progress = round(sum([test == True for test in quizzes]) / len(quizzes) * 100)
         return current_progress
 
     def get_next_module(self):
-        if TestQuiz.query.filter_by(testee_id=self.id).first() is None:
+        if AlphabetQuiz.query.filter_by(testee_id=self.id).first() is None:
             return "alphabet"
         # elif go through each quiz in order
 
