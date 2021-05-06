@@ -1,0 +1,132 @@
+{% extends "dashboard_template.html" %}
+
+{% set active_page = "learn" %}
+
+{% block styling %}
+<style>
+</style>
+{% endblock %}
+
+{% block heading %}
+<h1>Numbers</h1>
+{% endblock %}
+
+{% block  main_content %}
+<div>
+    Numbers in Italian are simple to follow, they mostly follow a predictable pattern.
+  </div>
+  <br>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Number</th>
+          <th>Italian</th>
+          <th>Pronounciation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>One</td>
+          <td>Uno</td>
+          <td><i class="fas fa-play-circle" onclick="playAudio('1.mp3')"></i></td>
+        </tr>
+        <tr>
+          <td>Two</td>
+          <td>Due</td>
+          <td><i class="fas fa-play-circle" onclick="playAudio()"></i></td>
+        </tr>
+        <tr>
+          <td>Three</td>
+          <td>Tre</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Four</td>
+          <td>Quattro</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Five</td>
+          <td>Cinque</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Six</td>
+          <td>Sei</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Seven</td>
+          <td>Sette</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Eight</td>
+          <td>Otto</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Nine</td>
+          <td>Nove</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Ten</td>
+          <td>Dieci</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Eleven</td>
+          <td>Undici</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Twelve</td>
+          <td>Dodici</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Thirteen</td>
+          <td>Tredici</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fourteen</td>
+          <td>Quattordici</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Fifteen</td>
+          <td>Quindici</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Sixteen</td>
+          <td>Sedici</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Seventeen</td>
+          <td>Diciassette</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Eighteen</td>
+          <td>Diciotto</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Nineteen</td>
+          <td>Diciannove</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Twenty</td>
+          <td>Venti</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+{% endblock %}

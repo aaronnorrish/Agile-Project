@@ -70,6 +70,11 @@ def learn():
 def alphabet():
     return render_template('alphabet.html', title="Learn - Alphabet")
 
+@app.route('/numbers')
+@login_required 
+def numbers():
+    return render_template('numbers.html', title="Learn - Numbers")
+
 # TODO think we can make a general function to handle any quiz
 # maybe need to make a quiz template?
 # maybe saving qx_correct is redundant because when we look at the responses we want to see what the
