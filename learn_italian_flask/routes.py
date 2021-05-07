@@ -96,6 +96,7 @@ def alphabet_quiz():
     form = AlphabetQuizForm()
     completed = False
     prev_attempt = AlphabetQuiz.query.filter_by(testee_id=current_user.id).first()
+    print(form.question1)
     solution = None
     if prev_attempt is not None:
         completed = True
@@ -116,12 +117,16 @@ def alphabet_quiz():
         sol_q3 = [True if prev_attempt.q3[i] == solution.q3[i] else False for i in range(len(prev_attempt.q3))]
         sol_q4 = [True if prev_attempt.q4[i] == solution.q4[i] else False for i in range(len(prev_attempt.q4))]
 
-        solution = {"q1": solution.q1, 
-                    "q1_correct": solution.q1 == prev_attempt.q1, 
-                    "q2": solution.q2, 
-                    "q2_correct": solution.q2 == prev_attempt.q2, 
-                    "q3": sol_q3,
-                    "q4": sol_q4}
+        # solution = {"q1": solution.q1, 
+        #             "q1_correct": solution.q1 == prev_attempt.q1, 
+        #             "q2": solution.q2, 
+        #             "q2_correct": solution.q2 == prev_attempt.q2, 
+        #             "q3":sol_q3,
+        #             "q4":sol_q4}
+        solution = {"question1": {"is_correct": solution.q1 == prev_attempt.q1, "solution": solution.q1},
+                    "question2": {"is_correct": solution.q2 == prev_attempt.q2, "solution": solution.q2},
+                    "question3": {"solution": sol_q3},
+                    "question4": {"solution": sol_q4}}
 
     elif form.validate_on_submit():
         # get the user's submitted answers
@@ -161,7 +166,8 @@ def alphabet_quiz():
         attempt = AlphabetQuiz(testee_id=current_user.id, q1=answer1, q2=answer2, q3=bin_ans3, q4=bin_ans4, score=score)
         db.session.add(attempt)
         db.session.commit()
-    return render_template("quiz/alphabet_quiz.html", title="Quiz - Alphabet", form=form, completed=completed, solution=solution)
+    # return render_template("quiz/alphabet_quiz.html", title="Quiz - Alphabet", form=form, completed=completed, solution=solution)
+    return render_template("quiz/quiz_template.html", title="Quiz - Alphabet", heading="Alphabet Quiz", form=form, completed=completed, solution=solution)
 
 @app.route('/numbers_quiz', methods=['GET', 'POST'])
 @login_required 
@@ -185,14 +191,22 @@ def numbers_quiz():
         # get the quiz solution
         solution =  NumbersQuiz.query.filter_by(id=1).first()
 
-        solution = {"q1": solution.q1, 
-            "q1_correct": solution.q1 == prev_attempt.q1, 
-            "q2": solution.q2, 
-            "q2_correct": solution.q2 == prev_attempt.q2.lower(), 
-            "q3": solution.q3,
-            "q3_correct": solution.q3 == prev_attempt.q3,
-            "q4": solution.q4,
-            "q4_correct": solution.q4 == prev_attempt.q4.lower()}
+        # solution = {"q1": solution.q1, 
+        #     "q1_correct": solution.q1 == prev_attempt.q1, 
+        #     "q2": solution.q2, 
+        #     "q2_correct": solution.q2 == prev_attempt.q2.lower(), 
+        #     "q3": solution.q3,
+        #     "q3_correct": solution.q3 == prev_attempt.q3,
+        #     "q4": solution.q4,
+        #     "q4_correct": solution.q4 == prev_attempt.q4.lower()}
+
+        solution = {
+            "question1": {"is_correct": solution.q1 == prev_attempt.q1, "solution": solution.q1},
+            "question2": {"is_correct": solution.q2 == prev_attempt.q2.lower(), "solution": solution.q2},
+            "question3": {"is_correct": solution.q3 == prev_attempt.q3, "solution": solution.q3},
+            "question4": {"is_correct": solution.q4 == prev_attempt.q4.lower(), "solution": solution.q4}
+        }
+
 
     elif form.validate_on_submit():
         # get the user's submitted answers
@@ -229,4 +243,5 @@ def numbers_quiz():
         attempt = NumbersQuiz(testee_id=current_user.id, q1=answer1, q2=answer2, q3=answer3, q4=answer4, score=score)
         db.session.add(attempt)
         db.session.commit()
-    return render_template('quiz/numbers_quiz.html', title="Quiz - Numbers", form=form, completed=completed, solution=solution)
+    # return render_template('quiz/numbers_quiz.html', title="Quiz - Numbers", form=form, completed=completed, solution=solution)
+    return render_template('quiz/quiz_template.html', title="Quiz - Numbers", heading="Numbers Quiz", form=form, completed=completed, solution=solution)
