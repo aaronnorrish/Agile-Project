@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, RadioField
-from wtforms.fields.html5 import EmailField
-from wtforms.validators import DataRequired, Email, ValidationError, EqualTo
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, RadioField, SelectMultipleField, widgets
+from wtforms.fields.html5 import EmailField, IntegerField
+from wtforms.validators import DataRequired, Email, ValidationError, EqualTo, Length, NumberRange
 from learn_italian_flask.models import User
 
 class LoginForm(FlaskForm):
@@ -32,8 +32,6 @@ class TestQuizForm(FlaskForm):
     # submit = SubmitField('Submit Answers!', render_kw={'disabled':'false'})
     submit = SubmitField('Submit Answers!')
 
-from wtforms import widgets, SelectMultipleField
-
 class MultiCheckboxField(SelectMultipleField):
     """
     Helper class for rendering multiple checkboxes within one field.
@@ -42,7 +40,7 @@ class MultiCheckboxField(SelectMultipleField):
     option_widget = widgets.CheckboxInput()
 
 class AlphabetQuizForm(FlaskForm):
-    question1 = StringField("There are __ letters in the Italian Alphabet:", validators=[DataRequired()])
+    question1 = IntegerField("There are __ letters in the Italian Alphabet:", validators=[DataRequired(), NumberRange(min=0,max=999)])
     question2 = RadioField("The letter W is in the Italian Alphabet.", choices=[('1', 'True'), ('2', 'False')], validators=[DataRequired()])
     question3 = MultiCheckboxField("Which of the following letters are in the Italian Alphabet?", choices=[("0", "a"), ("1", "s"), ("2", "d"), ("3", "y")])
     question4 = MultiCheckboxField("Which of the following letters are NOT in the Italian Alphabet?", choices=[("0", "j"), ("1", "q"), ("2", "u"), ("3", "z")])
@@ -50,7 +48,7 @@ class AlphabetQuizForm(FlaskForm):
 
 class NumbersQuizForm(FlaskForm):
     question1 = RadioField("Quattro is which number in Italian?", choices=[('one'), ('two'), ('three'), ('four')], validators=[DataRequired()])
-    question2 = StringField('Write "five" in Italian:', validators=[DataRequired()])
+    question2 = StringField('Write "five" in Italian:', validators=[DataRequired(), Length(max=10)])
     question3 = RadioField("What is seven in Italian?", choices=[('tre'), ('uno'), ('sei'), ('sette')], validators=[DataRequired()])
-    question4 = StringField("Complete this sequence: sei, sette, __, nove", validators=[DataRequired()])
+    question4 = StringField("Complete this sequence: sei, sette, __, nove", validators=[DataRequired(), Length(max=10)])
     submit = SubmitField('Submit Answers!')

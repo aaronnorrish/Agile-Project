@@ -15,7 +15,7 @@
 {% if completed %}
 <div class="alert alert-success">Quiz successfully submitted!</div>
 {% endif %}
-<form id="form-quiz" action="" method="post">
+<form id="form-quiz" action="" method="post" novalidate>
     {{ form.hidden_tag() }}
 
     {% for question in form %}
@@ -33,6 +33,28 @@
             {% else %}
                 {{ question }}
             {% endif %}
+            {% for error in question.errors %}
+                <div class="alert alert-danger">{{error}}</div>
+            {% endfor %}
+            <br>
+
+        {% elif question.type == "IntegerField" %}
+            {{ question.label }}
+            <br>
+            {% if completed %}
+            {{ question(disabled=true) }}
+                {% if solution[question.id]["is_correct"] %}
+                    <i class="fas fa-check"></i>
+                {% else %}
+                    <i class="fas fa-times"></i>
+                    <span class="alert alert-danger">{{solution[question.id]["solution"]}}</span>
+                {% endif %}
+            {% else %}
+                {{ question }}
+            {% endif %}
+            {% for error in question.errors %}
+                <div class="alert alert-danger">Please enter an integer between 0 and 999</div>
+            {% endfor %}
             <br>
 
         {% elif question.type == "RadioField" %}
@@ -57,7 +79,11 @@
                     {% endif %}
                 {% endif %}
             {% endfor %}
-            
+
+            {% for error in question.errors %}
+                <div class="alert alert-danger">Please select an option!</div>
+            {% endfor %}
+        
         {% elif question.type == "MultiCheckboxField" %}
             {{ question.label }}
             {% for field in question%}

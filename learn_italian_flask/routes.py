@@ -96,7 +96,6 @@ def alphabet_quiz():
     form = AlphabetQuizForm()
     completed = False
     prev_attempt = AlphabetQuiz.query.filter_by(testee_id=current_user.id).first()
-    print(form.question1)
     solution = None
     if prev_attempt is not None:
         completed = True
@@ -130,7 +129,7 @@ def alphabet_quiz():
 
     elif form.validate_on_submit():
         # get the user's submitted answers
-        answer1 = int(form.question1.data)
+        answer1 = form.question1.data
         answer2 = int(form.question2.data)
         answer3 = form.question3.data
         answer4 = form.question4.data
