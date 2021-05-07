@@ -47,3 +47,10 @@ class AlphabetQuizForm(FlaskForm):
     question3 = MultiCheckboxField("Which of the following letters are in the Italian Alphabet?", choices=[("0", "a"), ("1", "s"), ("2", "d"), ("3", "y")])
     question4 = MultiCheckboxField("Which of the following letters are NOT in the Italian Alphabet?", choices=[("0", "j"), ("1", "q"), ("2", "u"), ("3", "z")])
     submit = SubmitField('Submit Answers!')
+
+class NumbersQuizForm(FlaskForm):
+    question1 = RadioField("Quattro is which number in Italian?", choices=[('one'), ('two'), ('three'), ('four')], validators=[DataRequired()])
+    question2 = StringField('Write "five" in Italian:', validators=[DataRequired()])
+    question3 = RadioField("What is seven in Italian?", choices=[('tre'), ('uno'), ('sei'), ('sette')], validators=[DataRequired()])
+    question4 = StringField("Complete this sequence: sei, sette, __, nove", validators=[DataRequired()])
+    submit = SubmitField('Submit Answers!')

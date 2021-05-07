@@ -5,8 +5,8 @@ from learn_italian_flask.forms import LoginForm, SignupForm
 from flask_login import current_user, login_user, logout_user, login_required
 from learn_italian_flask.models import User
 
-from learn_italian_flask.forms import AlphabetQuizForm
-from learn_italian_flask.models import AlphabetQuiz
+from learn_italian_flask.forms import AlphabetQuizForm, NumbersQuizForm
+from learn_italian_flask.models import AlphabetQuiz, NumbersQuiz
 
 @app.route('/')
 @app.route('/index')
@@ -58,11 +58,14 @@ def dashboard():
     modules = []
     if current_user.get_next_module() == "alphabet":
         modules.append("cards/_alphabet_card.html")
+    elif current_user.get_next_module() == "numbers":
+        modules.append("cards/_numbers_card.html")
     return render_template('dashboard.html', title="Dashboard", progress=current_user.get_progress(), modules=modules)
 
 @app.route('/learn')
 @login_required 
 def learn():
+    # TODO pass all card templates similar to how the dashboard does
     return render_template('learn.html', title="Learn")
 
 @app.route('/alphabet')
@@ -159,3 +162,71 @@ def alphabet_quiz():
         db.session.add(attempt)
         db.session.commit()
     return render_template("quiz/alphabet_quiz.html", title="Quiz - Alphabet", form=form, completed=completed, solution=solution)
+
+@app.route('/numbers_quiz', methods=['GET', 'POST'])
+@login_required 
+def numbers_quiz():
+    form = NumbersQuizForm()
+    completed = False
+    prev_attempt = NumbersQuiz.query.filter_by(testee_id=current_user.id).first()
+    solution = None
+    if prev_attempt is not None:
+        completed = True
+
+        # populate the form with the user's answers
+        form.question1.data = prev_attempt.q1
+        form.question2.data = prev_attempt.q2
+        form.question3.data = prev_attempt.q3
+        form.question4.data = prev_attempt.q4
+
+        # for debugging
+        print(prev_attempt.q1, prev_attempt.q2, prev_attempt.q3, prev_attempt.q4)
+
+        # get the quiz solution
+        solution =  NumbersQuiz.query.filter_by(id=1).first()
+
+        solution = {"q1": solution.q1, 
+            "q1_correct": solution.q1 == prev_attempt.q1, 
+            "q2": solution.q2, 
+            "q2_correct": solution.q2 == prev_attempt.q2.lower(), 
+            "q3": solution.q3,
+            "q3_correct": solution.q3 == prev_attempt.q3,
+            "q4": solution.q4,
+            "q4_correct": solution.q4 == prev_attempt.q4.lower()}
+
+    elif form.validate_on_submit():
+        # get the user's submitted answers
+        # strip white space from string input
+        answer1 = form.question1.data
+        answer2 = form.question2.data.strip()
+        answer3 = form.question3.data
+        answer4 = form.question4.data.strip()
+
+        # get the quiz solution
+        sol = NumbersQuiz.query.filter_by(id=1).first()
+
+        # calculate the user's score
+        score = 0
+        score = score + 1 if answer1 == sol.q1 else score
+        score = score + 1 if answer2.lower() == sol.q2 else score
+        score = score + 1 if answer3 == sol.q3 else score
+        score = score + 1 if answer4.lower() == sol.q4 else score
+        score /= 4
+
+        # for debugging only
+        ans1_correct = answer1 == sol.q1
+        ans2_correct = answer2.lower() == sol.q2
+        ans3_correct = answer3 == sol.q3
+        ans4_correct = answer4.lower() == sol.q4
+
+        print(answer1, answer2, answer3, answer4)
+        print(sol.q1, sol.q2, sol.q3, sol.q4)
+        # print(ans1_correct, ans2_correct, ans3_correct, ans4_correct)
+        print(score)
+        # debugging end
+
+        # add the user's attempt to the database
+        attempt = NumbersQuiz(testee_id=current_user.id, q1=answer1, q2=answer2, q3=answer3, q4=answer4, score=score)
+        db.session.add(attempt)
+        db.session.commit()
+    return render_template('quiz/numbers_quiz.html', title="Quiz - Numbers", form=form, completed=completed, solution=solution)

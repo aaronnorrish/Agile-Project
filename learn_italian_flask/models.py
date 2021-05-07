@@ -29,14 +29,18 @@ class User(UserMixin, db.Model):
     def get_progress(self):
         # test_quiz_completed = TestQuiz.query.filter_by(testee_id=self.id).first() is not None
         alphabet_quiz_completed = AlphabetQuiz.query.filter_by(testee_id=self.id).first() is not None
+        numbers_quiz_completed = NumbersQuiz.query.filter_by(testee_id=self.id).first() is not None
         # do for each quiz type
-        quizzes = [alphabet_quiz_completed]
+        quizzes = [alphabet_quiz_completed, numbers_quiz_completed]
         current_progress = round(sum([test == True for test in quizzes]) / len(quizzes) * 100)
         return current_progress
 
     def get_next_module(self):
         if AlphabetQuiz.query.filter_by(testee_id=self.id).first() is None:
             return "alphabet"
+        if NumbersQuiz.query.filter_by(testee_id=self.id).first() is None:
+            return "numbers"
+        
         # elif go through each quiz in order
 
 class TestQuiz(db.Model):
@@ -57,7 +61,6 @@ class TestQuiz(db.Model):
 class AlphabetQuiz(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
-    # integer corresponding to choice selected
     q1 = db.Column(db.Integer)
     # integer corresponding to choice selected
     q2 = db.Column(db.Integer)
@@ -68,3 +71,12 @@ class AlphabetQuiz(db.Model):
     q4 = db.Column(db.String(4))
     # the user's score for this quiz (between 0 and 1)
     score = db.Column(db.Float, nullable=True)
+
+class NumbersQuiz(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    q1 = db.Column(db.String(10))
+    q2 = db.Column(db.String(10))
+    q3 = db.Column(db.String(10))
+    q4 = db.Column(db.String(10))
+    score = db.Column(db.Float)
