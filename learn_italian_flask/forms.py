@@ -16,7 +16,7 @@ class SignupForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     email = EmailField('Email address', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
-    confirmPassword = PasswordField('Password confirmation', validators=[DataRequired()])
+    confirmPassword = PasswordField('Password confirmation', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign up')
 
     def validate_email(self, email):
