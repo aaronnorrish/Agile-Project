@@ -43,7 +43,6 @@ def signup():
         db.session.add(user)
         db.session.commit()
         login_user(user)
-        # flash('Sign up was successful!')
         return redirect(url_for('dashboard'))
     return render_template('sign-up.html', title="Learn Italian - Sign up", form=form)
 
@@ -60,6 +59,7 @@ def dashboard():
         modules.append("cards/_alphabet_card.html")
     elif current_user.get_next_module() == "numbers":
         modules.append("cards/_numbers_card.html")
+    print(current_user.get_progress())
     return render_template('dashboard.html', title="Dashboard", progress=current_user.get_progress(), modules=modules)
 
 @app.route('/learn')
@@ -133,7 +133,7 @@ def alphabet_quiz():
         answer2 = int(form.question2.data)
         answer3 = form.question3.data
         answer4 = form.question4.data
-        
+
         # convert checkbox selections into a binary string
         bin_ans3 = "".join(["1" if str(i) in answer3 else "0" for i in range(4)])
         bin_ans4 = "".join(["1" if str(i) in answer4 else "0" for i in range(4)])
@@ -179,9 +179,9 @@ def numbers_quiz():
         completed = True
 
         # populate the form with the user's answers
-        form.question1.data = prev_attempt.q1
+        form.question1.data = str(prev_attempt.q1)
         form.question2.data = prev_attempt.q2
-        form.question3.data = prev_attempt.q3
+        form.question3.data = str(prev_attempt.q3)
         form.question4.data = prev_attempt.q4
 
         # for debugging
@@ -210,9 +210,9 @@ def numbers_quiz():
     elif form.validate_on_submit():
         # get the user's submitted answers
         # strip white space from string input
-        answer1 = form.question1.data
+        answer1 = int(form.question1.data)
         answer2 = form.question2.data.strip()
-        answer3 = form.question3.data
+        answer3 = int(form.question3.data)
         answer4 = form.question4.data.strip()
 
         # get the quiz solution

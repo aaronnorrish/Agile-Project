@@ -14,7 +14,6 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    # test_quiz_id = db.Column(db.Integer, db.ForeignKey('test_quiz.id'), nullable=True)
     # alphabet_test = db.relationship('AlphabetTest', backref='testee')
 
     def __repr__(self):
@@ -27,7 +26,6 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
     def get_progress(self):
-        # test_quiz_completed = TestQuiz.query.filter_by(testee_id=self.id).first() is not None
         alphabet_quiz_completed = AlphabetQuiz.query.filter_by(testee_id=self.id).first() is not None
         numbers_quiz_completed = NumbersQuiz.query.filter_by(testee_id=self.id).first() is not None
         # do for each quiz type
@@ -40,19 +38,7 @@ class User(UserMixin, db.Model):
             return "alphabet"
         if NumbersQuiz.query.filter_by(testee_id=self.id).first() is None:
             return "numbers"
-        
         # elif go through each quiz in order
-
-class TestQuiz(db.Model):
-    # id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
-    id = db.Column(db.Integer, primary_key=True)
-    testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
-    # integer corresponding to the choice selected
-    q1 = db.Column(db.Integer)
-    q1_correct = db.Column(db.Boolean)
-    q2 = db.Column(db.String(64))
-    q2_correct = db.Column(db.Boolean)
-    score = db.Column(db.Float)
 
 # class Quiz(db.Model):
     # id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
@@ -75,8 +61,10 @@ class AlphabetQuiz(db.Model):
 class NumbersQuiz(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
-    q1 = db.Column(db.String(10))
+    # integer corresponding to choice selected
+    q1 = db.Column(db.Integer)
     q2 = db.Column(db.String(10))
-    q3 = db.Column(db.String(10))
+    # integer corresponding to choice selected
+    q3 = db.Column(db.Integer)
     q4 = db.Column(db.String(10))
-    score = db.Column(db.Float)
+    score = db.Column(db.Float, nullable=True)
