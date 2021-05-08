@@ -1,0 +1,5 @@
+sol = AlphabetQuiz(q1=21, q2=1, q3="1110", q4="1000")
+sol = NumbersQuiz(q1=3, q2="cinque", q3=3, q4="otto")
+...
+db.session.add_all([sol1, sol2])
+db.session.commit()
