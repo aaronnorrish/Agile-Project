@@ -48,16 +48,16 @@
 
             <!-- TODO using browser validation so might be able to get rid of this? -->            
             {% for error in form.name.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <div class="alert alert-danger">[{{ error }}]</div>
             {% endfor %}
             {% for error in form.email.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <div class="alert alert-danger">[{{ error }}]</div>
             {% endfor %}
             {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <div class="alert alert-danger">[{{ error }}]</div>
             {% endfor %}
             {% for error in form.confirmPassword.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <div class="alert alert-danger">[{{ error }}]</div>
             {% endfor %}
 
             {{ form.submit(class="btn btn-lg btn-primary btn-block")}}
