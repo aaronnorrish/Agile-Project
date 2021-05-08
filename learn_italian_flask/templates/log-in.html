@@ -23,7 +23,7 @@
 {% block main_content %}
 <div class="container">
     <form class="form-login-signup" method="post" action="">
-    <!-- <form class="form-login" action="" method="post" novalidate> -->
+    <!-- <form class="form-login-signup" action="" method="post" novalidate> -->
         {{ form.hidden_tag() }}
         <img class="mb-3" src="static/bootstrap.svg" alt="Bootstrap" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
@@ -34,11 +34,20 @@
 
         <!-- TODO using browser validation so might be able to get rid of this? -->
         {% for error in form.email.errors %}
-        <span style="color: red;">[{{ error }}]</span>
+        <div class="alert alert-danger">{{ error }}</div>
         {% endfor %}
         {% for error in form.password.errors %}
-        <span style="color: red;">[{{ error }}]</span>
+        <div class="alert alert-danger">{{ error }}</div>
         {% endfor %}
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
         {{ form.submit(class="btn btn-lg btn-primary btn-block")}}
 
         <!-- <p class="mt-5 mb-3 text-muted">© 2017-2018</p> -->
