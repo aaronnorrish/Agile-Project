@@ -1,0 +1,114 @@
+{% extends "dashboard_template.html" %}
+
+{% set active_page = "learn" %}
+
+{% block styling %}
+<style>
+</style>
+{% endblock %}
+
+{% block heading %}
+<h1>Common Verbs</h1>
+{% endblock %}
+
+{% block main_content %}
+
+<div>
+    Here are the most commonly used verbs.
+</div>
+<br>
+<div class="table-responsive">
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Verb</th>
+        <th>Italian</th>
+        <th>Pronounciation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>To Go</td>
+        <td>Andare</td>
+        <td><i class="fas fa-play-circle" onclick="playAudio('1.mp3')"></i></td>
+    </tr>
+    <tr>
+        <td>To Eat</td>
+        <td>Mangiare</td>
+        <td><i class="fas fa-play-circle" onclick="playAudio()"></i></td>
+    </tr>
+    <tr>
+        <td>To Be</td>
+        <td>Essere</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>To Stay</td>
+        <td>Stare</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>To Do/Make</td>
+        <td>Fare</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>To Have</td>
+        <td>Avere</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>To Be Able To</td>
+        <td>Potere</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>To Want</td>
+        <td>Volere</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>To Have to</td>
+        <td>Dovere</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>To Speak</td>
+        <td>Parlare</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>To See</td>
+        <td>Vedere</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>To Know</td>
+        <td>Sapere</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>To Put</td>
+        <td>Mettere</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>To Take</td>
+        <td>Prendere</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>To Hear/Feel</td>
+        <td>Sentire</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>To Listen</td>
+        <td>Ascoltare</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+{% endblock %}
