@@ -1,0 +1,81 @@
+{% extends "dashboard_template.html" %}
+
+{% set active_page = "learn" %}
+
+{% block styling %}
+<style>
+</style>
+{% endblock %}
+
+{% block heading %}
+<h1>Alphabet</h1>
+{% endblock %}
+
+{% block  main_content %}
+<div>
+    Learn how to differentiate between the colours.
+</div>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Colour</th>
+            <th>Italian</th>
+            <th>Pronounciation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Red</td>
+            <td>Rosso</td>
+            <td><i class="fas fa-play-circle" onclick="playAudio('1.mp3')"></i></td>
+          </tr>
+          <tr>
+            <td>Orange</td>
+            <td>Arancione</td>
+            <td><i class="fas fa-play-circle" onclick="playAudio()"></i></td>
+          </tr>
+          <tr>
+            <td>Yellow</td>
+            <td>Giallo</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Green</td>
+            <td>Verde</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Blue</td>
+            <td>Blu</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Purple</td>
+            <td>Viola</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Pink</td>
+            <td>Rosa</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Brown</td>
+            <td>Marrone</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Black</td>
+            <td>Nero</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>White</td>
+            <td>Bianca</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+{% endblock %}
