@@ -39,11 +39,11 @@ class User(UserMixin, db.Model):
         if NumbersQuiz.query.filter_by(testee_id=self.id).first() is None:
             return "numbers"
         # elif go through each quiz in order
+        return None
 
 # class Quiz(db.Model):
     # id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
-# class AlphabetQuiz(db.Model, Test):
 class AlphabetQuiz(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
