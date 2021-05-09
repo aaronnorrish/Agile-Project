@@ -83,16 +83,14 @@ class QuizController():
         form = AlphabetQuizForm()
         completed = False
         prev_attempt = AlphabetQuiz.query.filter_by(testee_id=current_user.id).first()
-        solution = None
+        results = None
         if prev_attempt is not None:
             completed = True
 
             # populate the form with the user's answers
-            form.question1.data = prev_attempt.q1
-            form.question2.data = str(prev_attempt.q2)
-            form.question3.data = [str(i) for i in range(len(prev_attempt.q3)) if prev_attempt.q3[i] == "1"]
-            form.question4.data = [str(i) for i in range(len(prev_attempt.q4)) if prev_attempt.q4[i] == "1"]
-            
+            user_answers = [prev_attempt.q1, prev_attempt.q2, prev_attempt.q3, prev_attempt.q4]
+            QuizController.populate_form(form, user_answers)
+
             # for debugging
             print(prev_attempt.q1, prev_attempt.q2, prev_attempt.q3, prev_attempt.q4)
 
@@ -100,13 +98,9 @@ class QuizController():
             solution = AlphabetQuiz.query.filter_by(id=1).first()
 
             # construct object to be used to display the correct answers
-            sol_q3 = [True if prev_attempt.q3[i] == solution.q3[i] else False for i in range(len(prev_attempt.q3))]
-            sol_q4 = [True if prev_attempt.q4[i] == solution.q4[i] else False for i in range(len(prev_attempt.q4))]
-
-            solution = {"question1": {"is_correct": solution.q1 == prev_attempt.q1, "solution": solution.q1},
-                        "question2": {"is_correct": solution.q2 == prev_attempt.q2, "solution": solution.q2},
-                        "question3": {"solution": sol_q3},
-                        "question4": {"solution": sol_q4}}
+            sol = AlphabetQuiz.query.filter_by(id=1).first()
+            solutions = [sol.q1, sol.q2, sol.q3, sol.q4]
+            results = QuizController.construct_solution(form, solutions)
 
         elif form.validate_on_submit():
             # get the user's submitted answers
@@ -146,35 +140,27 @@ class QuizController():
             attempt = AlphabetQuiz(testee_id=current_user.id, q1=answer1, q2=answer2, q3=bin_ans3, q4=bin_ans4, score=score)
             db.session.add(attempt)
             db.session.commit()
-        return render_template("quiz/quiz_template.html", title="Quiz - Alphabet", heading="Alphabet Quiz", form=form, completed=completed, solution=solution)
+        return render_template("quiz/quiz_template.html", title="Quiz - Alphabet", heading="Alphabet Quiz", form=form, completed=completed, results=results)
 
     def get_numbers_quiz():
         form = NumbersQuizForm()
         completed = False
         prev_attempt = NumbersQuiz.query.filter_by(testee_id=current_user.id).first()
-        solution = None
+        results = None
         if prev_attempt is not None:
             completed = True
 
             # populate the form with the user's answers
-            form.question1.data = str(prev_attempt.q1)
-            form.question2.data = prev_attempt.q2
-            form.question3.data = str(prev_attempt.q3)
-            form.question4.data = prev_attempt.q4
+            user_answers = [prev_attempt.q1, prev_attempt.q2, prev_attempt.q3, prev_attempt.q4]
+            QuizController.populate_form(form, user_answers)
 
             # for debugging
             print(prev_attempt.q1, prev_attempt.q2, prev_attempt.q3, prev_attempt.q4)
 
             # get the quiz solution
-            solution =  NumbersQuiz.query.filter_by(id=1).first()
-
-            solution = {
-                "question1": {"is_correct": solution.q1 == prev_attempt.q1, "solution": solution.q1},
-                "question2": {"is_correct": solution.q2 == prev_attempt.q2.lower(), "solution": solution.q2},
-                "question3": {"is_correct": solution.q3 == prev_attempt.q3, "solution": solution.q3},
-                "question4": {"is_correct": solution.q4 == prev_attempt.q4.lower(), "solution": solution.q4}
-            }
-
+            sol =  NumbersQuiz.query.filter_by(id=1).first()
+            solutions = [sol.q1, sol.q2, sol.q3, sol.q4]
+            results = QuizController.construct_solution(form, solutions)
 
         elif form.validate_on_submit():
             # get the user's submitted answers
@@ -211,5 +197,40 @@ class QuizController():
             attempt = NumbersQuiz(testee_id=current_user.id, q1=answer1, q2=answer2, q3=answer3, q4=answer4, score=score)
             db.session.add(attempt)
             db.session.commit()
-        return render_template('quiz/quiz_template.html', title="Quiz - Numbers", heading="Numbers Quiz", form=form, completed=completed, solution=solution)
+        return render_template('quiz/quiz_template.html', title="Quiz - Numbers", heading="Numbers Quiz", form=form, completed=completed, results=results)
 
+    def populate_form(form, user_answers):
+        """
+        helper function that populates a quiz form with the user's answers
+        """
+        for question, answer in zip(form, user_answers):
+            if question.type == "StringField":
+                question.data = answer
+            elif question.type == "RadioField":
+                question.data = str(answer)
+            elif question.type == "IntegerField":
+                question.data = answer
+            elif question.type == "MultiCheckboxField":
+                question.data = [str(i) for i in range(len(answer)) if answer[i] == "1"]
+
+    def construct_solution(form, solutions):
+        """
+        helper function which constructs the results dictionary passed to the html page
+        """
+        results = {}
+        for solution, question, i in zip(solutions, form, range(len(solutions))):
+            field = "question"+str(i+1)
+            results[field] = {}
+            if question.type == "StringField":
+                results[field]["is_correct"] = question.data.lower() == solution
+                results[field]["solution"] = solution
+            elif question.type == "RadioField":
+                results[field]["is_correct"] = question.data == str(solution)
+                results[field]["solution"] = str(solution)
+            elif question.type == "IntegerField":
+                results[field]["is_correct"] = int(question.data) == solution
+                results[field]["solution"] = solution
+            elif question.type == "MultiCheckboxField":
+                user_answer = "".join(["1" if str(i) in question.data else "0" for i in range(4)])
+                results[field]["solution"] = [True if user_answer[i] == solution[i] else False for i in range(len(solution))]
+        return results

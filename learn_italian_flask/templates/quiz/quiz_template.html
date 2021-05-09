@@ -24,11 +24,11 @@
             <br>
             {% if completed %}
             {{ question(disabled=true) }}
-                {% if solution[question.id]["is_correct"] %}
+                {% if results[question.id]["is_correct"] %}
                     <i class="fas fa-check"></i>
                 {% else %}
                     <i class="fas fa-times"></i>
-                    <span class="alert alert-danger">{{solution[question.id]["solution"]}}</span>
+                    <span class="alert alert-danger">{{results[question.id]["solution"]}}</span>
                 {% endif %}
             {% else %}
                 {{ question }}
@@ -43,11 +43,11 @@
             <br>
             {% if completed %}
             {{ question(disabled=true) }}
-                {% if solution[question.id]["is_correct"] %}
+                {% if results[question.id]["is_correct"] %}
                     <i class="fas fa-check"></i>
                 {% else %}
                     <i class="fas fa-times"></i>
-                    <span class="alert alert-danger">{{solution[question.id]["solution"]}}</span>
+                    <span class="alert alert-danger">{{results[question.id]["solution"]}}</span>
                 {% endif %}
             {% else %}
                 {{ question }}
@@ -70,11 +70,11 @@
                 {{ field.label }}
                 
                 {% if completed %}
-                    {% if field.data == question.data and solution[question.id]["is_correct"] %}
+                    {% if field.data == question.data and results[question.id]["is_correct"] %}
                         <i class="fas fa-check"></i>
                     {% elif field.data == question.data %}
                         <i class="fas fa-times"></i>
-                    {% elif field.data == solution[question.id]["solution"] %}
+                    {% elif field.data == results[question.id]["solution"] %}
                         <i class="fas fa-check"></i>
                     {% endif %}
                 {% endif %}
@@ -96,9 +96,9 @@
 
                 {{ field.label }}
 
-                {% if solution and solution[question.id]["solution"][field.data|int] %}
+                {% if results and results[question.id]["solution"][field.data|int] %}
                     <i class="fas fa-check"></i>
-                {% elif solution %}
+                {% elif results %}
                     <i class="fas fa-times"></i>
                 {% endif %}        
             {% endfor %}
