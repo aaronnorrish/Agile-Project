@@ -44,6 +44,16 @@ class User(UserMixin, db.Model):
 # class Quiz(db.Model):
     # id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
+"""
+How quiz answers are stored:
+    answers from StringField questions are stored as strings.
+    answers from IntegerField questions are stored as integers.
+    answers from RadioField questions (represent multi-choice questions, where only one answer is allowed) 
+        are stored as integers corresponding to the number of the selected option.
+    answers from MultiCheckboxField questions (represent multi-choice questions, where zero to multiple 
+        answers are allowed) are stored as binary strings where a 1 in the ith position denotes that the 
+        ith option has been selected.
+"""
 class AlphabetQuiz(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
@@ -58,6 +68,9 @@ class AlphabetQuiz(db.Model):
     # the user's score for this quiz (between 0 and 1)
     score = db.Column(db.Float, nullable=True)
 
+    def get_answers(self):
+        return [self.q1, self.q2, self.q3, self.q4]
+
 class NumbersQuiz(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
@@ -68,3 +81,6 @@ class NumbersQuiz(db.Model):
     q3 = db.Column(db.Integer)
     q4 = db.Column(db.String(10))
     score = db.Column(db.Float, nullable=True)
+
+    def get_answers(self):
+        return [self.q1, self.q2, self.q3, self.q4]
