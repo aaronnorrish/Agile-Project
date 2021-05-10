@@ -169,7 +169,7 @@ class QuizController():
             # # debugging end
 
             # add the user's attempt to the database
-            attempt = NumbersQuiz(testee_id=current_user.id,q1=user_answers["answer1"]["value"], q2=user_answers["answer2"]["value"], q3=user_answers["answer3"]["value"], q4=user_answers["answer4"]["value"], score=score)
+            attempt = NumbersQuiz(testee_id=current_user.id, q1=user_answers["answer1"]["value"], q2=user_answers["answer2"]["value"], q3=user_answers["answer3"]["value"], q4=user_answers["answer4"]["value"], score=score)
             db.session.add(attempt)
             db.session.commit()
         return render_template('quiz/quiz_template.html', title="Quiz - Numbers", heading="Numbers Quiz", form=form, completed=completed, results=results)
@@ -255,3 +255,15 @@ class QuizController():
                 score += sum([0.25 if user_answers[answer]["value"][i] == solution[i] else 0 for i in range(len(solution))])
         score /= len(solutions)
         return score
+
+class ResultsController():
+    def get_results():
+        labels = ['Alphabet', 'Numbers', 'Greetings', 'Colours', 'Articles', 'Common Verbs']
+        scores = [0 for i in range(6)]
+        alphabet_quiz = AlphabetQuiz.query.filter_by(testee_id=current_user.id).first()
+        if alphabet_quiz is not None:
+            scores[0] = alphabet_quiz.score * 100
+        numbers_quiz = NumbersQuiz.query.filter_by(testee_id=current_user.id).first()
+        if numbers_quiz is not None:
+            scores[1] = numbers_quiz.score * 100
+        return render_template('results.html', title="Results", labels=labels, scores=scores)

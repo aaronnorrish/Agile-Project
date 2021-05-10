@@ -7,7 +7,7 @@ from learn_italian_flask.models import User
 
 from learn_italian_flask.forms import AlphabetQuizForm, NumbersQuizForm
 from learn_italian_flask.models import AlphabetQuiz, NumbersQuiz
-from learn_italian_flask.controllers import UserController, QuizController, LearnController, DashboardController
+from learn_italian_flask.controllers import UserController, QuizController, LearnController, DashboardController, ResultsController
 
 @app.route('/')
 @app.route('/index')
@@ -65,3 +65,8 @@ def alphabet_quiz():
 @login_required 
 def numbers_quiz():
     return QuizController.get_numbers_quiz()
+
+@app.route('/results')
+@login_required 
+def results():
+    return ResultsController.get_results()
