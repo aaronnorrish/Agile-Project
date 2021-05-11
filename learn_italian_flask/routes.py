@@ -56,6 +56,24 @@ def greetings():
     # return LearnController.get_greetings_content()
     return LearnController.get_content("greetings")
 
+@app.route('/colours')
+@login_required 
+def colours():
+    # return LearnController.get_colours_content()
+    return LearnController.get_content("colours")
+
+@app.route('/articles')
+@login_required 
+def articles():
+    # return LearnController.get_articles_content()
+    return LearnController.get_content("articles")
+
+@app.route('/verbs')
+@login_required 
+def verbs():
+    # return LearnController.get_verbs_content()
+    return LearnController.get_content("verbs")
+
 @app.route('/alphabet_quiz', methods=['GET', 'POST'])
 @login_required 
 def alphabet_quiz():

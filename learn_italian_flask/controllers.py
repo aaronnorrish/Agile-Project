@@ -64,6 +64,12 @@ class LearnController():
             return render_template('numbers.html', title="Learn - Numbers")
         if content == "greetings":
             return render_template('greetings.html', title="Learn - Greetings")
+        if content == "colours":
+            return render_template('colours.html', title="Learn - Colours")
+        if content == "articles":
+            return render_template('articles.html', title="Learn - Definite and Indefinite Articles")
+        if content == "verbs":
+            return render_template('verbs.html', title="Learn - Common Verbs")
 
         # def get_alphabet_content():
         #     return render_template('alphabet.html', title="Learn - Alphabet")
