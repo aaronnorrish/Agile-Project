@@ -6,20 +6,20 @@
 <link rel="stylesheet" href="static/login-signup.css" />
 
 <style>
-    .form-login-signup input[type="text"] {
+    #name {
         margin-bottom: -1px;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
     }
 
-    .form-login-signup input[type="email"],
-    .form-login-signup #password  {
+    #inputEmail,
+    #password  {
         margin-top: -1px;
         margin-bottom: -1px;
         border-radius: 0;
     }
 
-    .form-login-signup #confirmPassword {
+    #confirmPassword {
         margin-bottom: 10px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
@@ -29,21 +29,16 @@
 
 {% block main_content %}
 <div class="container">
-    <!-- <form class="form-signup" method="post" action ="" novalidate> -->
         <form class="form-login-signup" method="post" action ="">
             {{ form.hidden_tag() }}
             <img class="mb-3" src="static/bootstrap.svg" alt="Bootstrap" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
-            {{ form.name.label(class="sr-only") }}
             {{ form.name(id="name", class="form-control", placeholder="Name", autofocus="") }}
 
-            {{ form.email.label(class="sr-only") }}
             {{ form.email(id="inputEmail", class="form-control", placeholder="Email address", required="") }}
 
-            {{ form.password.label(class="sr-only") }}
             {{ form.password(id="password", class="form-control", placeholder="Password", required="") }}
 
-            {{ form.confirmPassword.label(class="sr-only") }}
             {{ form.confirmPassword(id="confirmPassword", class="form-control", placeholder="Confirm password", required="") }}
 
             <!-- TODO using browser validation so might be able to get rid of this? -->            
@@ -61,8 +56,6 @@
             {% endfor %}
 
             {{ form.submit(class="btn btn-lg btn-primary btn-block")}}
-
-            <!-- <p class="mt-5 mb-3 text-muted">© 2017-2018</p> -->
         </form>
 </div>
 {% endblock %}
