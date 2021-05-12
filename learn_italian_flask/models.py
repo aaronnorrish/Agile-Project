@@ -91,3 +91,83 @@ class NumbersQuiz(db.Model):
 
     def get_answers(self):
         return [self.q1, self.q2, self.q3, self.q4]
+
+class GreetingsQuiz(db.Model):
+    """
+    q1 RadioField question
+    q2 StringField question
+    q3 RadioField question
+    q4 StringField question
+    """
+    id = db.Column(db.Integer, primary_key=True)
+    testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    q1 = db.Column(db.Integer)
+    q2 = db.Column(db.String(20))
+    q3 = db.Column(db.Integer)
+    q4 = db.Column(db.String(20))
+    score = db.Column(db.Float, nullable=True)
+
+    def get_answers(self):
+        return [self.q1, self.q2, self.q3, self.q4]
+    
+class ColoursQuiz(db.Model):
+    """
+    q1 StringField question
+    q2 RadioField question
+    q3 StringField question
+    q4 RadioField question
+    """
+    id = db.Column(db.Integer, primary_key=True)
+    testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    q1 = db.Column(db.String(10))
+    q2 = db.Column(db.Integer)
+    q3 = db.Column(db.String(10))
+    q4 = db.Column(db.Integer)
+    score = db.Column(db.Float, nullable=True)
+
+    def get_answers(self):
+        return [self.q1, self.q2, self.q3, self.q4]
+    
+class ArticlesQuiz(db.Model):
+    """
+    q1 RadioField question
+    q2 RadioField question
+    q3 RadioField question
+    q4 StringField question
+    q5 RadioField question
+    q6 RadioField question
+    q7 RadioField question
+    q8 StringField question
+    """
+    id = db.Column(db.Integer, primary_key=True)
+    testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    q1 = db.Column(db.Integer)
+    q2 = db.Column(db.Integer)
+    q3 = db.Column(db.Integer)
+    q4 = db.Column(db.String(10))
+    q5 = db.Column(db.Integer)
+    q6 = db.Column(db.Integer)
+    q7 = db.Column(db.Integer)
+    q8 = db.Column(db.String(10))
+    score = db.Column(db.Float, nullable=True)
+
+    def get_answers(self):
+        return [self.q1, self.q2, self.q3, self.q4, self.q5, self.q6, self.q7, self.q8]
+
+class VerbsQuiz(db.Model):
+    """
+    q1 RadioField question
+    q2 StringField question
+    q3 StringField question
+    q4 RadioField question
+    """
+    id = db.Column(db.Integer, primary_key=True)
+    testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    q1 = db.Column(db.Integer)
+    q2 = db.Column(db.String(20))
+    q3 = db.Column(db.String(20))
+    q4 = db.Column(db.Integer)
+    score = db.Column(db.Float, nullable=True)
+
+    def get_answers(self):
+        return [self.q1, self.q2, self.q3, self.q4]
