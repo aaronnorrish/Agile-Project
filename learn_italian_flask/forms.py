@@ -49,7 +49,7 @@ class GreetingsQuizForm(FlaskForm):
     question1 = RadioField("Buon Giorno means Good Evening?", choices=[('0', 'True'), ('1', 'False')], validators=[DataRequired()])
     question2 = StringField('Write "good night" in Italian:', validators=[DataRequired(), Length(max=20)])
     question3 = RadioField("What is 'how are you' in Italian?", choices=[('0', 'ciao'), ('1', 'come stai')], validators=[DataRequired()])
-    question4 = StringField("What is Good Night in Italian", validators=[DataRequired(), Length(max=20)])
+    question4 = StringField("What is Good Afternoon in Italian", validators=[DataRequired(), Length(max=20)])
     submit = SubmitField('Submit Answers!')
 
 class ColoursQuizForm(FlaskForm):
