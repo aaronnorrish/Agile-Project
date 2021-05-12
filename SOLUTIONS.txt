@@ -1,5 +1,9 @@
-sol = AlphabetQuiz(q1=21, q2=1, q3="1110", q4="1000")
-sol = NumbersQuiz(q1=3, q2="cinque", q3=3, q4="otto")
+sol1 = AlphabetQuiz(q1=21, q2=1, q3="1110", q4="1000")
+sol2 = NumbersQuiz(q1=3, q2="cinque", q3=3, q4="otto")
+sol3 = GreetingsQuiz(q1=1, q2="buona notte, q3=0, q4="good afternoon")
+sol4 = ColoursQuiz(q1="arancione", q2=1, q3="blu", q4=2)
+sol5 = ArticlesQuiz(q1=1, q2=0, q3=0, q4="lo", q5=0, q6=1, q7=1, q8="una")
+sol6 = VerbsQuiz(q1=0, q2="sapere", q3="to put", q4=2)
 ...
-db.session.add_all([sol1, sol2])
+db.session.add_all([sol1, sol2, sol3, sol4, sol5, sol6])
 db.session.commit()
