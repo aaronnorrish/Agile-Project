@@ -69,12 +69,17 @@ def verbs():
 @app.route('/alphabet_quiz', methods=['GET', 'POST'])
 @login_required 
 def alphabet_quiz():
-    return QuizController.get_alphabet_quiz()
+    return QuizController.get_quiz("Alphabet")
 
 @app.route('/numbers_quiz', methods=['GET', 'POST'])
 @login_required 
 def numbers_quiz():
-    return QuizController.get_numbers_quiz()
+    return QuizController.get_quiz("Numbers")
+
+@app.route('/articles_quiz', methods=['GET', 'POST'])
+@login_required 
+def articles_quiz():
+    return QuizController.get_quiz("Articles")
 
 @app.route('/results')
 @login_required 

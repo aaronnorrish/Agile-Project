@@ -42,32 +42,129 @@ class User(UserMixin, db.Model):
 
 class Quiz(db.Model):
     # a quiz needs to have at least 4 questions
-    id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
-    name = db.String()
-    q1_text = db.Column(db.String())
-    q1_type = db.Column(db.String())
-    q1_options = db.Column(db.String(), nullable=True)
-    q2_text = db.Column(db.String())
-    q2_type = db.Column(db.String())
-    q2_options = db.Column(db.String(), nullable=True)
-    q3_text = db.Column(db.String())
-    q3_type = db.Column(db.String())
-    q3_options = db.Column(db.String(), nullable=True)
-    q4_text = db.Column(db.String())
-    q4_type = db.Column(db.String())
-    q4_options = db.Column(db.String(), nullable=True)
-    q5_text = db.Column(db.String(), nullable=True)
-    q5_type = db.Column(db.String(), nullable=True)
-    q5_options = db.Column(db.String(), nullable=True)
-    q6_text = db.Column(db.String(), nullable=True)
-    q6_type = db.Column(db.String(), nullable=True)
-    q6_options = db.Column(db.String(), nullable=True)
-    q7_text = db.Column(db.String(), nullable=True)
-    q7_type = db.Column(db.String(), nullable=True)
-    q7_options = db.Column(db.String(), nullable=True)
-    q8_text = db.Column(db.String(), nullable=True)
-    q8_type = db.Column(db.String(), nullable=True)
-    q8_options = db.Column(db.String(), nullable=True)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20))
+    q1_text = db.Column(db.String(20))
+    q1_type = db.Column(db.String(10))
+    q1_choices= db.Column(db.String(40), nullable=True)
+    q2_text = db.Column(db.String(20))
+    q2_type = db.Column(db.String(10))
+    q2_choices= db.Column(db.String(40), nullable=True)
+    q3_text = db.Column(db.String(20))
+    q3_type = db.Column(db.String(10))
+    q3_choices= db.Column(db.String(40), nullable=True)
+    q4_text = db.Column(db.String(20))
+    q4_type = db.Column(db.String(10))
+    q4_choices= db.Column(db.String(40), nullable=True)
+    q5_text = db.Column(db.String(20), nullable=True)
+    q5_type = db.Column(db.String(10), nullable=True)
+    q5_choices= db.Column(db.String(40), nullable=True)
+    q6_text = db.Column(db.String(20), nullable=True)
+    q6_type = db.Column(db.String(10), nullable=True)
+    q6_choices= db.Column(db.String(40), nullable=True)
+    q7_text = db.Column(db.String(20), nullable=True)
+    q7_type = db.Column(db.String(10), nullable=True)
+    q7_choices = db.Column(db.String(40), nullable=True)
+    q8_text = db.Column(db.String(20), nullable=True)
+    q8_type = db.Column(db.String(10), nullable=True)
+    q8_choices= db.Column(db.String(40), nullable=True)
+    sol1 = db.Column(db.String(20))
+    sol2 = db.Column(db.String(20))
+    sol3 = db.Column(db.String(20))
+    sol4 = db.Column(db.String(20))
+    sol5 = db.Column(db.String(20))
+    sol5 = db.Column(db.String(20))
+    sol6 = db.Column(db.String(20))
+    sol7 = db.Column(db.String(20))
+    sol8 = db.Column(db.String(20))
+
+    def get_questions(self):
+        questions = {
+            "question1": {
+                "text": self.q1_text,
+                "type": self.q1_type,
+                "choices": [(str(i), choice) for i, choice in zip(range(len(self.q1_choices.split(";"))), self.q1_choices.split(";"))] if self.q1_choices else []
+            },
+            "question2": {
+                "text": self.q2_text,
+                "type": self.q2_type,
+                "choices": [(str(i), choice) for i, choice in zip(range(len(self.q2_choices.split(";"))), self.q2_choices.split(";"))] if self.q2_choices else []
+            },
+            "question3": {
+                "text": self.q3_text,
+                "type": self.q3_type,
+                "choices": [(str(i), choice) for i, choice in zip(range(len(self.q3_choices.split(";"))), self.q3_choices.split(";"))] if self.q3_choices else []
+            },
+            "question4": {
+                "text": self.q4_text,
+                "type": self.q4_type,
+                "choices": [(str(i), choice) for i, choice in zip(range(len(self.q4_choices.split(";"))), self.q4_choices.split(";"))] if self.q4_choices else []
+            }
+        }
+        if self.q5_text:
+            questions["question5"] = {
+                "text": self.q5_text,
+                "type": self.q5_type,
+                "choices": [(str(i), choice) for i, choice in zip(range(len(self.q5_choices.split(";"))), self.q5_choices.split(";"))] if self.q5_choices else []
+            }
+        if self.q6_text:
+            questions["question6"] = {
+                "text": self.q6_text,
+                "type": self.q6_type,
+                "choices": [(str(i), choice) for i, choice in zip(range(len(self.q6_choices.split(";"))), self.q6_choices.split(";"))] if self.q6_choices else []
+            }
+        if self.q7_text:
+            questions["question7"] = {
+                "text": self.q7_text,
+                "type": self.q7_type,
+                "choices": [(str(i), choice) for i, choice in zip(range(len(self.q7_choices.split(";"))), self.q7_choices.split(";"))] if self.q7_choices else []
+            }
+        if self.q8_text:
+            questions["question8"] = {
+                "text": self.q8_text,
+                "type": self.q8_type,
+                "choices": [(str(i), choice) for i, choice in zip(range(len(self.q8_choices.split(";"))), self.q8_choices.split(";"))] if self.q8_choices else []
+            }
+        return questions
+
+    def get_solutions(self):
+        solutions = [self.sol1, self.sol2, self.sol3, self.sol4]
+        if self.sol5:
+            solutions.append(self.sol5)
+        if self.sol6:
+            solutions.append(self.sol6)
+        if self.sol7:
+            solutions.append(self.sol7)
+        if self.sol8:
+            solutions.append(self.sol8)
+        return solutions
+
+class UserAnswer(db.Model):
+    quiz_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
+    ans1 = db.Column(db.String(20))
+    ans2 = db.Column(db.String(20))
+    ans3 = db.Column(db.String(20))
+    ans4 = db.Column(db.String(20))
+    ans5 = db.Column(db.String(20))
+    ans5 = db.Column(db.String(20), nullable=True)
+    ans6 = db.Column(db.String(20), nullable=True)
+    ans7 = db.Column(db.String(20), nullable=True)
+    ans8 = db.Column(db.String(20), nullable=True)
+    score = db.Column(db.Float)
+
+    def get_user_answers(self):
+        user_answers = [self.ans1, self.ans2, self.ans3, self.ans4]
+        if self.ans5:
+            user_answers.append(self.ans5)
+        if self.ans6:
+            user_answers.append(self.ans6)
+        if self.ans7:
+            user_answers.append(self.ans7)
+        if self.ans8:
+            user_answers.append(self.ans8)
+        return user_answers
+
 """
 How quiz answers are stored:
     answers from StringField questions are stored as strings.
