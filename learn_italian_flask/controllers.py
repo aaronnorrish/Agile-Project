@@ -3,8 +3,8 @@ from learn_italian_flask import db
 from flask import render_template, redirect, url_for, flash
 from learn_italian_flask.forms import LoginForm, SignupForm
 from flask_login import current_user, login_user, logout_user, login_required
-from learn_italian_flask.models import User, AlphabetQuiz, NumbersQuiz, GreetingsQuiz, ColoursQuiz, ArticlesQuiz, VerbsQuiz, Quiz, UserAnswer
-from learn_italian_flask.forms import AlphabetQuizForm, NumbersQuizForm, GreetingsQuizForm, ColoursQuizForm, ArticlesQuizForm, VerbsQuizForm, QuizForm, MultiCheckboxField
+from learn_italian_flask.models import User, AlphabetQuiz, NumbersQuiz, Quiz, UserAnswer
+from learn_italian_flask.forms import AlphabetQuizForm, NumbersQuizForm, QuizForm, MultiCheckboxField
 
 # test
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, RadioField, SelectMultipleField, widgets
@@ -261,16 +261,4 @@ class ResultsController():
         numbers_quiz = NumbersQuiz.query.filter_by(testee_id=current_user.id).first()
         if numbers_quiz is not None:
             scores[1] = numbers_quiz.score * 100
-        greetings_quiz = GreetingsQuiz.query.filter_by(testee_id=current_user.id).first()
-        if greetings_quiz is not None:
-            scores[2] = greetings_quiz.score * 100
-        colours_quiz = ColoursQuiz.query.filter_by(testee_id=current_user.id).first()
-        if colours_quiz is not None:
-            scores[3] = colours_quiz.score * 100
-        articles_quiz = ArticlesQuiz.query.filter_by(testee_id=current_user.id).first()
-        if articles_quiz is not None:
-            scores[4] = articles_quiz.score * 100
-        verbs_quiz = VerbsQuiz.query.filter_by(testee_id=current_user.id).first()
-        if verbs_quiz is not None:
-            scores[5] = verbs_quiz.score * 100
         return render_template('results.html', title="Results", labels=labels, scores=scores)
