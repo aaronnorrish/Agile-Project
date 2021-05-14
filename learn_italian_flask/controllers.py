@@ -3,8 +3,8 @@ from learn_italian_flask import db
 from flask import render_template, redirect, url_for, flash
 from learn_italian_flask.forms import LoginForm, SignupForm
 from flask_login import current_user, login_user, logout_user, login_required
-from learn_italian_flask.models import User, AlphabetQuiz, NumbersQuiz
-from learn_italian_flask.forms import AlphabetQuizForm, NumbersQuizForm
+from learn_italian_flask.models import User, AlphabetQuiz, NumbersQuiz, GreetingsQuiz, ColoursQuiz, ArticlesQuiz, VerbsQuiz
+from learn_italian_flask.forms import AlphabetQuizForm, NumbersQuizForm, GreetingsQuizForm, ColoursQuizForm, ArticlesQuizForm, VerbsQuizForm
 
 
 
@@ -179,6 +179,202 @@ class QuizController():
             db.session.add(attempt)
             db.session.commit()
         return render_template('quiz/quiz_template.html', title="Quiz - Numbers", heading="Numbers Quiz", form=form, completed=completed, results=results)
+    
+    def get_greetings_quiz():
+        form = GreetingsQuizForm()
+        completed = False
+        prev_attempt = GreetingsQuiz.query.filter_by(testee_id=current_user.id).first()
+        results = None
+        if prev_attempt is not None:
+            completed = True
+
+            # populate the form with the user's answers
+            user_answers = prev_attempt.get_answers()
+            QuizController.populate_form(form, user_answers)
+
+            # for debugging
+            print(prev_attempt.q1, prev_attempt.q2, prev_attempt.q3, prev_attempt.q4)
+
+            # get the quiz solution
+            sol =  GreetingsQuiz.query.filter_by(id=1).first()
+            solutions = sol.get_answers()
+            results = QuizController.construct_solution(form, solutions)
+
+        elif form.validate_on_submit():
+            # get the user's submitted answers
+            user_answers = QuizController.retrieve_answers(form)
+
+            # get the quiz solution
+            sol = GreetingsQuiz.query.filter_by(id=1).first()
+
+            # calculate the user's score
+            score = QuizController.calculate_quiz_score(user_answers, sol.get_answers())
+
+            # # for debugging only
+            # ans1_correct = answer1 == sol.q1
+            # ans2_correct = answer2.lower() == sol.q2
+            # ans3_correct = answer3 == sol.q3
+            # ans4_correct = answer4.lower() == sol.q4
+
+            # print(answer1, answer2, answer3, answer4)
+            # print(sol.q1, sol.q2, sol.q3, sol.q4)
+            # # print(ans1_correct, ans2_correct, ans3_correct, ans4_correct)
+            # print(score)
+            # # debugging end
+
+            # add the user's attempt to the database
+            attempt = GreetingsQuiz(testee_id=current_user.id, q1=user_answers["answer1"]["value"], q2=user_answers["answer2"]["value"], q3=user_answers["answer3"]["value"], q4=user_answers["answer4"]["value"], score=score)
+            db.session.add(attempt)
+            db.session.commit()
+        return render_template('quiz/quiz_template.html', title="Quiz - Greetings", heading="Greetings Quiz", form=form, completed=completed, results=results)
+    
+    def get_colours_quiz():
+        form = ColoursQuizForm()
+        completed = False
+        prev_attempt = ColoursQuiz.query.filter_by(testee_id=current_user.id).first()
+        results = None
+        if prev_attempt is not None:
+            completed = True
+
+            # populate the form with the user's answers
+            user_answers = prev_attempt.get_answers()
+            QuizController.populate_form(form, user_answers)
+
+            # for debugging
+            print(prev_attempt.q1, prev_attempt.q2, prev_attempt.q3, prev_attempt.q4)
+
+            # get the quiz solution
+            sol =  ColoursQuiz.query.filter_by(id=1).first()
+            solutions = sol.get_answers()
+            results = QuizController.construct_solution(form, solutions)
+
+        elif form.validate_on_submit():
+            # get the user's submitted answers
+            user_answers = QuizController.retrieve_answers(form)
+
+            # get the quiz solution
+            sol = ColoursQuiz.query.filter_by(id=1).first()
+
+            # calculate the user's score
+            score = QuizController.calculate_quiz_score(user_answers, sol.get_answers())
+
+            # # for debugging only
+            # ans1_correct = answer1.lower() == sol.q1
+            # ans2_correct = answer2 == sol.q2
+            # ans3_correct = answer3.lower() == sol.q3
+            # ans4_correct = answer4 == sol.q4
+
+            # print(answer1, answer2, answer3, answer4)
+            # print(sol.q1, sol.q2, sol.q3, sol.q4)
+            # # print(ans1_correct, ans2_correct, ans3_correct, ans4_correct)
+            # print(score)
+            # # debugging end
+
+            # add the user's attempt to the database
+            attempt = ColoursQuiz(testee_id=current_user.id, q1=user_answers["answer1"]["value"], q2=user_answers["answer2"]["value"], q3=user_answers["answer3"]["value"], q4=user_answers["answer4"]["value"], score=score)
+            db.session.add(attempt)
+            db.session.commit()
+        return render_template('quiz/quiz_template.html', title="Quiz - Colours", heading="Colours Quiz", form=form, completed=completed, results=results)
+    
+    def get_articles_quiz():
+        form = ArticlesQuizForm()
+        completed = False
+        prev_attempt = ArticlesQuiz.query.filter_by(testee_id=current_user.id).first()
+        results = None
+        if prev_attempt is not None:
+            completed = True
+
+            # populate the form with the user's answers
+            user_answers = prev_attempt.get_answers()
+            QuizController.populate_form(form, user_answers)
+
+            # for debugging
+            print(prev_attempt.q1, prev_attempt.q2, prev_attempt.q3, prev_attempt.q4)
+
+            # get the quiz solution
+            sol =  ArticlesQuiz.query.filter_by(id=1).first()
+            solutions = sol.get_answers()
+            results = QuizController.construct_solution(form, solutions)
+
+        elif form.validate_on_submit():
+            # get the user's submitted answers
+            user_answers = QuizController.retrieve_answers(form)
+
+            # get the quiz solution
+            sol = ArticlesQuiz.query.filter_by(id=1).first()
+
+            # calculate the user's score
+            score = QuizController.calculate_quiz_score(user_answers, sol.get_answers())
+
+            # # for debugging only
+            # ans1_correct = answer1.lower() == sol.q1
+            # ans2_correct = answer2.lower() == sol.q2
+            # ans3_correct = answer3.lower() == sol.q3
+            # ans4_correct = answer4 == sol.q4
+            # ans5_correct = answer5.lower() == sol.q5
+            # ans6_correct = answer6.lower() == sol.q6
+            # ans7_correct = answer7.lower() == sol.q7
+            # ans8_correct = answer8 == sol.q8
+
+            # print(answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8)
+            # print(sol.q1, sol.q2, sol.q3, sol.q4, sol.q5, sol.q6, sol.q7, sol.q8)
+            # # print(ans1_correct, ans2_correct, ans3_correct, ans4_correct, ans5_correct, ans6_correct, ans7_correct, ans8_correct)
+            # print(score)
+            # # debugging end
+
+            # add the user's attempt to the database
+            attempt = ArticlesQuiz(testee_id=current_user.id, q1=user_answers["answer1"]["value"], q2=user_answers["answer2"]["value"], q3=user_answers["answer3"]["value"], q4=user_answers["answer4"]["value"], q5=user_answers["answer5"]["value"], q6=user_answers["answer6"]["value"], q7=user_answers["answer7"]["value"], q8=user_answers["answer8"]["value"], score=score)
+            db.session.add(attempt)
+            db.session.commit()
+        return render_template('quiz/quiz_template.html', title="Quiz - Definite and Indefinite Articles", heading="Definite and Indefinite Articles Quiz", form=form, completed=completed, results=results)
+    
+    def get_verbs_quiz():
+        form = VerbsQuizForm()
+        completed = False
+        prev_attempt = VerbsQuiz.query.filter_by(testee_id=current_user.id).first()
+        results = None
+        if prev_attempt is not None:
+            completed = True
+
+            # populate the form with the user's answers
+            user_answers = prev_attempt.get_answers()
+            QuizController.populate_form(form, user_answers)
+
+            # for debugging
+            print(prev_attempt.q1, prev_attempt.q2, prev_attempt.q3, prev_attempt.q4)
+
+            # get the quiz solution
+            sol =  VerbsQuiz.query.filter_by(id=1).first()
+            solutions = sol.get_answers()
+            results = QuizController.construct_solution(form, solutions)
+
+        elif form.validate_on_submit():
+            # get the user's submitted answers
+            user_answers = QuizController.retrieve_answers(form)
+
+            # get the quiz solution
+            sol = VerbsQuiz.query.filter_by(id=1).first()
+
+            # calculate the user's score
+            score = QuizController.calculate_quiz_score(user_answers, sol.get_answers())
+
+            # # for debugging only
+            # ans1_correct = answer1 == sol.q1
+            # ans2_correct = answer2.lower() == sol.q2
+            # ans3_correct = answer3.lower() == sol.q3
+            # ans4_correct = answer4 == sol.q4
+
+            # print(answer1, answer2, answer3, answer4)
+            # print(sol.q1, sol.q2, sol.q3, sol.q4)
+            # # print(ans1_correct, ans2_correct, ans3_correct, ans4_correct)
+            # print(score)
+            # # debugging end
+
+            # add the user's attempt to the database
+            attempt = VerbsQuiz(testee_id=current_user.id, q1=user_answers["answer1"]["value"], q2=user_answers["answer2"]["value"], q3=user_answers["answer3"]["value"], q4=user_answers["answer4"]["value"], score=score)
+            db.session.add(attempt)
+            db.session.commit()
+        return render_template('quiz/quiz_template.html', title="Quiz - Common Verbs", heading="Common Verbs Quiz", form=form, completed=completed, results=results)
 
     def populate_form(form, user_answers):
         """
@@ -272,4 +468,16 @@ class ResultsController():
         numbers_quiz = NumbersQuiz.query.filter_by(testee_id=current_user.id).first()
         if numbers_quiz is not None:
             scores[1] = numbers_quiz.score * 100
+        greetings_quiz = GreetingsQuiz.query.filter_by(testee_id=current_user.id).first()
+        if greetings_quiz is not None:
+            scores[2] = greetings_quiz.score * 100
+        colours_quiz = ColoursQuiz.query.filter_by(testee_id=current_user.id).first()
+        if colours_quiz is not None:
+            scores[3] = colours_quiz.score * 100
+        articles_quiz = ArticlesQuiz.query.filter_by(testee_id=current_user.id).first()
+        if articles_quiz is not None:
+            scores[4] = articles_quiz.score * 100
+        verbs_quiz = VerbsQuiz.query.filter_by(testee_id=current_user.id).first()
+        if verbs_quiz is not None:
+            scores[5] = verbs_quiz.score * 100
         return render_template('results.html', title="Results", labels=labels, scores=scores)

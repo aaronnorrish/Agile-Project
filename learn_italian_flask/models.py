@@ -38,6 +38,14 @@ class User(UserMixin, db.Model):
             return "alphabet"
         if NumbersQuiz.query.filter_by(testee_id=self.id).first() is None:
             return "numbers"
+        if GreetingsQuiz.query.filter_by(testee_id=self.id).first() is None:
+            return "greetings"
+        if ColoursQuiz.query.filter_by(testee_id=self.id).first() is None:
+            return "colours"
+        if ArticlesQuiz.query.filter_by(testee_id=self.id).first() is None:
+            return "articles"
+        if VerbsQuiz.query.filter_by(testee_id=self.id).first() is None:
+            return "verbs"
         # elif go through each quiz in order
         return None
 
