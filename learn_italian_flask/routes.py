@@ -12,8 +12,6 @@ from learn_italian_flask.controllers import UserController, QuizController, Lear
 @app.route('/')
 @app.route('/index')
 def index():
-    # if current_user.is_authenticated:
-    #     return redirect(url_for('dashboard'))
     return render_template('index.html', title="Learn Italian")
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -41,37 +39,31 @@ def learn():
 @app.route('/alphabet')
 @login_required 
 def alphabet():
-    # return LearnController.get_alphabet_content()
     return LearnController.get_content("alphabet")
 
 @app.route('/numbers')
 @login_required 
 def numbers():
-    # return LearnController.get_numbers_content()
     return LearnController.get_content("numbers")
 
 @app.route('/greetings')
 @login_required 
 def greetings():
-    # return LearnController.get_greetings_content()
     return LearnController.get_content("greetings")
 
 @app.route('/colours')
 @login_required 
 def colours():
-    # return LearnController.get_colours_content()
     return LearnController.get_content("colours")
 
 @app.route('/articles')
 @login_required 
 def articles():
-    # return LearnController.get_articles_content()
     return LearnController.get_content("articles")
 
 @app.route('/verbs')
 @login_required 
 def verbs():
-    # return LearnController.get_verbs_content()
     return LearnController.get_content("verbs")
 
 @app.route('/alphabet_quiz', methods=['GET', 'POST'])

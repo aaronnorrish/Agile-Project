@@ -3,3 +3,17 @@ sol = NumbersQuiz(q1=3, q2="cinque", q3=3, q4="otto")
 ...
 db.session.add_all([sol1, sol2])
 db.session.commit()
+
+quiz = Quiz(name="Alphabet",
+    q1_text="There are __ letters in the Italian Alphabet:",
+    q1_type="Integer",
+    q2_text="The letter W is in the Italian Alphabet.",
+    q2_type="Radio,
+    q2_choices="True;False",
+    q3_type="Checkbox",
+    q3_text="Which of the following letters are in the Italian Alphabet?",
+    q3_choices="a;s;d;y",
+    q4_type="Checkbox",
+    q4_text="Which of the following letters are NOT in the Italian Alphabet?",
+    q4_choices="j;q;u;z"
+)

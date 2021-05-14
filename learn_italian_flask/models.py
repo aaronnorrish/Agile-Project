@@ -14,7 +14,6 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    # alphabet_test = db.relationship('AlphabetTest', backref='testee')
 
     def __repr__(self):
         return '<User {}>'.format(self.name)  
@@ -41,9 +40,34 @@ class User(UserMixin, db.Model):
         # elif go through each quiz in order
         return None
 
-# class Quiz(db.Model):
-    # id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
-
+class Quiz(db.Model):
+    # a quiz needs to have at least 4 questions
+    id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
+    name = db.String()
+    q1_text = db.Column(db.String())
+    q1_type = db.Column(db.String())
+    q1_options = db.Column(db.String(), nullable=True)
+    q2_text = db.Column(db.String())
+    q2_type = db.Column(db.String())
+    q2_options = db.Column(db.String(), nullable=True)
+    q3_text = db.Column(db.String())
+    q3_type = db.Column(db.String())
+    q3_options = db.Column(db.String(), nullable=True)
+    q4_text = db.Column(db.String())
+    q4_type = db.Column(db.String())
+    q4_options = db.Column(db.String(), nullable=True)
+    q5_text = db.Column(db.String(), nullable=True)
+    q5_type = db.Column(db.String(), nullable=True)
+    q5_options = db.Column(db.String(), nullable=True)
+    q6_text = db.Column(db.String(), nullable=True)
+    q6_type = db.Column(db.String(), nullable=True)
+    q6_options = db.Column(db.String(), nullable=True)
+    q7_text = db.Column(db.String(), nullable=True)
+    q7_type = db.Column(db.String(), nullable=True)
+    q7_options = db.Column(db.String(), nullable=True)
+    q8_text = db.Column(db.String(), nullable=True)
+    q8_type = db.Column(db.String(), nullable=True)
+    q8_options = db.Column(db.String(), nullable=True)
 """
 How quiz answers are stored:
     answers from StringField questions are stored as strings.
