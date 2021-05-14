@@ -91,11 +91,6 @@ def greetings_quiz():
 def colours_quiz():
     return QuizController.get_colours_quiz()
 
-@app.route('/articles_quiz', methods=['GET', 'POST'])
-@login_required 
-def articles_quiz():
-    return QuizController.get_articles_quiz()
-
 @app.route('/verbs_quiz', methods=['GET', 'POST'])
 @login_required 
 def verbs_quiz():
