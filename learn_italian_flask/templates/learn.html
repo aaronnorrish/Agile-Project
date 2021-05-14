@@ -13,59 +13,8 @@
 
 {% block main_content %}
 <div class="row">
-  <div class="card shadow-sm" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Alphabet</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Alfabeto</h6>
-      <p class="card-text">Learn the structure of the Italian Alphabet!</p>
-      <a href="{{ url_for('alphabet') }}" class="card-link">Learn</a>
-      <a href="{{ url_for('alphabet_quiz') }}" class="card-link">Test Your Knowledge</a>
-      </div>
-  </div>
-      <div class="card shadow-sm" style="width: 18rem;">
-          <div class="card-body">
-          <h5 class="card-title">Numbers</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Numeri</h6>
-          <p class="card-text">Learn how to count in Italian!</p>
-          <a href="{{ url_for('numbers') }}" class="card-link">Learn</a>
-          <a href="{{ url_for('numbers_quiz') }}" class="card-link">Test Your Knowledge</a>
-          </div>
-      </div>
-      <div class="card shadow-sm" style="width: 18rem;">
-          <div class="card-body">
-          <h5 class="card-title">Greetings</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Saluti</h6>
-          <p class="card-text">Learn some generic Italian greetings!</p>
-          <a href="{{ url_for('greetings') }}" class="card-link">Learn</a>
-          <a href="#" class="card-link">Test Your Knowledge</a>
-          </div>
-      </div>
-      <div class="card shadow-sm" style="width: 18rem;">
-          <div class="card-body">
-          <h5 class="card-title">Colours</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Colori</h6>
-          <p class="card-text">Learn to differentiate between colours in Italian.</p>
-          <a href="{{ url_for('colours') }}" class="card-link">Learn</a>
-          <a href="#" class="card-link">Test Your Knowledge</a>
-          </div>
-      </div>
-      <div class="card shadow-sm" style="width: 18rem;">
-          <div class="card-body">
-          <h5 class="card-title">Definite and Indefinite Articles</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Articoli Definiti e Indefiniti</h6>
-          <p class="card-text">Learn how to use the correct definite and indefinite articles in Italian.</p>
-          <a href="{{ url_for('articles') }}" class="card-link">Learn</a>
-          <a href="#" class="card-link">Test Your Knowledge</a>
-          </div>
-      </div>
-      <div class="card shadow-sm" style="width: 18rem;">
-          <div class="card-body">
-          <h5 class="card-title">Common Verbs</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Verbi Comuni</h6>
-          <p class="card-text">Learn some commonly used verbs in Italian</p>
-          <a href="{{ url_for('verbs') }}" class="card-link">Learn</a>
-          <a href="#" class="card-link">Test Your Knowledge</a>
-        </div>
-    </div>
+    {% for module in modules %}
+        {% include module %}
+    {% endfor %}
 </div>
 {% endblock %}

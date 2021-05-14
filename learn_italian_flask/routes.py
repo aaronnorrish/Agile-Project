@@ -5,8 +5,8 @@ from learn_italian_flask.forms import LoginForm, SignupForm
 from flask_login import current_user, login_user, logout_user, login_required
 from learn_italian_flask.models import User
 
-from learn_italian_flask.forms import AlphabetQuizForm, NumbersQuizForm, GreetingsQuizForm, ColoursQuizForm, ArticlesQuizForm, VerbsQuizForm
-from learn_italian_flask.models import AlphabetQuiz, NumbersQuiz, GreetingsQuiz, ColoursQuiz, ArticlesQuiz, VerbsQuiz
+from learn_italian_flask.forms import AlphabetQuizForm, NumbersQuizForm, QuizForm
+from learn_italian_flask.models import AlphabetQuiz, NumbersQuiz, Quiz
 from learn_italian_flask.controllers import UserController, QuizController, LearnController, DashboardController, ResultsController
 
 @app.route('/')
@@ -76,30 +76,26 @@ def alphabet_quiz():
 def numbers_quiz():
     return QuizController.get_quiz("Numbers")
 
+@app.route('/greetings_quiz', methods=['GET', 'POST'])
+@login_required 
+def greetings_quiz():
+    return QuizController.get_quiz("Greetings")
+
 @app.route('/articles_quiz', methods=['GET', 'POST'])
 @login_required 
 def articles_quiz():
     return QuizController.get_quiz("Articles")
 
-@app.route('/greetings_quiz', methods=['GET', 'POST'])
-@login_required 
-def greetings_quiz():
-    return QuizController.get_greetings_quiz()
 
 @app.route('/colours_quiz', methods=['GET', 'POST'])
 @login_required 
 def colours_quiz():
-    return QuizController.get_colours_quiz()
-
-@app.route('/articles_quiz', methods=['GET', 'POST'])
-@login_required 
-def articles_quiz():
-    return QuizController.get_articles_quiz()
+    return QuizController.get_quiz("Colours")
 
 @app.route('/verbs_quiz', methods=['GET', 'POST'])
 @login_required 
 def verbs_quiz():
-    return QuizController.get_verbs_quiz()
+    return QuizController.get_quiz("Verbs")
 
 @app.route('/results')
 @login_required 

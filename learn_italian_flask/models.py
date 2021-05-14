@@ -25,27 +25,28 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
     def get_progress(self):
-        alphabet_quiz_completed = AlphabetQuiz.query.filter_by(testee_id=self.id).first() is not None
-        numbers_quiz_completed = NumbersQuiz.query.filter_by(testee_id=self.id).first() is not None
-        # do for each quiz type
-        quizzes = [alphabet_quiz_completed, numbers_quiz_completed]
-        current_progress = round(sum([test == True for test in quizzes]) / len(quizzes) * 100)
+        # determine the number of quizzes the current user has completed
+        user_quizzes = UserAnswer.query.filter_by(user_id=self.id)
+        num_completed = 0
+        if user_quizzes is not None:
+            num_completed = sum([1 for quiz in user_quizzes])
+
+        # determine the total number of quizzes
+        total_quizzes = 1 # to avoid division by zero
+        all_quizzes = Quiz.query.all()
+        if all_quizzes is not None:
+            total_quizzes = sum([1 for quiz in all_quizzes])
+        
+        current_progress = round(num_completed/total_quizzes * 100)
         return current_progress
 
     def get_next_module(self):
-        if AlphabetQuiz.query.filter_by(testee_id=self.id).first() is None:
-            return "alphabet"
-        if NumbersQuiz.query.filter_by(testee_id=self.id).first() is None:
-            return "numbers"
-        if GreetingsQuiz.query.filter_by(testee_id=self.id).first() is None:
-            return "greetings"
-        if ColoursQuiz.query.filter_by(testee_id=self.id).first() is None:
-            return "colours"
-        if ArticlesQuiz.query.filter_by(testee_id=self.id).first() is None:
-            return "articles"
-        if VerbsQuiz.query.filter_by(testee_id=self.id).first() is None:
-            return "verbs"
-        # elif go through each quiz in order
+        user_quizzes = UserAnswer.query.filter_by(user_id=self.id)
+        completed_quiz_ids = [quiz.quiz_id for quiz in user_quizzes]
+        all_quizzes = Quiz.query.all()
+        for quiz in all_quizzes:
+            if quiz.id not in completed_quiz_ids:
+                return quiz.name
         return None
 
 class Quiz(db.Model):
@@ -221,82 +222,3 @@ class NumbersQuiz(db.Model):
     def get_answers(self):
         return [self.q1, self.q2, self.q3, self.q4]
 
-class GreetingsQuiz(db.Model):
-    """
-    q1 RadioField question
-    q2 StringField question
-    q3 RadioField question
-    q4 StringField question
-    """
-    id = db.Column(db.Integer, primary_key=True)
-    testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
-    q1 = db.Column(db.Integer)
-    q2 = db.Column(db.String(20))
-    q3 = db.Column(db.Integer)
-    q4 = db.Column(db.String(20))
-    score = db.Column(db.Float, nullable=True)
-
-    def get_answers(self):
-        return [self.q1, self.q2, self.q3, self.q4]
-    
-class ColoursQuiz(db.Model):
-    """
-    q1 StringField question
-    q2 RadioField question
-    q3 StringField question
-    q4 RadioField question
-    """
-    id = db.Column(db.Integer, primary_key=True)
-    testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
-    q1 = db.Column(db.String(10))
-    q2 = db.Column(db.Integer)
-    q3 = db.Column(db.String(10))
-    q4 = db.Column(db.Integer)
-    score = db.Column(db.Float, nullable=True)
-
-    def get_answers(self):
-        return [self.q1, self.q2, self.q3, self.q4]
-    
-class ArticlesQuiz(db.Model):
-    """
-    q1 RadioField question
-    q2 RadioField question
-    q3 RadioField question
-    q4 StringField question
-    q5 RadioField question
-    q6 RadioField question
-    q7 RadioField question
-    q8 StringField question
-    """
-    id = db.Column(db.Integer, primary_key=True)
-    testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
-    q1 = db.Column(db.Integer)
-    q2 = db.Column(db.Integer)
-    q3 = db.Column(db.Integer)
-    q4 = db.Column(db.String(10))
-    q5 = db.Column(db.Integer)
-    q6 = db.Column(db.Integer)
-    q7 = db.Column(db.Integer)
-    q8 = db.Column(db.String(10))
-    score = db.Column(db.Float, nullable=True)
-
-    def get_answers(self):
-        return [self.q1, self.q2, self.q3, self.q4, self.q5, self.q6, self.q7, self.q8]
-
-class VerbsQuiz(db.Model):
-    """
-    q1 RadioField question
-    q2 StringField question
-    q3 StringField question
-    q4 RadioField question
-    """
-    id = db.Column(db.Integer, primary_key=True)
-    testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
-    q1 = db.Column(db.Integer)
-    q2 = db.Column(db.String(20))
-    q3 = db.Column(db.String(20))
-    q4 = db.Column(db.Integer)
-    score = db.Column(db.Float, nullable=True)
-
-    def get_answers(self):
-        return [self.q1, self.q2, self.q3, self.q4]
