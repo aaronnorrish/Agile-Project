@@ -54,6 +54,8 @@ class UserModelCase(unittest.TestCase):
         db.session.add(quiz)
         db.session.commit()
         self.assertEqual(u.get_next_module(), None)
-        
+    
+    # TODO QuizController tests!
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)

@@ -31,6 +31,9 @@ class MultiCheckboxField(SelectMultipleField):
     widget = widgets.ListWidget(prefix_label=False)
     option_widget = widgets.CheckboxInput()
 
+class QuizForm(FlaskForm):
+    submit = SubmitField('Submit Answers!')
+
 class AlphabetQuizForm(FlaskForm):
     question1 = IntegerField("There are __ letters in the Italian Alphabet:", validators=[DataRequired(), NumberRange(min=0,max=999)])
     question2 = RadioField("The letter W is in the Italian Alphabet.", choices=[('0', 'True'), ('1', 'False')], validators=[DataRequired()])
