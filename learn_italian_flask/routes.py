@@ -16,6 +16,7 @@ def index():
 
 @app.route('/statistics')
 def statistics():
+    # TODO move to controller!!
     all_user_quizzes = UserAnswer.query.all()
     num_quizzes_completed = sum([1 for quiz in all_user_quizzes])
     print(num_quizzes_completed)
