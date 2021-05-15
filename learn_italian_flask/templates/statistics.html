@@ -2,13 +2,61 @@
 
 {% set active_page = "stats" %}
 
+{% block styling %}
+<style>
+  .row {
+    padding: 1rem 0 2.5rem 0;
+  }
+
+  .card-container {
+    width: 50%;
+  }
+
+  /* .card {
+    padding: 0 0.5rem 0 0.5rem;
+  } */
+</style>
+{% endblock %}
+
 {% block main_content %}
-<div class="jumbotron text-center">
-</div>
-<main class="container text-center">
-  <canvas id="results"></canvas>
+  <!-- Jumbotron -->
+  <div class="jumbotron text-center">
+    <h1 class="display-1">Usage Statistics</h1>
+  </div>
+
+  <!-- Main content section -->
+  <main class="container text-center">
+  <div class="row">
+    <div class="card-container">
+      <div class="card shadow-sm ml-5 mr-3">
+        <div class="card-body mx-5">
+          <h1 class="card-title">{{num_users}}</h1>
+          <h4 class="card-title">Users</h4>
+          <h6 class="card-subtitle mb-2 text-muted">There are {{num_users}} users learning Italian with {website name}!</h6>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-container">
+      <div class="card shadow-sm mr-3 ml-5">
+        <div class="card-body mx-5">
+          <!-- TODO don't bother with AJAX can look at it later!! -->
+          <h1 class="card-title">{{num_quizzes_completed}}</h1>
+          <h4 class="card-title">Quizzes Submitted</h4>
+          <h6 class="card-subtitle mb-2 text-muted">{{num_quizzes_completed}} quizzes have been submitted by {website name} users!</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h1 class="mx-auto">Average Quiz Results</h1>
+  </div>
+  <div class="row">
+      <canvas id="results"></canvas>
+  </div>
 </main>
-<br>
+
+<!-- Footer -->
 <footer class="text-center">
   <p>2021 Veronica and Aaron</p>
 </footer>
@@ -16,6 +64,8 @@
 
 {% block script %}
 <script>
+// TODO maybe add second data plot showing the proportion of the quizzes completed
+// e.g. 20% of quizzes completed are Alphabet
 const labels = {{labels | tojson}};
 
 const data = {
