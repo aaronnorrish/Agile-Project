@@ -1,0 +1,81 @@
+sol1 = AlphabetQuiz(q1=21, q2=1, q3="1110", q4="1000")
+sol2 = NumbersQuiz(q1=3, q2="cinque", q3=3, q4="otto")
+sol3 = GreetingsQuiz(q1=1, q2="buona notte, q3=0, q4="good afternoon")
+sol4 = ColoursQuiz(q1="arancione", q2=1, q3="blu", q4=2)
+sol5 = ArticlesQuiz(q1=1, q2=0, q3=0, q4="lo", q5=0, q6=1, q7=1, q8="una")
+sol6 = VerbsQuiz(q1=0, q2="sapere", q3="to put", q4=2)
+
+
+db.session.add_all([sol1, sol2, sol3, sol4, sol5, sol6])
+db.session.commit()
+
+quiz = Quiz(name="Alphabet",
+q1_text="There are __ letters in the Italian Alphabet:",
+q1_type="Integer",
+q2_text="The letter W is in the Italian Alphabet.",
+q2_type="Radio",
+q2_choices="True;False",
+q3_text="Which of the following letters are in the Italian Alphabet?",
+q3_type="Checkbox",
+q3_choices="a;s;d;y",
+q4_text="Which of the following letters are NOT in the Italian Alphabet?",
+q4_type="Checkbox",
+q4_choices="j;q;u;z",
+sol1="21",
+sol2="1",
+sol3="1110",
+sol4="1000"
+)
+
+quiz = Quiz(name="Numbers",
+q1_text="Quattro is which number in Italian?",
+q1_type="Radio",
+q1_choices="one;two;three;four",
+q2_text='Write "five" in Italian:',
+q2_type="String",
+q3_text="What is seven in Italian?",
+q3_type="Radio",
+q3_choices="tre;uno;sei;sette",
+q4_type="String",
+q4_text="Complete this sequence: sei, sette, __, nove",
+sol1="3",
+sol2="cinque",
+sol3="3",
+sol4="otto"
+)
+
+quiz = Quiz(name="Articles",
+q1_text="Which of the following options would precede zio?",
+q1_type="Radio",
+q1_choices="il;lo;l'",
+q2_text="Which of the following options would precede gatto?",
+q2_type="Radio",
+q2_choices="il;lo;l'",
+q3_text="Which of the following options would precede casa?",
+q3_type="Radio",
+q3_choices="la;l'",
+q4_text="Insert the correct definite article: __ studente",
+q4_type="String",
+q5_text="Which of the following options would precede palla?",
+q5_type="Radio",
+q5_choices="una;un'",
+q6_text="Which of the following options would precede isola?",
+q6_type="Radio",
+q6_choices="una;un'",
+q7_text="Which of the following options would precede zaino?",
+q7_type="Radio",
+q7_choices="un;uno",
+q8_text="Insert the correct indefinite article: __ macchina",
+q8_type="String",
+sol1="1",
+sol2="0",
+sol3="0",
+sol4="lo",
+sol5="0",
+sol6="1",
+sol7="1",
+sol8="una"
+)
+
+db.session.add(quiz)
+db.session.commit()

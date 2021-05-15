@@ -1,0 +1,66 @@
+{% extends "dashboard_template.html" %}
+
+{% set active_page = "results" %}
+
+{% block heading %}
+<h1>Results</h1>
+{% endblock %}
+
+{% block main_content %}
+<div>
+    <canvas id="results"></canvas>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+// const config = {
+//     type: 'bar',
+//     data: data,
+//     options: {},
+// };
+
+// const labels = [
+//   'Alphabet',
+//   'Numbers',
+//   'Greetings',
+//   'Colours',
+//   'Articles',
+//   'Verbs',
+// ];
+
+const labels = {{labels | tojson}};
+
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'quizzes',
+    // backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: {{scores | tojson}},
+  }]
+};
+
+var ctx = document.getElementById('results');
+
+var resultsChart = new Chart(ctx, {
+ type: 'bar',
+ data: data,
+ options: {
+        scales: {
+            y: {
+                suggestedMin: 0,
+                suggestedMax: 100
+            }
+        },
+        plugins: {
+            legend: {
+                display: false,
+            },
+        },
+    }
+})
+
+</script>
+{% endblock %}

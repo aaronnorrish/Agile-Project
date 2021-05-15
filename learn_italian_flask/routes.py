@@ -5,61 +5,98 @@ from learn_italian_flask.forms import LoginForm, SignupForm
 from flask_login import current_user, login_user, logout_user, login_required
 from learn_italian_flask.models import User
 
+from learn_italian_flask.forms import AlphabetQuizForm, NumbersQuizForm, GreetingsQuizForm, ColoursQuizForm, ArticlesQuizForm, VerbsQuizForm
+from learn_italian_flask.models import AlphabetQuiz, NumbersQuiz, GreetingsQuiz, ColoursQuiz, ArticlesQuiz, VerbsQuiz
+from learn_italian_flask.controllers import UserController, QuizController, LearnController, DashboardController, ResultsController
+
 @app.route('/')
 @app.route('/index')
 def index():
-    # if current_user.is_authenticated:
-    #     return redirect(url_for('dashboard'))
     return render_template('index.html', title="Learn Italian")
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('dashboard'))
-    form = LoginForm()
-    # TODO haven't added a flash error as in the tutorial
-    # if want to render the flash messages need to add this to the HTML template
-    # as in the chapter 3 of the tutorial
-    if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
-        if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password')
-            return redirect(url_for('login'))
-        login_user(user)
-        return redirect(url_for('dashboard'))
-    return render_template('log-in.html', title="Learn Italian - Log in", form=form)
+    return UserController.login()
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    if current_user.is_authenticated:
-        return redirect(url_for('dashboard'))
-    form = SignupForm()
-    if form.validate_on_submit():
-        user = User(name=form.name.data, email=form.email.data)
-        user.set_password(form.password.data)
-        db.session.add(user)
-        db.session.commit()
-        login_user(user)
-        # flash('Sign up was successful!')
-        return redirect(url_for('dashboard'))
-    return render_template('sign-up.html', title="Learn Italian - Sign up", form=form)
+    return UserController.signup()
 
 @app.route('/logout')
 def logout():
-    logout_user()
-    return redirect(url_for('index'))
+    return UserController.logout()
 
 @app.route('/dashboard')
 @login_required    
 def dashboard():
-    return render_template('dashboard.html', title="Dashboard")
+    return DashboardController.get_dashboard_homepage()
 
 @app.route('/learn')
 @login_required 
 def learn():
-    return render_template('learn.html', title="Learn")
+    return LearnController.get_learn_homepage()
 
 @app.route('/alphabet')
 @login_required 
 def alphabet():
-    return render_template('alphabet.html', title="Alphabet")
+    return LearnController.get_content("alphabet")
+
+@app.route('/numbers')
+@login_required 
+def numbers():
+    return LearnController.get_content("numbers")
+
+@app.route('/greetings')
+@login_required 
+def greetings():
+    return LearnController.get_content("greetings")
+
+@app.route('/colours')
+@login_required 
+def colours():
+    return LearnController.get_content("colours")
+
+@app.route('/articles')
+@login_required 
+def articles():
+    return LearnController.get_content("articles")
+
+@app.route('/verbs')
+@login_required 
+def verbs():
+    return LearnController.get_content("verbs")
+
+@app.route('/alphabet_quiz', methods=['GET', 'POST'])
+@login_required 
+def alphabet_quiz():
+    return QuizController.get_quiz("Alphabet")
+
+@app.route('/numbers_quiz', methods=['GET', 'POST'])
+@login_required 
+def numbers_quiz():
+    return QuizController.get_quiz("Numbers")
+
+@app.route('/articles_quiz', methods=['GET', 'POST'])
+@login_required 
+def articles_quiz():
+    return QuizController.get_quiz("Articles")
+
+@app.route('/greetings_quiz', methods=['GET', 'POST'])
+@login_required 
+def greetings_quiz():
+    return QuizController.get_greetings_quiz()
+
+@app.route('/colours_quiz', methods=['GET', 'POST'])
+@login_required 
+def colours_quiz():
+    return QuizController.get_colours_quiz()
+
+@app.route('/verbs_quiz', methods=['GET', 'POST'])
+@login_required 
+def verbs_quiz():
+    return QuizController.get_verbs_quiz()
+
+@app.route('/results')
+@login_required 
+def results():
+    return ResultsController.get_results()

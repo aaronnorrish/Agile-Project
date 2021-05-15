@@ -1,0 +1,154 @@
+{% extends "dashboard_template.html" %}
+
+{% set active_page = "learn" %}
+
+{% block styling %}
+<style>
+</style>
+{% endblock %}
+
+{% block heading %}
+<h1>{{heading}}</h1>
+{% endblock %}
+
+<!-- The general format for displaying this quiz:
+        If the quiz has not been attempted by the current user
+        then simply display the questions with empty input fields.
+        Otherwise, display the user's answers to the questions and disable 
+        the input fields. Also display if the user's answer was correct (with a green tick)
+        or incorrect (a red x.) 
+ -->
+
+{% block main_content %}
+{% if completed %}
+<div class="alert alert-success">Quiz successfully submitted!</div>
+{% endif %}
+<form id="form-quiz" action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+
+    {% for question in form %}
+    {% if question.type == "StringField" %}
+    {{ question.label }}
+    <br>
+    {% if completed %}
+    {{ question(disabled=true) }}
+                {% if results[question.id]["is_correct"] %}
+                    <i class="fas fa-check"></i>
+                <!-- if incorrect display the correct answer next to the input field -->
+                {% else %}
+                    <i class="fas fa-times"></i>
+                    <span class="alert alert-danger">{{results[question.id]["solution"]}}</span>
+                {% endif %}
+            {% else %}
+                {{ question }}
+            {% endif %}
+            <!-- display any validation errors -->
+            {% for error in question.errors %}
+                <div class="alert alert-danger">{{error}}</div>
+            {% endfor %}
+            <br>
+
+        {% elif question.type == "IntegerField" %}
+            {{ question.label }}
+            <br>
+            {% if completed %}
+            {{ question(disabled=true) }}
+                {% if results[question.id]["is_correct"] %}
+                    <i class="fas fa-check"></i>
+                <!-- if incorrect display the correct answer next to the input field -->
+                {% else %}
+                    <i class="fas fa-times"></i>
+                    <span class="alert alert-danger">{{results[question.id]["solution"]}}</span>
+                {% endif %}
+            {% else %}
+                {{ question }}
+            {% endif %}
+            {% for error in question.errors %}
+                <div class="alert alert-danger">Please enter an integer between 0 and 999</div>
+            {% endfor %}
+            <br>
+
+        {% elif question.type == "RadioField" %}
+            {{ question.label }}
+            {% for field in question%}
+                <br>
+                {% if completed %}
+                    {{ field(disabled=true) }}
+                {% else %}
+                    {{ field }}
+                {% endif %}
+
+                {{ field.label }}
+                
+                {% if completed %}
+                    <!-- Put a green check mark next to the correct answer -->
+                    {% if field.data == question.data and results[question.id]["is_correct"] %}
+                        <i class="fas fa-check"></i>
+                    <!-- Otherwise put a red x next to the user's selected answer -->
+                    {% elif field.data == question.data %}
+                        <i class="fas fa-times"></i>
+                    {% elif field.data == results[question.id]["solution"] %}
+                        <i class="fas fa-check"></i>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            {% for error in question.errors %}
+                <div class="alert alert-danger">Please select an option!</div>
+            {% endfor %}
+        
+        {% elif question.type == "MultiCheckboxField" %}
+            {{ question.label }}
+            {% for field in question%}
+                <br>
+                {% if completed %}
+                    {{ field(disabled=true) }}
+                {% else %}
+                    {{ field }}
+                {% endif %}
+
+                {{ field.label }}
+
+                <!-- If the user has correctly selected or left unselected the current option put green check mark next to option -->
+                {% if results and results[question.id]["solution"][field.data|int] %}
+                    <i class="fas fa-check"></i>
+                <!-- Otherwise put red check mark next to it. -->
+                {% elif results %}
+                    <i class="fas fa-times"></i>
+                {% endif %}        
+            {% endfor %}
+
+        {% endif %}
+        <br>
+    {% endfor %}
+    
+    {% if completed %}
+        {{ form.submit(disabled=true) }}
+    {% else %}
+        {{ form.submit }}
+    {% endif %}
+</form>
+{% endblock %}
+
+{% block script %}
+<script>
+// $(document).ready(function () {
+//     $("form").submit(function(){
+//         // window.location.reload();
+//         window.setInterval(doSmth, 100);
+//         // console.log("Success");
+//         // $("#submit").remove();
+//     });
+// });
+
+
+// $(document).ready(function () {
+//     // $("#form-quiz").on("submit", function () {
+//     $("#form-quiz").submit(function(){
+//         window.location.reload();
+//         console.log("Success");
+//         $("#submit").remove();
+//     });
+// });
+</script>
+{% endblock %}

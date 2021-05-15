@@ -1,0 +1,111 @@
+{% extends "dashboard_template.html" %}
+
+{% set active_page = "learn" %}
+
+{% block styling %}
+<style>
+</style>
+{% endblock %}
+
+{% block heading %}
+<h1>Alphabet Quiz</h1>
+{% endblock %}
+
+{% block main_content %}
+{% if completed %}
+<div class="alert alert-success">Quiz successfully submitted!</div>
+{% endif %}
+<form id="form-quiz" action="" method="post">
+    {{ form.hidden_tag() }}
+
+    {{ form.question1.label }}
+    <br>
+    {% if completed %}
+    {{ form.question1(disabled=true) }}
+        {% if solution.q1_correct %}
+        <i class="fas fa-check"></i>
+        {% else %}
+        <i class="fas fa-times"></i>
+        <span class="alert alert-danger">{{solution.q1}}</span>
+        {% endif %}
+    {% else %}
+    {{ form.question1 }}
+    {% endif %}
+    
+    <br>
+    {% for error in form.question1.errors %}
+        <div class="alert alert-danger">{{error}}</div>
+    {% endfor %}
+    <br>
+
+    {{ form.question2.label }}
+    {% for field in form.question2 %}
+    <br>
+        {% if completed %}
+        {{ field(disabled=true) }}
+        {% else %}
+        {{ field }}
+        {% endif %}
+    {{ field.label }}
+        {% if completed %}
+            {% if field.data == form.question2.data and solution.q2_correct %}
+            <i class="fas fa-check"></i>
+            {% elif field.data == form.question2.data %}
+            <i class="fas fa-times"></i>
+            {% elif field.data == solution.q2 %}
+            <i class="fas fa-check"></i>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    <br>
+    {% for error in form.question2.errors %}
+    <div class="alert alert-danger">Please select an option!</div>
+    {% endfor %}
+    
+    <br>
+
+    {{ form.question3.label }}
+    {% for field in form.question3 %}
+    <br>
+        {% if completed %}
+        {{ field(disabled=true) }}
+        {% else %}
+        {{ field }}
+        {% endif %}
+        {{ field.label }}
+        {% if solution and solution.q3[field.data|int] %}
+        <i class="fas fa-check"></i>
+        {% elif solution %}
+        <i class="fas fa-times"></i>
+        {% endif %}
+    {% endfor %}
+
+    <br>
+
+    {{ form.question4.label }}
+    {% for field in form.question4 %}
+    <br>
+        {% if completed %}
+        {{ field(disabled=true) }}
+        {% else %}
+        {{ field }}
+        {% endif %}
+        {{ field.label }}
+        {% if solution and solution.q4[field.data|int] %}
+        <i class="fas fa-check"></i>
+        {% elif solution %}
+        <i class="fas fa-times"></i>
+        {% endif %}
+    {% endfor %}
+
+    <br>
+    <br>
+    
+    {% if completed %}
+    {{ form.submit(disabled=true) }}
+    {% else %}
+    {{ form.submit }}
+    {% endif %}
+</form>
+{% endblock %}
