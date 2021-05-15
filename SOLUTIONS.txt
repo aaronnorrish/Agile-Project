@@ -9,6 +9,8 @@ sol6 = VerbsQuiz(q1=0, q2="sapere", q3="to put", q4=2)
 db.session.add_all([sol1, sol2, sol3, sol4, sol5, sol6])
 db.session.commit()
 
+questions with multiple choices have their choices stored in the qx_choices field and are separated by a semi colon
+
 quiz = Quiz(name="Alphabet",
 q1_text="There are __ letters in the Italian Alphabet:",
 q1_type="Integer",
@@ -42,6 +44,23 @@ sol1="3",
 sol2="cinque",
 sol3="3",
 sol4="otto"
+)
+
+quiz = Quiz(name="Greetings",
+q1_text="Buongiorno means Good Evening?",
+q1_type="Radio",
+q1_choices="True;False",
+q2_text='Write "good night" in Italian:',
+q2_type="String",
+q3_text='What is "how are you" in Italian?',
+q3_type="Radio",
+q3_choices="Ciao;Come stai",
+q4_text="What is Buon pomeriggio in English?",
+q4_type="String",
+sol1="1",
+sol2="Buonanotte",
+sol3="0",
+sol4="Good afternoon"
 )
 
 quiz = Quiz(name="Articles",

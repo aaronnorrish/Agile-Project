@@ -6,15 +6,13 @@ from flask_login import UserMixin
 def load_user(id):
     return User.query.get(int(id))
 
-# i think it makes sense to have each test represented as its own model
-# it makes rendering results easier and allows us to have tests of differing lengths
-# a problem here is where to store the solutions?
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
 
+    # TODO ?
     def __repr__(self):
         return '<User {}>'.format(self.name)  
     

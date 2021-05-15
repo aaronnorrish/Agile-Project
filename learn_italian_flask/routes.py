@@ -16,6 +16,7 @@ def index():
 
 @app.route('/statistics')
 def statistics():
+    # TODO move to controller!!
     all_user_quizzes = UserAnswer.query.all()
     num_quizzes_completed = sum([1 for quiz in all_user_quizzes])
     print(num_quizzes_completed)
@@ -32,9 +33,9 @@ def statistics():
     scores = [round(score/attempt) if attempt != 0 else 0 for score, attempt in zip(cumulative_scores, attempts)]
 
     users = User.query.all()
-    num_users = sum([1 for quiz in all_quizzes])
+    num_users = sum([1 for user in users])
     print(num_users)
-    return render_template('statistics.html', title="Learn Italian — Usage Statistics", labels=labels, scores=scores)
+    return render_template('statistics.html', title="Learn Italian — Usage Statistics", labels=labels, scores=scores, num_users=num_users, num_quizzes_completed=num_quizzes_completed)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
