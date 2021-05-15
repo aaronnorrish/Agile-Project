@@ -149,7 +149,7 @@ class Quiz(db.Model):
         return solutions
 
 class UserAnswer(db.Model):
-    quiz_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
+    quiz_id = db.Column(db.Integer, db.ForeignKey('quiz.id'), primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
     ans1 = db.Column(db.String(20))
     ans2 = db.Column(db.String(20))
