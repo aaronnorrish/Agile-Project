@@ -37,6 +37,9 @@
         <div class="alert alert-danger">{{ error }}</div>
         {% endfor %}
 
+        {{ form.admin_login(class="mb-3") }}
+        {{ form.admin_login.label(class="ml-2") }}
+
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}

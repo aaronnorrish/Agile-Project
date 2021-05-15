@@ -4,7 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from dotenv import load_dotenv
-
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 import logging
 from logging.handlers import RotatingFileHandler
 import os
@@ -15,6 +16,8 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
+
+from learn_italian_flask import routes, models, errors, controllers
 
 if not app.debug:
     if not os.path.exists('logs'):
@@ -29,4 +32,12 @@ if not app.debug:
     app.logger.setLevel(logging.INFO)
     app.logger.info('Learn Italian startup')
 
-from learn_italian_flask import routes, models, errors
+
+# admin = Admin(app)
+admin = Admin(app, "Learn Italian — Admin", index_view=controllers.CustomAdminIndexView())
+admin.add_view(controllers.CustomModelView(routes.User, db.session))
+admin.add_view(controllers.CustomModelView(routes.Quiz, db.session))
+admin.add_view(controllers.CustomModelView(routes.UserAnswer, db.session))
+
+if __name__ == "__main__":
+    app.run()

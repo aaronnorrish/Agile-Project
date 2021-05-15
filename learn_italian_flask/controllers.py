@@ -6,28 +6,45 @@ from flask_login import current_user, login_user, logout_user, login_required
 from learn_italian_flask.models import User, AlphabetQuiz, NumbersQuiz, Quiz, UserAnswer
 from learn_italian_flask.forms import AlphabetQuizForm, NumbersQuizForm, QuizForm, MultiCheckboxField
 
-# test
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, RadioField, SelectMultipleField, widgets
 from wtforms.fields.html5 import EmailField, IntegerField
 from wtforms.validators import DataRequired, Email, ValidationError, EqualTo, Length, NumberRange
 
+import flask_admin
+from flask_admin import helpers, expose
+from flask_admin.contrib import sqla
+from flask_admin.contrib.sqla import ModelView
 
+class CustomModelView(sqla.ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+class CustomAdminIndexView(flask_admin.AdminIndexView):
+    @expose('/')
+    def index(self):
+        # if not login.current_user.is_authenticated:
+            # return redirect(url_for('.login_view'))
+        return super(CustomAdminIndexView, self).index()
 
 class UserController():
     def login():
         if current_user.is_authenticated:
             return redirect(url_for('dashboard'))
-        # TODO haven't added a flash error as in the tutorial
-        # if want to render the flash messages need to add this to the HTML template
-        # as in the chapter 3 of the tutorial
         form = LoginForm()
         if form.validate_on_submit():
             user = User.query.filter_by(email=form.email.data).first()
             if user is None or not user.check_password(form.password.data):
                 flash('Invalid username or password')
                 return redirect(url_for('login'))
+            if form.admin_login.data and not user.is_admin():
+                flash('This user is not an admin!')
+                return redirect(url_for('login'))
             login_user(user)
-            return redirect(url_for('dashboard'))
+            if form.admin_login.data:
+                if current_user.is_admin():
+                    return redirect("/admin")
+            else:
+                return redirect(url_for('dashboard'))
         return render_template('log-in.html', title="Learn Italian - Log in", form=form)
     
     def signup():

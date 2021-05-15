@@ -10,6 +10,7 @@ class LoginForm(FlaskForm):
     #       maybe not because client could just remove the HTML?
     email = EmailField('Email address', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
+    admin_login = BooleanField('Log in as admin?')
     submit = SubmitField('Log in')
 
 class SignupForm(FlaskForm):

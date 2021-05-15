@@ -37,6 +37,10 @@ def statistics():
     print(num_users)
     return render_template('statistics.html', title="Learn Italian — Usage Statistics", labels=labels, scores=scores, num_users=num_users, num_quizzes_completed=num_quizzes_completed)
 
+# @app.route('/admin')
+# def admin():
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     return UserController.login()
