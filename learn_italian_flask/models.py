@@ -32,7 +32,7 @@ class User(UserMixin, db.Model):
         # determine the total number of quizzes
         total_quizzes = 1 # to avoid division by zero
         all_quizzes = Quiz.query.all()
-        if all_quizzes is not None:
+        if all_quizzes is not None and len(all_quizzes) > 0:
             total_quizzes = sum([1 for quiz in all_quizzes])
         
         current_progress = round(num_completed/total_quizzes * 100)
@@ -147,7 +147,7 @@ class Quiz(db.Model):
         return solutions
 
 class UserAnswer(db.Model):
-    quiz_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
+    quiz_id = db.Column(db.Integer, db.ForeignKey('quiz.id'), primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
     ans1 = db.Column(db.String(20))
     ans2 = db.Column(db.String(20))
