@@ -1,0 +1,52 @@
+{% extends "pre-log-in-template.html" %}
+
+{% set active_page = "stats" %}
+
+{% block main_content %}
+<div class="jumbotron text-center">
+</div>
+<main class="container text-center">
+  <canvas id="results"></canvas>
+</main>
+<br>
+<footer class="text-center">
+  <p>2021 Veronica and Aaron</p>
+</footer>
+{% endblock %}
+
+{% block script %}
+<script>
+const labels = {{labels | tojson}};
+
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'quizzes',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: {{scores | tojson}},
+  }]
+};
+
+var ctx = document.getElementById('results');
+
+var resultsChart = new Chart(ctx, {
+ type: 'bar',
+ data: data,
+ options: {
+        scales: {
+            y: {
+                suggestedMin: 0,
+                suggestedMax: 100
+            }
+        },
+        plugins: {
+            legend: {
+                display: false,
+            },
+        },
+    }
+})
+
+</script>
+{% endblock %}

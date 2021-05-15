@@ -3,8 +3,8 @@ from learn_italian_flask import db
 from flask import render_template, redirect, url_for, flash
 from learn_italian_flask.forms import LoginForm, SignupForm
 from flask_login import current_user, login_user, logout_user, login_required
-from learn_italian_flask.models import User, AlphabetQuiz, NumbersQuiz, GreetingsQuiz, ColoursQuiz, ArticlesQuiz, VerbsQuiz, Quiz, UserAnswer
-from learn_italian_flask.forms import AlphabetQuizForm, NumbersQuizForm, GreetingsQuizForm, ColoursQuizForm, ArticlesQuizForm, VerbsQuizForm, QuizForm, MultiCheckboxField
+from learn_italian_flask.models import User, AlphabetQuiz, NumbersQuiz, Quiz, UserAnswer
+from learn_italian_flask.forms import AlphabetQuizForm, NumbersQuizForm, QuizForm, MultiCheckboxField
 
 # test
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, RadioField, SelectMultipleField, widgets
@@ -47,19 +47,16 @@ class UserController():
         logout_user()
         return redirect(url_for('index'))
 
-# TODO should be in the UserController class instead??
 class DashboardController():
     def get_dashboard_homepage():
         modules = []
-        if current_user.get_next_module() == "alphabet":
-            modules.append("cards/_alphabet_card.html")
-        elif current_user.get_next_module() == "numbers":
-            modules.append("cards/_numbers_card.html")
+        module = current_user.get_next_module()
+        if module is not None:
+            modules.append("cards/_" + module.lower() + "_card.html")
         return render_template('dashboard.html', title="Dashboard", progress=current_user.get_progress(), modules=modules)
 
 class LearnController():
     def get_learn_homepage():
-
         modules = []
         modules.append("cards/_alphabet_card.html")
         modules.append("cards/_numbers_card.html")
@@ -95,7 +92,6 @@ class QuizController():
         questions = quiz.get_questions()
         name = quiz.name
         form = QuizController.generate_quiz_form(questions)
-        print(form)
 
         completed = False
         prev_attempt = UserAnswer.query.filter_by(quiz_id=quiz.id, user_id=current_user.id).first()
@@ -253,24 +249,14 @@ class QuizController():
 
 class ResultsController():
     def get_results():
-        labels = ['Alphabet', 'Numbers', 'Greetings', 'Colours', 'Articles', 'Common Verbs']
-        scores = [0 for i in range(6)]
-        alphabet_quiz = AlphabetQuiz.query.filter_by(testee_id=current_user.id).first()
-        if alphabet_quiz is not None:
-            scores[0] = alphabet_quiz.score * 100
-        numbers_quiz = NumbersQuiz.query.filter_by(testee_id=current_user.id).first()
-        if numbers_quiz is not None:
-            scores[1] = numbers_quiz.score * 100
-        greetings_quiz = GreetingsQuiz.query.filter_by(testee_id=current_user.id).first()
-        if greetings_quiz is not None:
-            scores[2] = greetings_quiz.score * 100
-        colours_quiz = ColoursQuiz.query.filter_by(testee_id=current_user.id).first()
-        if colours_quiz is not None:
-            scores[3] = colours_quiz.score * 100
-        articles_quiz = ArticlesQuiz.query.filter_by(testee_id=current_user.id).first()
-        if articles_quiz is not None:
-            scores[4] = articles_quiz.score * 100
-        verbs_quiz = VerbsQuiz.query.filter_by(testee_id=current_user.id).first()
-        if verbs_quiz is not None:
-            scores[5] = verbs_quiz.score * 100
+        all_quizzes = Quiz.query.all()
+        labels = []
+        if all_quizzes is not None:
+            labels = [quiz.name for quiz in all_quizzes]
+        scores = [0 for i in range(len(labels))]
+        if all_quizzes is not None:
+            for quiz, i in zip(all_quizzes, range(len(labels))):
+                user_quiz = UserAnswer.query.filter_by(quiz_id=quiz.id, user_id=current_user.id).first()
+                if user_quiz is not None:
+                    scores[i] = round(user_quiz.score * 100)
         return render_template('results.html', title="Results", labels=labels, scores=scores)

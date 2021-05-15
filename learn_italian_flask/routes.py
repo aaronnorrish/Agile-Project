@@ -5,14 +5,36 @@ from learn_italian_flask.forms import LoginForm, SignupForm
 from flask_login import current_user, login_user, logout_user, login_required
 from learn_italian_flask.models import User
 
-from learn_italian_flask.forms import AlphabetQuizForm, NumbersQuizForm, GreetingsQuizForm, ColoursQuizForm, ArticlesQuizForm, VerbsQuizForm
-from learn_italian_flask.models import AlphabetQuiz, NumbersQuiz, GreetingsQuiz, ColoursQuiz, ArticlesQuiz, VerbsQuiz
+from learn_italian_flask.forms import AlphabetQuizForm, NumbersQuizForm, QuizForm
+from learn_italian_flask.models import AlphabetQuiz, NumbersQuiz, Quiz, UserAnswer
 from learn_italian_flask.controllers import UserController, QuizController, LearnController, DashboardController, ResultsController
 
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html', title="Learn Italian")
+
+@app.route('/statistics')
+def statistics():
+    all_user_quizzes = UserAnswer.query.all()
+    num_quizzes_completed = sum([1 for quiz in all_user_quizzes])
+    print(num_quizzes_completed)
+    all_quizzes = Quiz.query.all()
+
+    labels = []
+    if all_quizzes is not None:
+        labels = [quiz.name for quiz in all_quizzes]
+    cumulative_scores = [0 for i in range(len(labels))]
+    attempts = [0 for i in range(len(labels))]
+    for quiz in all_user_quizzes:
+        cumulative_scores[quiz.quiz_id-1] += quiz.score * 100
+        attempts[quiz.quiz_id-1] += 1
+    scores = [round(score/attempt) if attempt != 0 else 0 for score, attempt in zip(cumulative_scores, attempts)]
+
+    users = User.query.all()
+    num_users = sum([1 for quiz in all_quizzes])
+    print(num_users)
+    return render_template('statistics.html', title="Learn Italian — Usage Statistics", labels=labels, scores=scores)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -76,25 +98,26 @@ def alphabet_quiz():
 def numbers_quiz():
     return QuizController.get_quiz("Numbers")
 
+@app.route('/greetings_quiz', methods=['GET', 'POST'])
+@login_required 
+def greetings_quiz():
+    return QuizController.get_quiz("Greetings")
+
 @app.route('/articles_quiz', methods=['GET', 'POST'])
 @login_required 
 def articles_quiz():
     return QuizController.get_quiz("Articles")
 
-@app.route('/greetings_quiz', methods=['GET', 'POST'])
-@login_required 
-def greetings_quiz():
-    return QuizController.get_greetings_quiz()
 
 @app.route('/colours_quiz', methods=['GET', 'POST'])
 @login_required 
 def colours_quiz():
-    return QuizController.get_colours_quiz()
+    return QuizController.get_quiz("Colours")
 
 @app.route('/verbs_quiz', methods=['GET', 'POST'])
 @login_required 
 def verbs_quiz():
-    return QuizController.get_verbs_quiz()
+    return QuizController.get_quiz("Verbs")
 
 @app.route('/results')
 @login_required 
