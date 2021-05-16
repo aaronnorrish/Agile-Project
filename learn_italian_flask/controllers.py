@@ -14,13 +14,17 @@ def get_index():
     return render_template('index.html', title="Learn Italian")
 
 def get_statistics():
+    # determine the total number of quizzes completed by users
     all_user_quizzes = UserAnswer.query.all()
     num_quizzes_completed = sum([1 for quiz in all_user_quizzes])
     all_quizzes = Quiz.query.all()
 
+    # get the quiz names
     labels = []
     if all_quizzes is not None:
         labels = [quiz.name for quiz in all_quizzes]
+
+    # determine the average score across quizzes
     cumulative_scores = [0 for i in range(len(labels))]
     attempts = [0 for i in range(len(labels))]
     for quiz in all_user_quizzes:
@@ -28,6 +32,7 @@ def get_statistics():
         attempts[quiz.quiz_id-1] += 1
     scores = [round(score/attempt) if attempt != 0 else 0 for score, attempt in zip(cumulative_scores, attempts)]
 
+    # determine the number of users signed up to the website
     users = User.query.all()
     num_users = sum([1 for user in users])
     return render_template('statistics.html', title="Learn Italian — Usage Statistics", labels=labels, scores=scores, num_users=num_users, num_quizzes_completed=num_quizzes_completed)
@@ -36,6 +41,7 @@ def user_login():
     if current_user.is_authenticated:
         return redirect(url_for('dashboard'))
     form = LoginForm()
+    # if the user is a valid user redirect to the dashboard, otherwise stay on the login page
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user is None or not user.check_password(form.password.data):
@@ -50,6 +56,11 @@ def user_signup():
         return redirect(url_for('dashboard'))
     form = SignupForm()
     if form.validate_on_submit():
+        # if the user sign up details are valid (unique email address) add to the db and login
+        # otherwise stay on page
+        if User.query.filter_by(email=form.email.data).first() is not None:
+            flash('This email is taken!')
+            return redirect(url_for('signup'))
         user = User(name=form.name.data, email=form.email.data)
         user.set_password(form.password.data)
         db.session.add(user)
@@ -70,6 +81,7 @@ def get_dashboard_homepage():
     return render_template('dashboard.html', title="Dashboard", progress=current_user.get_progress(), modules=modules)
 
 def get_learning_homepage():
+        # get the learning page, along with the next module to be completed
         modules = []
         modules.append("cards/_alphabet_card.html")
         modules.append("cards/_numbers_card.html")
@@ -94,14 +106,24 @@ def get_learning_content(content):
         return render_template('learning-content/verbs.html', title="Learn - Common Verbs")
 
 def get_quiz(quiz_type):
+    """
+    Renders a quiz page. If the user has already completed this quiz, then the corresponsding quiz form
+    will be populated with the user's answers.
+
+    Args:
+        quiz_type (str): the type of quiz to be rendered.
+    """
+
+    # get the questions for the requested quiz and generate the corresponding quiz form
     quiz = Quiz.query.filter_by(name=quiz_type).first()
     questions = quiz.get_questions()
-    name = quiz.name
     form = _generate_quiz_form(questions)
 
+    name = quiz.name
     completed = False
-    prev_attempt = UserAnswer.query.filter_by(quiz_id=quiz.id, user_id=current_user.id).first()
     results = None
+    # retrieve user's attempt at the current quiz
+    prev_attempt = UserAnswer.query.filter_by(quiz_id=quiz.id, user_id=current_user.id).first()
     if prev_attempt is not None:
         completed = True
 
@@ -124,6 +146,7 @@ def get_quiz(quiz_type):
         # calculate the user's score
         score = _calculate_quiz_score(user_answers, solutions)
 
+        # add the user's answers to the db
         completed = True
         results = _construct_solution(form, solutions)
         attempt = UserAnswer(quiz_id=quiz.id, 
@@ -144,11 +167,15 @@ def get_quiz(quiz_type):
 
 def _populate_form(form, user_answers):
     """
-    Helper function that populates a quiz form with the user's answers.
-    form — a FlaskForm object
-    user_answers — a list containing the user's answers for a given quiz, where the ith entry corresponds to the answer to the ith question
-        in the form
+    Helper function for get_quiz.
+    Populates a quiz form with the user's answers.
+
+    Args:
+       form (QuizForm): an quiz form object with empty input fields
+       user_answers (list): a list containing the user's answers for a given quiz, where the ith entry corresponds to the answer to the ith question
+        in the form.
     """
+
     answer = 0
     for question in form:
         if question.type == "StringField":
@@ -195,9 +222,20 @@ def _construct_solution(form, solutions):
 
 def _retrieve_answers(form):
     """
-    Helper function which retrieves the user's answers from a form and puts them into a dictionary.
-    Each entry of the dictionary contains a type (corresponding to the form field type for that question)
-    and a value (the answer itself.)
+    Helper function for get_quiz.
+    Retrieves the user's answers from a quiz form and puts them into a dictionary.
+
+    Args:
+        form (QuizForm): a QuizForm object containing the user's answers for a given quiz.
+    
+    Returns:
+        answers (dict): a dictionary of dictionaries, where each entry of the dictionary corresponds to
+            an answer to single quiz question. Each answer dictionary has two fields:
+                "type" (str): the form input field type (one of String, Radio, Integer or Checkbox.)
+                "value" (str): the user's answer. In the case of a String or Integer Field, it is just simply 
+                    the field input. If it is a Radio Field then it is a string corresponding to the selected
+                    choice's index. If is is a MultiCheckboxField then it is a binary string corresponding
+                    to which choices were selected. 
     """
     answers = {}
     i = 0
@@ -235,11 +273,25 @@ def _calculate_quiz_score(user_answers, solutions):
     score /= len(solutions)
     return score
 
-"""
-Helper function that generates a quiz form for a given quiz.
-questions — dictionary of dictionaries, each with fields "text", "type" and "choices"
-"""
 def _generate_quiz_form(questions):
+    """
+    Helper function for get_quiz.
+    Generates a quiz form for a given quiz.
+
+    Args:
+        questions (dict): dictionary of dictionaries, each entry of the top-level dictionary corresponds to
+            a quiz question. The children dictionary contains the fields "text", "type" and "choices" for that 
+            question. 
+                "text" (str): the question text.
+                "type" (str): the required form input field type (one of String, Radio, Integer or Checkbox.)
+                "choices" (list): a list containing the choices for a multichoice question. (For string and integer
+                    type questions this is an empty list.) Each entry of this list is a tuple where
+                    the first element corresponds to the index of the choice and the second is the
+                    text of the choice.
+                    
+    Returns:
+        a QuizForm() object. 
+    """
     # reset quiz form
     for attr, value in QuizForm().__dict__.items():
         if attr[:-1] == "question":
@@ -257,14 +309,19 @@ def _generate_quiz_form(questions):
     return QuizForm()
 
 def get_results():
+    # get the names of all quizzes
     all_quizzes = Quiz.query.all()
     labels = []
     if all_quizzes is not None:
         labels = [quiz.name for quiz in all_quizzes]
+    
+    # calculate the user score for each quiz
     scores = [0 for i in range(len(labels))]
     if all_quizzes is not None:
         for quiz, i in zip(all_quizzes, range(len(labels))):
+            # check if the user has completed the current quiz
             user_quiz = UserAnswer.query.filter_by(quiz_id=quiz.id, user_id=current_user.id).first()
+            # if so, set the corresponding element in the score list to their score
             if user_quiz is not None:
                 scores[i] = round(user_quiz.score * 100)
     return render_template('results.html', title="Results", labels=labels, scores=scores)
