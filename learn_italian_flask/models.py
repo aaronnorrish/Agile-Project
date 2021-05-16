@@ -47,6 +47,16 @@ class User(UserMixin, db.Model):
                 return quiz.name
         return None
 
+"""
+How quiz answers are stored:
+    answers from StringField questions are stored as strings.
+    answers from IntegerField questions are stored as integers.
+    answers from RadioField questions (represent multi-choice questions, where only one answer is allowed) 
+        are stored as integers corresponding to the number of the selected option.
+    answers from MultiCheckboxField questions (represent multi-choice questions, where zero to multiple 
+        answers are allowed) are stored as binary strings where a 1 in the ith position denotes that the 
+        ith option has been selected.
+"""
 class Quiz(db.Model):
     # a quiz needs to have at least 4 questions
     id = db.Column(db.Integer, primary_key=True)
@@ -171,52 +181,3 @@ class UserAnswer(db.Model):
         if self.ans8:
             user_answers.append(self.ans8)
         return user_answers
-
-"""
-How quiz answers are stored:
-    answers from StringField questions are stored as strings.
-    answers from IntegerField questions are stored as integers.
-    answers from RadioField questions (represent multi-choice questions, where only one answer is allowed) 
-        are stored as integers corresponding to the number of the selected option.
-    answers from MultiCheckboxField questions (represent multi-choice questions, where zero to multiple 
-        answers are allowed) are stored as binary strings where a 1 in the ith position denotes that the 
-        ith option has been selected.
-"""
-
-class AlphabetQuiz(db.Model):
-    """
-    q1 IntegerField question
-    q2 RadioField question
-    q3 MultiCheckboxField question
-    q4 MultiCheckboxField question
-    """
-    id = db.Column(db.Integer, primary_key=True)
-    testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
-    q1 = db.Column(db.Integer)
-    q2 = db.Column(db.Integer)
-    q3 = db.Column(db.String(4))
-    q4 = db.Column(db.String(4))
-    # the user's score for this quiz (between 0 and 1)
-    score = db.Column(db.Float, nullable=True)
-
-    def get_answers(self):
-        return [self.q1, self.q2, self.q3, self.q4]
-
-class NumbersQuiz(db.Model):
-    """
-    q1 RadioField question
-    q2 StringField question
-    q3 RadioField question
-    q4 StringField question
-    """
-    id = db.Column(db.Integer, primary_key=True)
-    testee_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
-    q1 = db.Column(db.Integer)
-    q2 = db.Column(db.String(10))
-    q3 = db.Column(db.Integer)
-    q4 = db.Column(db.String(10))
-    score = db.Column(db.Float, nullable=True)
-
-    def get_answers(self):
-        return [self.q1, self.q2, self.q3, self.q4]
-

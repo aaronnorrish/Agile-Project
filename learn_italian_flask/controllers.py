@@ -3,8 +3,8 @@ from learn_italian_flask import db
 from flask import render_template, redirect, url_for, flash
 from learn_italian_flask.forms import LoginForm, SignupForm
 from flask_login import current_user, login_user, logout_user, login_required
-from learn_italian_flask.models import User, AlphabetQuiz, NumbersQuiz, Quiz, UserAnswer
-from learn_italian_flask.forms import AlphabetQuizForm, NumbersQuizForm, QuizForm, MultiCheckboxField
+from learn_italian_flask.models import User, Quiz, UserAnswer
+from learn_italian_flask.forms import QuizForm, MultiCheckboxField
 
 # test
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, RadioField, SelectMultipleField, widgets
@@ -17,9 +17,6 @@ class UserController():
     def login():
         if current_user.is_authenticated:
             return redirect(url_for('dashboard'))
-        # TODO haven't added a flash error as in the tutorial
-        # if want to render the flash messages need to add this to the HTML template
-        # as in the chapter 3 of the tutorial
         form = LoginForm()
         if form.validate_on_submit():
             user = User.query.filter_by(email=form.email.data).first()

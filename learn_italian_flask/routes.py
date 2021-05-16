@@ -5,8 +5,8 @@ from learn_italian_flask.forms import LoginForm, SignupForm
 from flask_login import current_user, login_user, logout_user, login_required
 from learn_italian_flask.models import User
 
-from learn_italian_flask.forms import AlphabetQuizForm, NumbersQuizForm, QuizForm
-from learn_italian_flask.models import AlphabetQuiz, NumbersQuiz, Quiz, UserAnswer
+from learn_italian_flask.forms import QuizForm
+from learn_italian_flask.models import Quiz, UserAnswer
 from learn_italian_flask.controllers import UserController, QuizController, LearnController, DashboardController, ResultsController
 
 @app.route('/')
