@@ -1,17 +1,8 @@
-sol1 = AlphabetQuiz(q1=21, q2=1, q3="1110", q4="1000")
-sol2 = NumbersQuiz(q1=3, q2="cinque", q3=3, q4="otto")
-sol3 = GreetingsQuiz(q1=1, q2="buona notte, q3=0, q4="good afternoon")
-sol4 = ColoursQuiz(q1="arancione", q2=1, q3="blu", q4=2)
-sol5 = ArticlesQuiz(q1=1, q2=0, q3=0, q4="lo", q5=0, q6=1, q7=1, q8="una")
-sol6 = VerbsQuiz(q1=0, q2="sapere", q3="to put", q4=2)
+from learn_italian_flask import app
+from learn_italian_flask import db
+from learn_italian_flask.models import User, Quiz, UserAnswer
 
-
-db.session.add_all([sol1, sol2, sol3, sol4, sol5, sol6])
-db.session.commit()
-
-questions with multiple choices have their choices stored in the qx_choices field and are separated by a semi colon
-
-quiz = Quiz(name="Alphabet",
+quiz1 = Quiz(name="Alphabet",
 q1_text="There are __ letters in the Italian Alphabet:",
 q1_type="Integer",
 q2_text="The letter W is in the Italian Alphabet.",
@@ -29,7 +20,7 @@ sol3="1110",
 sol4="1000"
 )
 
-quiz = Quiz(name="Numbers",
+quiz2 = Quiz(name="Numbers",
 q1_text="Quattro is which number in Italian?",
 q1_type="Radio",
 q1_choices="one;two;three;four",
@@ -46,7 +37,7 @@ sol3="3",
 sol4="otto"
 )
 
-quiz = Quiz(name="Greetings",
+quiz3 = Quiz(name="Greetings",
 q1_text="Buongiorno means Good Evening?",
 q1_type="Radio",
 q1_choices="True;False",
@@ -63,7 +54,24 @@ sol3="0",
 sol4="Good afternoon"
 )
 
-quiz = Quiz(name="Articles",
+quiz4 = Quiz(name="Colours",
+q1_text='Write "orange" in Italian:',
+q1_type="String",
+q2_text='What colour is "rosa" in English:',
+q2_type="Radio",
+q2_choices="red;pink",
+q3_text="What is the Italian word for blue?",
+q3_type="String",
+q4_text="Which of the following translates to black?",
+q4_type="Radio",
+q4_choices="bianco;verde;nero;giallo",
+sol1="arancione",
+sol2="1",
+sol3="blu",
+sol4="2"
+)
+
+quiz5 = Quiz(name="Articles",
 q1_text="Which of the following options would precede zio?",
 q1_type="Radio",
 q1_choices="il;lo;l'",
@@ -96,5 +104,34 @@ sol7="1",
 sol8="una"
 )
 
-db.session.add(quiz)
+quiz6 = Quiz(name="Verbs",
+q1_text='Mangiare means "to eat?"',
+q1_type="Radio",
+q1_choices="True;False",
+q2_text='Write "to know" in Italian:',
+q2_type="String",
+q3_text="What is mettere in English",
+q3_type="String",
+q4_text='What is "to speak" in Italian?',
+q4_type="Radio",
+q4_choices="avere;volere;parlare;sentire",
+sol1="0",
+sol2="sapere",
+sol3="to put",
+sol4="2"
+)
+
+db.session.add_all([quiz1, quiz2, quiz3, quiz4, quiz5, quiz6])
 db.session.commit()
+
+user1 = User(
+    name="niska",
+    email="niska@testmail.com"
+)
+user1.set_password("niska")
+
+user2 = User(
+    name="damso",
+    email="damso@testmail.com"
+)
+user2.set_password("damso")

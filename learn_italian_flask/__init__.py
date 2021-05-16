@@ -3,6 +3,7 @@ from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
+from dotenv import load_dotenv
 
 import logging
 from logging.handlers import RotatingFileHandler
@@ -29,3 +30,6 @@ if not app.debug:
     app.logger.info('Learn Italian startup')
 
 from learn_italian_flask import routes, models, errors
+
+if __name__ == "__main__":
+    app.run()

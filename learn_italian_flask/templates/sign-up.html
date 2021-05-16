@@ -41,6 +41,8 @@
 
             {{ form.confirmPassword(id="confirmPassword", class="form-control", placeholder="Confirm password", required="") }}
 
+            <div class="passwordStrength"></div>
+
             <!-- TODO using browser validation so might be able to get rid of this? -->            
             {% for error in form.name.errors %}
             <div class="alert alert-danger">[{{ error }}]</div>
@@ -58,4 +60,17 @@
             {{ form.submit(class="btn btn-lg btn-primary btn-block")}}
         </form>
 </div>
+{% endblock %}
+
+{% block script %}
+<script>
+    // TODO !!!
+    let weakPassword = new RegExp("\d{3}");
+    $(document).ready(function(){
+        $("#password").on("input", function(){
+            let password = $(this).val();
+            console.log(weakPassword.test(password));
+        });
+    });
+</script>
 {% endblock %}
