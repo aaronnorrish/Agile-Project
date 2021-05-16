@@ -16,7 +16,6 @@ def get_index():
 def get_statistics():
     all_user_quizzes = UserAnswer.query.all()
     num_quizzes_completed = sum([1 for quiz in all_user_quizzes])
-    print(num_quizzes_completed)
     all_quizzes = Quiz.query.all()
 
     labels = []
@@ -31,9 +30,7 @@ def get_statistics():
 
     users = User.query.all()
     num_users = sum([1 for user in users])
-    print(num_users)
     return render_template('statistics.html', title="Learn Italian — Usage Statistics", labels=labels, scores=scores, num_users=num_users, num_quizzes_completed=num_quizzes_completed)
-
 
 def user_login():
     if current_user.is_authenticated:
@@ -84,17 +81,17 @@ def get_learning_homepage():
 
 def get_learning_content(content):
     if content == "alphabet":
-        return render_template('alphabet.html', title="Learn - Alphabet")
+        return render_template('learning-content/alphabet.html', title="Learn - Alphabet")
     if content == "numbers":
-        return render_template('numbers.html', title="Learn - Numbers")
+        return render_template('learning-content/numbers.html', title="Learn - Numbers")
     if content == "greetings":
-        return render_template('greetings.html', title="Learn - Greetings")
+        return render_template('learning-content/greetings.html', title="Learn - Greetings")
     if content == "colours":
-        return render_template('colours.html', title="Learn - Colours")
+        return render_template('learning-content/colours.html', title="Learn - Colours")
     if content == "articles":
-        return render_template('articles.html', title="Learn - Definite and Indefinite Articles")
+        return render_template('learning-content/articles.html', title="Learn - Definite and Indefinite Articles")
     if content == "verbs":
-        return render_template('verbs.html', title="Learn - Common Verbs")
+        return render_template('learning-content/verbs.html', title="Learn - Common Verbs")
 
 def get_quiz(quiz_type):
     quiz = Quiz.query.filter_by(name=quiz_type).first()
@@ -116,7 +113,6 @@ def get_quiz(quiz_type):
         solutions = quiz.get_solutions()
         results = _construct_solution(form, solutions)
         user_answers = _retrieve_answers(form)
-        print(user_answers)
 
     elif form.validate_on_submit():
         # get the user's submitted answers
@@ -127,7 +123,6 @@ def get_quiz(quiz_type):
 
         # calculate the user's score
         score = _calculate_quiz_score(user_answers, solutions)
-        print(user_answers)
 
         completed = True
         results = _construct_solution(form, solutions)

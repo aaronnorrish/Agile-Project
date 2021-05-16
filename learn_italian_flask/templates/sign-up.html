@@ -29,7 +29,7 @@
 
 {% block main_content %}
 <div class="container">
-        <form class="form-login-signup" method="post" action ="">
+        <form class="form-login-signup" method="post" action ="" novalidate>
             {{ form.hidden_tag() }}
             <img class="mb-3" src="static/bootstrap.svg" alt="Bootstrap" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
@@ -43,29 +43,59 @@
 
             <div class="passwordStrength"></div>
 
-            <!-- TODO using browser validation so might be able to get rid of this? -->            
-            {% for error in form.name.errors %}
-            <div class="alert alert-danger">[{{ error }}]</div>
-            {% endfor %}
-            {% for error in form.email.errors %}
-            <div class="alert alert-danger">[{{ error }}]</div>
-            {% endfor %}
-            {% for error in form.password.errors %}
-            <div class="alert alert-danger">[{{ error }}]</div>
-            {% endfor %}
-            {% for error in form.confirmPassword.errors %}
-            <div class="alert alert-danger">[{{ error }}]</div>
-            {% endfor %}
-
-            {{ form.submit(class="btn btn-lg btn-primary btn-block")}}
+            {{ form.submit(class="btn btn-lg btn-success btn-block")}}
         </form>
 </div>
 {% endblock %}
 
 {% block script %}
 <script>
+     $(document).ready(function(){
+        $("form").on("submit", function(){
+            let emailRegex = /^[\w\-\._]+@[\w\-\._]+\.[\w]+$/;
+            let nameRegex = /^[A-Za-z]+((-| )[A-Za-z]*)?/;
+            let errorMsg = "Please enter:";
+            let error = false;
+
+            let name = document.getElementById("name").value;
+            let emailAddr = document.getElementById("inputEmail").value;
+            let pswd1 = document.getElementById("password").value;
+            let pswd2 = document.getElementById("confirmPassword").value;
+
+            if (name == "") {
+                errorMsg += "\n  * a name! (no numbers or special characters)"
+                error = true;
+            }
+
+            if (emailAddr == "") {
+                errorMsg += "\n  * an email address!"
+                error = true;
+            }
+            else if (!emailRegex.test(emailAddr)) {
+                errorMsg += "\n  * a valid email!"
+                error = true;
+            }
+
+            if (pswd1 == "") {
+                errorMsg += "\n  * a password in the first field!"
+                error = true;
+            }
+            if (pswd2 == "") {
+                errorMsg += "\n  * a password in the second field!"
+                error = true;
+            }
+            if (pswd1 != pswd2) {
+                errorMsg += "\n  * passwords that match!"
+                error = true;
+            }
+            if (error) {
+                alert(errorMsg);
+            }
+        });
+    });
+
     // TODO !!!
-    let weakPassword = new RegExp("\d{3}");
+    let weakPassword = /\d{3}/g;
     $(document).ready(function(){
         $("#password").on("input", function(){
             let password = $(this).val();

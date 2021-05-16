@@ -14,20 +14,6 @@
 
 {% block script %}
 <script>
-// const config = {
-//     type: 'bar',
-//     data: data,
-//     options: {},
-// };
-
-// const labels = [
-//   'Alphabet',
-//   'Numbers',
-//   'Greetings',
-//   'Colours',
-//   'Articles',
-//   'Verbs',
-// ];
 
 const labels = {{labels | tojson}};
 
@@ -35,9 +21,8 @@ const data = {
   labels: labels,
   datasets: [{
     label: 'quizzes',
-    // backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
-    backgroundColor: 'rgb(255, 99, 132)',
-    borderColor: 'rgb(255, 99, 132)',
+    backgroundColor: '#90EE90',
+    borderColor: '#90EE90',
     data: {{scores | tojson}},
   }]
 };

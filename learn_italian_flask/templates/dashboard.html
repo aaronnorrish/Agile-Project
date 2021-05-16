@@ -11,19 +11,25 @@
 {% endblock %}
 
 {% block heading %}
-<h1>Hi {{current_user.name}}</h1>
+<h1>Hi {{current_user.name}}!</h1>
 {% endblock %}
 
 {% block  main_content %}
-<h3>Up next</h3>
-<div class="progress">
+<h3 class="mt-1">Your progress:</h3>
+<div class="progress mt-3">
   <div class="progress-bar bg-success" role="progressbar" style="width: {{progress}}%" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
+{% if progress != 100 %}
+<h3 class="mt-3">Up next:</h3>
+{% else %}
+<h3 class="mt-4">Congratulations!<br><br>You have completed the course.</h3>
+{% endif %}
+
 <div class="row">
   {% for card in modules %}
-    {% include card %}
+  {% include card %}
   {% endfor %}
-</div>
+  </div>
 {% endblock %}
 
 {% block script %}

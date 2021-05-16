@@ -11,7 +11,8 @@
 <h1>{{heading}}</h1>
 {% endblock %}
 
-<!-- The general format for displaying this quiz:
+<!-- 
+    The general format for displaying this quiz:
         If the quiz has not been attempted by the current user
         then simply display the questions with empty input fields.
         Otherwise, display the user's answers to the questions and disable 
@@ -30,23 +31,23 @@
     {% if question.type == "StringField" %}
     {{ question.label }}
     <br>
-    {% if completed %}
-    {{ question(disabled=true) }}
-                {% if results[question.id]["is_correct"] %}
-                    <i class="fas fa-check"></i>
-                <!-- if incorrect display the correct answer next to the input field -->
-                {% else %}
-                    <i class="fas fa-times"></i>
-                    <span class="alert alert-danger">{{results[question.id]["solution"]}}</span>
-                {% endif %}
+        {% if completed %}
+            {{ question(disabled=true) }}
+            {% if results[question.id]["is_correct"] %}
+                <i class="fas fa-check"></i>
+            <!-- if incorrect display the correct answer next to the input field -->
+            {% else %}
+                <i class="fas fa-times"></i>
+                <span class="alert alert-danger">{{results[question.id]["solution"]}}</span>
+            {% endif %}
             {% else %}
                 {{ question }}
             {% endif %}
             <!-- display any validation errors -->
             {% for error in question.errors %}
-                <div class="alert alert-danger">{{error}}</div>
-            {% endfor %}
-            <br>
+            <div class="alert alert-danger mt-3 ml-1 mr-5">{{error}}</div>
+        {% endfor %}
+        <br>
 
         {% elif question.type == "IntegerField" %}
             {{ question.label }}
@@ -64,7 +65,7 @@
                 {{ question }}
             {% endif %}
             {% for error in question.errors %}
-                <div class="alert alert-danger">Please enter an integer between 0 and 999</div>
+            <div class="alert alert-danger mt-3 ml-1 mr-5">Please enter an integer between 0 and 999</div>
             {% endfor %}
             <br>
 
@@ -94,7 +95,7 @@
             {% endfor %}
 
             {% for error in question.errors %}
-                <div class="alert alert-danger">Please select an option!</div>
+                <div class="alert alert-danger mt-3 ml-1 mr-5">Please select an option!</div>
             {% endfor %}
         
         {% elif question.type == "MultiCheckboxField" %}
@@ -123,32 +124,9 @@
     {% endfor %}
     
     {% if completed %}
-        {{ form.submit(disabled=true) }}
+        {{ form.submit(disabled=true, class="btn btn-md btn-success") }}
     {% else %}
-        {{ form.submit }}
+        {{ form.submit(class="btn btn-md btn-success") }}
     {% endif %}
 </form>
-{% endblock %}
-
-{% block script %}
-<script>
-// $(document).ready(function () {
-//     $("form").submit(function(){
-//         // window.location.reload();
-//         window.setInterval(doSmth, 100);
-//         // console.log("Success");
-//         // $("#submit").remove();
-//     });
-// });
-
-
-// $(document).ready(function () {
-//     // $("#form-quiz").on("submit", function () {
-//     $("#form-quiz").submit(function(){
-//         window.location.reload();
-//         console.log("Success");
-//         $("#submit").remove();
-//     });
-// });
-</script>
 {% endblock %}

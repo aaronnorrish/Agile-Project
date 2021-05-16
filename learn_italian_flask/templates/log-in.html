@@ -22,20 +22,12 @@
 
 {% block main_content %}
 <div class="container">
-    <form class="form-login-signup" method="post" action="">
+    <form class="form-login-signup" method="post" action="" novalidate>
         {{ form.hidden_tag() }}
         <img class="mb-3" src="static/bootstrap.svg" alt="Bootstrap" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
         {{ form.email(id="inputEmail", class="form-control", placeholder="Email address", autofocus="")}}
         {{ form.password(id="inputPassword", class="form-control", placeholder="Password")}}
-
-        <!-- TODO using browser validation so might be able to get rid of this? -->
-        {% for error in form.email.errors %}
-        <div class="alert alert-danger">{{ error }}</div>
-        {% endfor %}
-        {% for error in form.password.errors %}
-        <div class="alert alert-danger">{{ error }}</div>
-        {% endfor %}
 
         {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -45,8 +37,37 @@
         {% endif %}
         {% endwith %}
 
-        {{ form.submit(class="btn btn-lg btn-primary btn-block")}}
+        {{ form.submit(class="btn btn-lg btn-success btn-block")}}
 
     </form>
 </div>
+{% endblock %}
+
+{% block script %}
+<script>
+    $(document).ready(function(){
+        $("form").on("submit", function(){
+            let emailRegex = /^[\w\-\._]+@[\w\-\._]+\.[\w]+$/;
+            let errorMsg = "Please enter:";
+            let error = false;
+            let emailAddr = document.getElementById("inputEmail").value;
+            let pswd = document.getElementById("inputPassword").value;
+            if (emailAddr == "") {
+                errorMsg += "\n  * an email address!"
+                error = true;
+            }
+            else if (!emailRegex.test(emailAddr)) {
+                errorMsg += "\n  * a valid email!"
+                error = true;
+            }
+            if (pswd == "") {
+                errorMsg += "\n  * a password!"
+                error = true;
+            }
+            if (error) {
+                alert(errorMsg);
+            }
+        });
+    });
+</script>
 {% endblock %}
