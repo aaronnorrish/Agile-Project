@@ -1,10 +1,9 @@
 from learn_italian_flask import app
 from learn_italian_flask import db
 from flask import render_template, redirect, url_for, flash
-from learn_italian_flask.forms import LoginForm, SignupForm
+from learn_italian_flask.forms import LoginForm, SignupForm, QuizForm, MultiCheckboxField
 from flask_login import current_user, login_user, logout_user, login_required
 from learn_italian_flask.models import User, Quiz, UserAnswer
-from learn_italian_flask.forms import QuizForm, MultiCheckboxField
 
 # test
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, RadioField, SelectMultipleField, widgets
@@ -78,13 +77,7 @@ class LearnController():
             return render_template('verbs.html', title="Learn - Common Verbs")
 
 class QuizController():
-    # TODO current problem: question 1 is not being disabled and the other fields are disabled
-    #   even if no attempt has been made yet
-    #   solution could be to disable it in the html; even if this is removed by client it wont actually cause any changes in the database
     def get_quiz(quiz_type):
-        # quizzes = Quiz.query.all()
-        # for quiz in quizzes:
-        #     print(quiz.name)
         quiz = Quiz.query.filter_by(name=quiz_type).first()
         questions = quiz.get_questions()
         name = quiz.name
@@ -96,9 +89,8 @@ class QuizController():
         if prev_attempt is not None:
             completed = True
 
-            # # populate the form with the user's answers
+            # populate the form with the user's answers
             user_answers = prev_attempt.get_user_answers()
-            print(user_answers)
             QuizController.populate_form(form, user_answers)
 
             # construct object to be used to display the correct answers
@@ -114,6 +106,7 @@ class QuizController():
 
             # calculate the user's score
             score = QuizController.calculate_quiz_score(user_answers, solutions)
+            print(user_answers)
             print(score)
 
             completed = True
@@ -232,7 +225,11 @@ class QuizController():
     questions — dictionary of dictionaries, each with fields "text", "type" and "choices"
     """
     def generate_quiz_form(questions):
-        name = "question"
+        # reset quiz form
+        for attr, value in QuizForm().__dict__.items():
+            if attr[:-1] == "question":
+                delattr(QuizForm, attr)
+       
         for question in questions:
             if questions[question]["type"] == "String":
                 setattr(QuizForm, question, StringField(questions[question]["text"], validators=[DataRequired(), Length(max=20)]))
@@ -241,7 +238,8 @@ class QuizController():
             elif questions[question]["type"] == "Integer":
                 setattr(QuizForm, question, IntegerField(questions[question]["text"], validators=[DataRequired(), NumberRange(min=0,max=999)]))
             elif questions[question]["type"] == "Checkbox":
-                setattr(QuizForm, question, MultiCheckboxField(questions[question]["text"], choices=questions[question]["choices"]))
+                setattr(QuizForm, question, MultiCheckboxField(questions[question]["text"], choices=questions[question]["choices"]))    
+
         return QuizForm()
 
 class ResultsController():
