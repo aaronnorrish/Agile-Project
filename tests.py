@@ -1,7 +1,8 @@
-import unittest
+import unittest, time, os
 from learn_italian_flask import app, db
 from learn_italian_flask.models import User, Quiz, UserAnswer 
 from learn_italian_flask.controllers import _populate_form, _construct_solution, _retrieve_answers, _calculate_quiz_score, _generate_quiz_form
+from selenium import webdriver
 
 class UserModelCase(unittest.TestCase):
     def setUp(self):
@@ -138,30 +139,6 @@ class UserAnswersModelCase(unittest.TestCase):
         ans = ["one", "t", "3", "f"]
 
         self.assertEqual(ua.get_user_answers(), ans)
-    
-    """
-
-    # Tests for controllers.py
-    
-    def test_populate_form(self):
-    
-    
-    def test_construct_solution(self):
-    
-    
-    def test_retreve_answers(self):
-
-    
-    def test_calculate_quiz_score(self):
-
-    
-    def test_generate_quiz_form(self):
-
-
-    def test_get_results(self):
-]
-
-    """
 
 class ControllerHelpersCase(unittest.TestCase):
     def setUp(self):
@@ -227,6 +204,99 @@ class ControllerHelpersCase(unittest.TestCase):
         colours_solutions = Quiz.query.filter_by(name="Colours").first().get_solutions()
         score = _calculate_quiz_score(user_answers2, colours_solutions)
         self.assertEqual(score, 0.5)
+
+class FlaskModelCase(unittest.TestCase):
+    driver = None
+
+    def setUp(self):
+        dir = os.path.dirname(os.path.abspath(__file__))
+        #Using forward slash for mac
+        chrome_driver_path = dir + "/chromedriver"
+        self.driver = webdriver.Chrome(chrome_driver_path)
+
+        if not self.driver:
+            self.skipTest("Web browser not avaialable")
+        
+        else:
+            app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://'
+            db.create_all()
+            self.driver.get('http://127.0.0.1:5000/')
+
+    
+    def tearDown(self):
+        if self.driver:
+            self.driver.quit()
+            db.session.remove()
+            db.drop_all()
+
+    
+    def test_signup(self):
+        #u = User(id=1, name='niska', email="test@testmail.com")
+        #db.session.add(u)
+        #u2 = User.query.get('niska')
+        #self.assertEqual(u2.email, 'test@testmail.com', msg="user exists in database")
+        # Test for missing field
+        self.driver.get('http://127.0.0.1:5000/signup')
+        self.driver.implicitly_wait(5)
+        name_field = self.driver.find_element_by_id('name')
+        name_field.send_keys('niska')
+        password_field = self.driver.find_element_by_id('password')
+        password_field.send_keys('pword')
+        password_confirm_field = self.driver.find_element_by_id('confirmPassword')
+        password_confirm_field.send_keys('pword')
+        time.sleep(1)
+        self.driver.implicitly_wait(10)
+        submit = self.driver.find_element_by_id('submit')
+        submit.click()
+        # Check if alert populates
+        self.driver.switch_to.alert
+        self.driver.switch_to.alert.accept()
+
+        #Test for success sign up
+        email_field = self.driver.find_element_by_id('inputEmail')
+        email_field.send_keys('test@testmail.com')
+        password_field = self.driver.find_element_by_id('password')
+        password_field.send_keys('pword')
+        password_confirm_field = self.driver.find_element_by_id('confirmPassword')
+        password_confirm_field.send_keys('pword')
+        time.sleep(1)
+        self.driver.implicitly_wait(10)
+        submit = self.driver.find_element_by_id('submit')
+        submit.click()
+        self.driver.implicitly_wait(5)
+        # Check for successful sign up
+        #actualUrl="http://127.0.0.1:5000/dashboard"
+        #expectedUrl= self.driver.current_url
+        #self.assertEqual(expectedUrl, actualUrl)
+
+    
+    
+    def test_login(self):
+        u = User(id=1, name='niska', email="test@testmail.com")
+        u.set_password('test')
+        db.session.add(u)
+        db.session.commit()
+
+        self.driver.get('http://127.0.0.1:5000/login')
+        self.driver.implicitly_wait(5)
+        email_field = self.driver.find_element_by_id('inputEmail')
+        email_field.send_keys('test@testmail.com')
+        password_field = self.driver.find_element_by_id('inputPassword')
+        password_field.send_keys('test')
+        time.sleep(1)
+        self.driver.implicitly_wait(10)
+        submit = self.driver.find_element_by_id('submit')
+        submit.click()
+        self.driver.implicitly_wait(5)
+        #Check if success
+        #self.driver.implicitly_wait(5)
+        #time.sleep(1)
+        #logout = self.driver.find_element_by_partial_link_text('Sign out')
+        #String actualUrl="https://live.browserstack.com/dashboard";
+        #String expectedUrl= driver.getCurrentUrl();
+        #Assert.assertEquals(expectedUrl,actualUrl);
+
+
 
 
 if __name__ == '__main__':
