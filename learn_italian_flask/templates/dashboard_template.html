@@ -21,7 +21,6 @@
 
     <link rel="stylesheet" href="static/base.css" />
     <link rel="stylesheet" href="static/dashboard.css" />
-    <!-- <script src="script.js"></script> -->
 
     <style>
       /* Font Awesome Icon Styling */
@@ -30,6 +29,13 @@
       }
       .fa-times {
         color: #dc143c;
+      }
+      a>i {
+        font-size: 1rem;
+        margin-right: 0.2rem;
+      }
+      nav a {
+        font-size: 1rem;
       }
     </style>
     {% block styling %}
@@ -58,19 +64,19 @@
                   <ul class="nav flex-column">
                     <li class="nav-item">
                       <a {% if active_page=="dashboard" %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="{{ url_for('dashboard') }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-speedometer"><path d="M8 2a.5.5 0 0 1 .5.5V4a.5.5 0 0 1-1 0V2.5A.5.5 0 0 1 8 2zM3.732 3.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 8a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 7.31A.91.91 0 1 0 8.85 8.569l3.434-4.297a.389.389 0 0 0-.029-.518z"/><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                        <i class="fas fa-tachometer-alt"></i>
                         Dashboard
                       </a>
                     </li>
                     <li class="nav-item">
                       <a {% if active_page=="learn" %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="{{ url_for('learn') }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                        <i class="fas fa-graduation-cap"></i>
                         Learn
                       </a>
                     </li>
                     <li class="nav-item">
                       <a {% if active_page=="results" %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="{{ url_for('results') }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                        <i class="far fa-chart-bar"></i>
                         Results
                       </a>
                     </li>
