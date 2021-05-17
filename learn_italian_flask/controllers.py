@@ -11,7 +11,7 @@ from wtforms.fields.html5 import EmailField, IntegerField
 from wtforms.validators import DataRequired, Email, ValidationError, EqualTo, Length, NumberRange
 
 def get_index():
-    return render_template('index.html', title="Learn Italian")
+    return render_template('index.html', title="La Bella Lingua")
 
 def get_statistics():
     # determine the total number of quizzes completed by users
@@ -35,7 +35,7 @@ def get_statistics():
     # determine the number of users signed up to the website
     users = User.query.all()
     num_users = sum([1 for user in users])
-    return render_template('statistics.html', title="Learn Italian — Usage Statistics", labels=labels, scores=scores, num_users=num_users, num_quizzes_completed=num_quizzes_completed)
+    return render_template('statistics.html', title="La Bella Lingua — Usage Statistics", labels=labels, scores=scores, num_users=num_users, num_quizzes_completed=num_quizzes_completed)
 
 def user_login():
     if current_user.is_authenticated:
@@ -49,7 +49,7 @@ def user_login():
             return redirect(url_for('login'))
         login_user(user)
         return redirect(url_for('dashboard'))
-    return render_template('log-in.html', title="Learn Italian - Log in", form=form)
+    return render_template('log-in.html', title="La Bella Lingua — Log in", form=form)
 
 def user_signup():
     if current_user.is_authenticated:
@@ -59,7 +59,6 @@ def user_signup():
         # if the user sign up details are valid (unique email address) add to the db and login
         # otherwise stay on page
         if User.query.filter_by(email=form.email.data).first() is not None:
-            flash('This email is taken!')
             return redirect(url_for('signup'))
         user = User(name=form.name.data, email=form.email.data)
         user.set_password(form.password.data)
@@ -67,7 +66,7 @@ def user_signup():
         db.session.commit()
         login_user(user)
         return redirect(url_for('dashboard'))
-    return render_template('sign-up.html', title="Learn Italian - Sign up", form=form)
+    return render_template('sign-up.html', title="La Bella Lingua — Sign up", form=form)
 
 def user_logout():
     logout_user()
@@ -258,7 +257,15 @@ def _retrieve_answers(form):
 
 def _calculate_quiz_score(user_answers, solutions):
     """
-    Helper function that calculates a user's score for a given quiz.
+    Helper function for get_quiz.
+    Calculates a user's score for a given quiz.
+
+    Args:
+        user_answers (dict):
+        solutions (list): a list containing the solutions to a specific quiz
+
+    Returns:
+        score (float): the user's score for the quiz (between 0.0 and 1.0)
     """
     score = 0
     for answer, solution in zip(user_answers, solutions):

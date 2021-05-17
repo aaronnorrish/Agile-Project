@@ -38,9 +38,11 @@ class User(UserMixin, db.Model):
         user_quizzes = UserAnswer.query.filter_by(user_id=self.id)
         completed_quiz_ids = [quiz.quiz_id for quiz in user_quizzes]
         all_quizzes = Quiz.query.all()
+        # return the first quiz that has not yet been completed by the user
         for quiz in all_quizzes:
             if quiz.id not in completed_quiz_ids:
                 return quiz.name
+        # if the user has completed all quizzes, return None
         return None
 
 """
