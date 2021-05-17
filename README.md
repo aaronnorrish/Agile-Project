@@ -82,7 +82,8 @@ A number of external libraries were used in this project:
 
 * jQuery
 
-* Icons have been taken from Bootstrap and FontAwesome
+* Icons have been taken from Bootstrap, [FontAwesome](https://fontawesome.com/) and www.flaticon.com
+    * Italian flag icon made by Freepik from www.flaticon.com
 
 * Charts from Chart.js
 
