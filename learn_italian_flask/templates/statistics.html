@@ -4,6 +4,19 @@
 
 {% block styling %}
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Raleway');
+
+  body {
+    background: rgb(255, 255, 255);
+    /* font-size: .875rem; */
+    font-family: 'Raleway', sans-serif;
+  }
+
+  footer {
+    color: rgb(129, 129, 129);
+    font-size: smaller;
+  }
+  
   .row {
     padding: 1rem 0 2.5rem 0;
   }
@@ -11,6 +24,7 @@
   .card-container {
     width: 50%;
   }
+
 
 </style>
 {% endblock %}
@@ -51,11 +65,6 @@
       <canvas id="results"></canvas>
   </div>
 </main>
-
-<!-- Footer -->
-<footer class="text-center">
-  <p>2021 Veronica and Aaron</p>
-</footer>
 {% endblock %}
 
 {% block script %}

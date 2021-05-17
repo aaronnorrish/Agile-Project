@@ -6,6 +6,14 @@
 <link rel="stylesheet" href="static/login-signup.css" />
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway');
+
+    body {
+    background: rgb(255, 255, 255);
+    /* font-size: .875rem; */
+    font-family: 'Raleway', sans-serif;
+    }
+
     #name {
         margin-bottom: -1px;
         border-bottom-right-radius: 0;
@@ -31,7 +39,7 @@
 <div class="container">
         <form class="form-login-signup" method="post" action ="" novalidate>
             {{ form.hidden_tag() }}
-            <img class="mb-3" src="static/bootstrap.svg" alt="Bootstrap" width="72" height="72">
+            <img class="mb-3" src="static/italy_flag.svg" alt="Italian Flag" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
             {{ form.name(id="name", class="form-control", placeholder="Name", autofocus="") }}
 
@@ -42,6 +50,16 @@
             {{ form.confirmPassword(id="confirmPassword", class="form-control", placeholder="Confirm password", required="") }}
 
             <div class="passwordStrength"></div>
+            {% for error in form.email.errors %}
+            <div class="alert alert-danger">[{{ error }}]</div>
+            {% endfor %}
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-danger">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
 
             {{ form.submit(class="btn btn-lg btn-success btn-block")}}
         </form>

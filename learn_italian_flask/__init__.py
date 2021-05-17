@@ -27,7 +27,7 @@ if not app.debug:
     app.logger.addHandler(file_handler)
 
     app.logger.setLevel(logging.INFO)
-    app.logger.info('Learn Italian startup')
+    app.logger.info('La Bella Lingua startup')
 
 from learn_italian_flask import routes, models, errors
 

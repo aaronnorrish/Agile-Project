@@ -6,6 +6,14 @@
 <link rel="stylesheet" href="static/login-signup.css" />
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway');
+
+    body {
+    background: rgb(255, 255, 255);
+    /* font-size: .875rem; */
+    font-family: 'Raleway', sans-serif;
+    }
+
     #inputEmail {
         margin-bottom: -1px;
         border-bottom-right-radius: 0;
@@ -24,7 +32,7 @@
 <div class="container">
     <form class="form-login-signup" method="post" action="" novalidate>
         {{ form.hidden_tag() }}
-        <img class="mb-3" src="static/bootstrap.svg" alt="Bootstrap" width="72" height="72">
+        <img class="mb-3" src="static/italy_flag.svg" alt="Italian Flag" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
         {{ form.email(id="inputEmail", class="form-control", placeholder="Email address", autofocus="")}}
         {{ form.password(id="inputPassword", class="form-control", placeholder="Password")}}
