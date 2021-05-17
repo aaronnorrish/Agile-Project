@@ -4,6 +4,52 @@
 
 {% block styling %}
 <style>
+   /* importing fonts */
+   @import url('https://fonts.googleapis.com/css2?family=Raleway');
+
+  body {
+      font-family: 'Raleway', sans-serif;
+  }
+
+  h1 {
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-align: center;
+      text-transform: uppercase;
+  }
+
+  .table {
+    border-collapse: collapse;
+    margin: 25px 0;
+  }
+
+  .table thead tr {
+    background-color: #20639B;
+    color: #ffffff;
+    text-align: left;
+  }
+
+  .table th, td {
+    padding: 10px 15px;
+  }
+
+  .table tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+
+  .table tbody tr:nth-of-type(even) {
+    background-color: #e7e7e7;
+  }
+
+  .table tbody tr:last-of-type {
+    border-bottom: 2px solid #20639B;
+  }
+
+  .table tbody tr:hover {
+    font-weight: bolder;
+    background-color: #c0d3e4;
+}
+
 </style>
 {% endblock %}
 

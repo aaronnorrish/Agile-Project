@@ -6,6 +6,24 @@
 <h1>Results</h1>
 {% endblock %}
 
+{% block styling %}
+<style>
+   /* importing fonts */
+   @import url('https://fonts.googleapis.com/css2?family=Raleway');
+
+  body {
+      font-family: 'Raleway', sans-serif;
+  }
+
+  h1 {
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-align: center;
+      text-transform: uppercase;
+  }
+</style>
+{% endblock %}
+
 {% block main_content %}
 <div>
     <canvas id="results"></canvas>
@@ -21,8 +39,8 @@ const data = {
   labels: labels,
   datasets: [{
     label: 'quizzes',
-    backgroundColor: '#90EE90',
-    borderColor: '#90EE90',
+    backgroundColor: '#3CAEA3',
+    borderColor: '#3CAEA3',
     data: {{scores | tojson}},
   }]
 };

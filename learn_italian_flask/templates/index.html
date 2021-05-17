@@ -2,6 +2,31 @@
 
 {% set active_page = "index" %}
 
+{% block styling %}
+<style>
+  /* importing fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Raleway');
+
+  body {
+    background: rgb(255, 255, 255);
+    /* font-size: .875rem; */
+    font-family: 'Raleway', sans-serif;
+  }
+
+  footer {
+    color: rgb(129, 129, 129);
+    font-size: smaller;
+  }
+
+  #assist {
+    color: rgb(86, 128, 121);
+    /* font-style: italic; */
+    letter-spacing: 1px;
+  }
+  
+</style>
+{% endblock %}
+
 {% block main_content %}
 <div class="jumbotron text-center">
     <h1 class="display-1">Learn Italian</h1>
@@ -14,8 +39,9 @@
   <p>Learning Italian or any foreign language can help stimulate the brain whilst improving memory and problem solving skills.</p>
   <p>Italian is considered one of easiest languages for English speakers to learn.</p>
   <br>
-  <p>This website will assist you in learning the basics in Italian!</p>
+  <p id="assist">This website will assist you in learning the basics in Italian!</p>
 </main>
+<hr>
 <footer class="text-center pt-3">
   <p>2021 Veronica and Aaron</p>
 </footer>
