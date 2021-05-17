@@ -74,6 +74,7 @@ A number of external libraries were used in this project:
     * flask-login
     * python-dotenv
     * email-validator
+    * selenium
 
 * SQLite
 
