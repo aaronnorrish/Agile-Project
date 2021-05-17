@@ -69,8 +69,6 @@ python3 tests.py
 ```
 
 ## Architecture and Design
-Initial design for the front-end can be seen in TODO
-
 The application architecture is based on the Model-View-Control design pattern. Our application consists of three main models: 
 * User — stores a name, email address (must be unique), and a password hash. Users are distinguished by a unique id. This model has methods to set and check a user password, get the user's progress (percentage of quizzes completed), and to get the next module the user should complete.
 * Quiz — stores a name, questions (each question has three attributes associated with it — the text, the type of question (determines the required form input field), and possible answer choices (this field is null if the question is not multi-choice)), and solutions to the questions. Each quiz must have at least 4 questions, and can have at most 8 questions. This class has methods for retrieving the questions and answers (separately) for a given quiz. 
