@@ -54,6 +54,8 @@ Other unit tests include functions to check a user logging in and signing up to 
 *Please note that LiveServer was not implemented for these tests*
 
 To run the unit testing for this web application, please make sure the aforementioned steps are completed.
+
+For selenium tests, make sure the Google web driver is installed and that it is installed in the test directory.
 Within the terminal 
 ```
 flask run
