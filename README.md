@@ -18,7 +18,6 @@ download and install [SQLite](http://sqlite.org/download.html)
 
 build and migrate the database:
 ```
-flask db init
 flask db upgrade
 ```
 

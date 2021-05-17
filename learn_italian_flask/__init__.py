@@ -31,5 +31,4 @@ if not app.debug:
 
 from learn_italian_flask import routes, models, errors
 
-if __name__ == "__main__":
-    app.run()
+app.run()
