@@ -51,15 +51,10 @@
 
             <div class="passwordStrength"></div>
             {% for error in form.email.errors %}
-            <div class="alert alert-danger">[{{ error }}]</div>
-            {% endfor %}
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                <div class="alert alert-danger">{{ message }}</div>
-                {% endfor %}
+            {% if error == "This email has already been used."%}
+                <div class="alert alert-danger">[{{ error }}]</div>
             {% endif %}
-            {% endwith %}
+            {% endfor %}
 
             {{ form.submit(class="btn btn-lg btn-success btn-block")}}
         </form>

@@ -59,7 +59,6 @@ def user_signup():
         # if the user sign up details are valid (unique email address) add to the db and login
         # otherwise stay on page
         if User.query.filter_by(email=form.email.data).first() is not None:
-            flash('This email is taken!')
             return redirect(url_for('signup'))
         user = User(name=form.name.data, email=form.email.data)
         user.set_password(form.password.data)
