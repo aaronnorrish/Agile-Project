@@ -231,11 +231,6 @@ class FlaskModelCase(unittest.TestCase):
 
     
     def test_signup(self):
-        #u = User(id=1, name='niska', email="test@testmail.com")
-        #db.session.add(u)
-        #u2 = User.query.get('niska')
-        #self.assertEqual(u2.email, 'test@testmail.com', msg="user exists in database")
-        # Test for missing field
         self.driver.get('http://127.0.0.1:5000/signup')
         self.driver.implicitly_wait(5)
         name_field = self.driver.find_element_by_id('name')
@@ -252,9 +247,23 @@ class FlaskModelCase(unittest.TestCase):
         self.driver.switch_to.alert
         self.driver.switch_to.alert.accept()
 
-        #Test for success sign up
+        #Test for unique user
+        u = User(id=1, name='niska', email="test@testmail.com")
         email_field = self.driver.find_element_by_id('inputEmail')
         email_field.send_keys('test@testmail.com')
+        password_field = self.driver.find_element_by_id('password')
+        password_field.send_keys('pword')
+        password_confirm_field = self.driver.find_element_by_id('confirmPassword')
+        password_confirm_field.send_keys('pword')
+        time.sleep(1)
+        self.driver.implicitly_wait(10)
+        submit = self.driver.find_element_by_id('submit')
+        submit.click()
+        # Check if alert pops up
+        #self.driver.find_element_by_class_name('alert alert-danger').size != 0
+
+        
+        #Test for success sign up
         password_field = self.driver.find_element_by_id('password')
         password_field.send_keys('pword')
         password_confirm_field = self.driver.find_element_by_id('confirmPassword')
@@ -268,6 +277,7 @@ class FlaskModelCase(unittest.TestCase):
         #actualUrl="http://127.0.0.1:5000/dashboard"
         #expectedUrl= self.driver.current_url
         #self.assertEqual(expectedUrl, actualUrl)
+        
 
     
     
@@ -295,8 +305,6 @@ class FlaskModelCase(unittest.TestCase):
         #String actualUrl="https://live.browserstack.com/dashboard";
         #String expectedUrl= driver.getCurrentUrl();
         #Assert.assertEquals(expectedUrl,actualUrl);
-
-
 
 
 if __name__ == '__main__':
