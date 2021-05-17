@@ -1,12 +1,9 @@
-import os, unittest
+import unittest
 from learn_italian_flask import app, db
 from learn_italian_flask.models import User, Quiz, UserAnswer 
 from learn_italian_flask.controllers import UserController, QuizController, ResultsController
-from selenium import webdriver
 
 class UserModelCase(unittest.TestCase):
-    driver = None
-
     def setUp(self):
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://'
         db.create_all()
@@ -125,9 +122,10 @@ class UserModelCase(unittest.TestCase):
 
         self.assertEqual(ua.get_user_answers(), ans)
     
+    """
 
     # Tests for controllers.py
-    """
+    
     def test_populate_form(self):
     
     
@@ -144,7 +142,7 @@ class UserModelCase(unittest.TestCase):
 
 
     def test_get_results(self):
-
+]
 
     """
 
