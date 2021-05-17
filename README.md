@@ -34,7 +34,7 @@ python3 add_dummies.py
 ### Running the application
 finally run the application:
 ```
-python3 main.py
+flask run
 ```
 
 the app should now be up and running on local host, port 5000: http://localhost:5000/
