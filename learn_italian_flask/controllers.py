@@ -202,7 +202,7 @@ def _construct_solution(form, solutions):
         field = "question"+str(solution_index+1)
         results[field] = {}
         if question.type == "StringField":
-            results[field]["is_correct"] = str(question.data).lower() == solutions[solution_index]
+            results[field]["is_correct"] = str(question.data).lower() == solutions[solution_index].lower()
             results[field]["solution"] = solutions[solution_index]
             solution_index += 1
         elif question.type == "RadioField":
@@ -269,7 +269,7 @@ def _calculate_quiz_score(user_answers, solutions):
     """
     score = 0
     for answer, solution in zip(user_answers, solutions):
-        if user_answers[answer]["type"] == "StringField" and user_answers[answer]["value"].lower() == solution:
+        if user_answers[answer]["type"] == "StringField" and user_answers[answer]["value"].lower() == solution.lower():
             score +=1
         elif user_answers[answer]["type"] == "RadioField" and user_answers[answer]["value"] == solution:
             score +=1

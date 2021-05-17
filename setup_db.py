@@ -50,7 +50,7 @@ q4_text="What is Buon pomeriggio in English?",
 q4_type="String",
 sol1="1",
 sol2="Buonanotte",
-sol3="0",
+sol3="1",
 sol4="Good afternoon"
 )
 
@@ -105,12 +105,12 @@ sol8="una"
 )
 
 quiz6 = Quiz(name="Verbs",
-q1_text='Mangiare means "to eat?"',
+q1_text='"Mangiare" means "to eat?"',
 q1_type="Radio",
 q1_choices="True;False",
 q2_text='Write "to know" in Italian:',
 q2_type="String",
-q3_text="What is mettere in English",
+q3_text='What is "mettere" in English?',
 q3_type="String",
 q4_text='What is "to speak" in Italian?',
 q4_type="Radio",
@@ -123,15 +123,3 @@ sol4="2"
 
 db.session.add_all([quiz1, quiz2, quiz3, quiz4, quiz5, quiz6])
 db.session.commit()
-
-user1 = User(
-    name="niska",
-    email="niska@testmail.com"
-)
-user1.set_password("niska")
-
-user2 = User(
-    name="damso",
-    email="damso@testmail.com"
-)
-user2.set_password("damso")

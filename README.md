@@ -29,7 +29,7 @@ python3 setup_db.py
 
 optionally, if you want to populate the database with some sample users and their answers:
 ```
-python3 #TODO.py
+python3 add_dummies.py
 ```
 
 ### Running the application
@@ -37,6 +37,8 @@ finally run the application:
 ```
 python3 main.py
 ```
+
+the app should now be up and running on local host, port 5000: http://localhost:5000/index
 
 ## Purpose, Context and Assessment Mechanism
 This web application aims to assist users in developing their Italian language skills. 
