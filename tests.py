@@ -286,7 +286,8 @@ class FlaskModelCase(unittest.TestCase):
         u.set_password('test')
         db.session.add(u)
         db.session.commit()
-
+        
+        #Test for successful Sign Up
         self.driver.get('http://127.0.0.1:5000/login')
         self.driver.implicitly_wait(5)
         email_field = self.driver.find_element_by_id('inputEmail')
@@ -305,6 +306,7 @@ class FlaskModelCase(unittest.TestCase):
         #String actualUrl="https://live.browserstack.com/dashboard";
         #String expectedUrl= driver.getCurrentUrl();
         #Assert.assertEquals(expectedUrl,actualUrl);
+
 
 
 if __name__ == '__main__':

@@ -39,10 +39,32 @@ python3 main.py
 ```
 
 ## Purpose, Context and Assessment Mechanism
-TODO
+This web application aims to assist users in developing their Italian language skills. 
+In doing so, this web application provides information pages, where a user can memorise definitions and read information about any chosen topic. To enhance this memorisation process, assessments are added for each topic, to allow a user to test out what they have learnt.
+The assessment consists a variety of means. This includes multiple choice questions, multiple selection questions and inserting the correct answer type of questions.
+After completing an assessment, a user is able to see what questions they have gotten correct and incorrect, and the correct solution is also given.
 
 ## Unit Tests
-TODO
+The unit tests for this web application tests functions created with the application. 
+This includes retrieving questions, solutions, user answers next model. These tests check if the application correctly identifies and populates these variables.
+
+Other unit tests include functions to check a user logging in and signing up to the web application. For the signing up method, it is broken down to testing when there is a missing field, a unique user and a successful sign up. Similar to the signing up method, the log-in method checks for a successful sign up.
+
+*Please note that LiveServer was not implemented for these tests*
+
+To run the unit testing for this web application, please make sure the aforementioned steps are completed.
+Within the terminal 
+```
+flask run
+```
+
+In a new terminal window, change to the working directory and make sure the vitrual environment is activated (please look above if unsure)
+### Running tests
+```
+python3 tests.py
+```
+
+
 
 ## Architecture and Design
 Initial design for the front-end can be seen in TODO
