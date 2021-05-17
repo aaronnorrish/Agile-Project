@@ -1,6 +1,12 @@
+/* importing fonts */
+@import url('https://fonts.googleapis.com/css2?family=Raleway');
+
+
+
 html, 
 body {
     height: 100%;
+    font-family: 'Raleway', sans-serif;
 }
 
 nav {

@@ -1,5 +1,11 @@
+/* importing fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat');
+
+
 body {
+    background: rgb(44, 172, 127);
     font-size: .875rem;
+    font-family: 'Monserrat', sans-serif;
   }
 
 .feather {
