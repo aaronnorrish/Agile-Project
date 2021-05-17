@@ -38,7 +38,7 @@ finally run the application:
 python3 main.py
 ```
 
-the app should now be up and running on local host, port 5000: http://localhost:5000/index
+the app should now be up and running on local host, port 5000: http://localhost:5000/
 
 ## Purpose, Context and Assessment Mechanism
 This web application aims to assist users in developing their Italian language skills. 
@@ -61,12 +61,11 @@ flask run
 ```
 
 In a new terminal window, change to the working directory and make sure the vitrual environment is activated (please look above if unsure)
+
 ### Running tests
 ```
 python3 tests.py
 ```
-
-
 
 ## Architecture and Design
 Initial design for the front-end can be seen in TODO
@@ -111,8 +110,3 @@ A number of external libraries were used in this project:
     * Italian flag icon made by Freepik from www.flaticon.com
 
 * Charts from Chart.js
-
-# TODO 
-turn off debugging in flaskenv file
-save git logs locally
-    git log > git-log.txt
