@@ -5,9 +5,6 @@ from wtforms.validators import DataRequired, Email, ValidationError, EqualTo, Le
 from learn_italian_flask.models import User
 
 class LoginForm(FlaskForm):
-    # in the flask tute they add as a string field and use an email validator
-    # TODO using browser validation so might be able to get rid of validators?
-    #       maybe not because client could just remove the HTML?
     email = EmailField('Email address', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Log in')

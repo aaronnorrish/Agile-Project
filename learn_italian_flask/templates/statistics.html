@@ -12,9 +12,6 @@
     width: 50%;
   }
 
-  /* .card {
-    padding: 0 0.5rem 0 0.5rem;
-  } */
 </style>
 {% endblock %}
 
@@ -40,7 +37,6 @@
     <div class="card-container">
       <div class="card shadow-sm mr-3 ml-5">
         <div class="card-body mx-5">
-          <!-- TODO don't bother with AJAX can look at it later!! -->
           <h1 class="card-title">{{num_quizzes_completed}}</h1>
           <h4 class="card-title">Quizzes Submitted</h4>
           <h6 class="card-subtitle mb-2 text-muted">{{num_quizzes_completed}} quizzes have been submitted by {website name} users!</h6>
@@ -64,16 +60,14 @@
 
 {% block script %}
 <script>
-// TODO maybe add second data plot showing the proportion of the quizzes completed
-// e.g. 20% of quizzes completed are Alphabet
 const labels = {{labels | tojson}};
 
 const data = {
   labels: labels,
   datasets: [{
     label: 'quizzes',
-    backgroundColor: 'rgb(255, 99, 132)',
-    borderColor: 'rgb(255, 99, 132)',
+    backgroundColor: '#90EE90',
+    borderColor: '#90EE90',
     data: {{scores | tojson}},
   }]
 };

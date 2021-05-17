@@ -1,8 +1,13 @@
+/* Navbar Styling */
+
 .logo {
     margin-right: 0.3rem;
     margin-top: 0.2rem;
 }
+
 .navbar-nav>li{
     margin-right: 0.2rem;
     margin-left: 0.2rem;
 }
+
+/* End Navbar Styling */
