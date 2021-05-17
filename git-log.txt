@@ -1,0 +1,1022 @@
+commit 549e1a1f50ae0f9436c44e662f0c3522c9f865d9
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon May 17 17:50:28 2021 +0800
+
+    update README
+
+commit af463b80566d37b1c2b474a0467c69e1335a86d0
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon May 17 17:45:20 2021 +0800
+
+    update init
+
+commit 8045a5b192891e830e79da089d1e2020b4367f5f
+Merge: 56dacf4 03c4e0c
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon May 17 17:40:58 2021 +0800
+
+    Merge branch 'main' of https://github.com/aaronnorrish/Agile-Project into main
+
+commit 03c4e0c4b6259c4476783dbd2fead8d9f916be7c
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Mon May 17 17:40:24 2021 +0800
+
+    update readme
+
+commit 56dacf4de58ce8d532260705f314ead341e7c02b
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon May 17 17:37:18 2021 +0800
+
+    fix db init in readme
+
+commit 7a46d84841075e5bb0ace354dc100d36c7723ba0
+Author: veronicarao <69199014+veronicarao@users.noreply.github.com>
+Date:   Mon May 17 17:33:02 2021 +0800
+
+    Add files via upload
+
+commit 86c1d8a8149997afa780a724bb09a0d3cd5ecdcd
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon May 17 17:11:39 2021 +0800
+
+    fix startup error and edit error template
+
+commit af3573ccc0f86a5135c1f505500ea27d7e2deb8b
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon May 17 16:35:16 2021 +0800
+
+    upload requirements.txt
+
+commit d680adf345f19792b90c80a2817eb92c8698f5d0
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Mon May 17 16:23:00 2021 +0800
+
+    Update .gitignore
+
+commit 1e6d825749fe03ec805500a0b9e0c8b976bfe37f
+Merge: 478f236 acd6aa2
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Mon May 17 16:17:35 2021 +0800
+
+    Merge branch 'main' of https://github.com/aaronnorrish/Agile-Project into main
+
+commit 478f23658f56ae51878e58f3aee29bcf095fb13a
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Mon May 17 16:17:20 2021 +0800
+
+    update readme
+
+commit acd6aa2cc4c4aef99c4013963b81a964adb15ade
+Merge: 9b7046c 9db881f
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon May 17 16:12:22 2021 +0800
+
+    Merge branch 'main' of https://github.com/aaronnorrish/Agile-Project into main
+
+commit 9b7046cca7dedd17adc4f64d66d1e95aa4ecaa76
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon May 17 16:12:03 2021 +0800
+
+    make checking answer text case insensitive
+
+commit 279e34dc1ba809645641633581ff470f8f492932
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon May 17 16:07:08 2021 +0800
+
+    add scripts to populate db
+
+commit 9db881f3c7a474a62e92028f1c202373665c1fd7
+Merge: 5a475f7 199c1a5
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Mon May 17 15:20:45 2021 +0800
+
+    Merge branch 'main' of https://github.com/aaronnorrish/Agile-Project into main
+
+commit 5a475f7085197cfe4bf0f37e733759c2de7f6627
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Mon May 17 15:20:28 2021 +0800
+
+    Update tests.py
+
+commit 199c1a51388b7b0b934f4ddc79714b2d6641309b
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon May 17 15:17:39 2021 +0800
+
+    update css in quiz template
+
+commit 392cdc9912eae42fad09290adade8c6ce1d4cea0
+Merge: dee0b6f 11cfd08
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon May 17 15:04:41 2021 +0800
+
+    Merge branch 'main' of https://github.com/aaronnorrish/Agile-Project into main
+
+commit dee0b6fa1018df69b592a84eacd9103747227534
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon May 17 15:03:44 2021 +0800
+
+    change dashboard icons
+
+commit 11cfd08e4c20b978f85ab33fb78dbde8641daee9
+Merge: a418160 d931d6d
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Mon May 17 15:00:46 2021 +0800
+
+    Merge branch 'main' of https://github.com/aaronnorrish/Agile-Project into main
+
+commit a4181602871f8044931482c785561de4c0d8a05a
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Mon May 17 14:59:42 2021 +0800
+
+    add test
+
+commit d931d6d1ffc9957420026e3a3a506e1d2a70b32f
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon May 17 14:24:06 2021 +0800
+
+    sign up: only report unique email error
+
+commit 3e42cc3642695b1014345a5606290639743135f8
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon May 17 14:10:12 2021 +0800
+
+    change main icon, website name, add more comments
+
+commit 5961be343ba34aca971450a01efbbffc3370263b
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Mon May 17 13:24:21 2021 +0800
+
+    css
+
+commit e5c4a14a7447b6c05ef6d0f2b38a2f55dbda8874
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Mon May 17 13:21:25 2021 +0800
+
+    css changes
+
+commit b5983216d33e1359fac08d575a323b27b99dffd9
+Merge: c5bca67 afdd071
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Mon May 17 12:28:13 2021 +0800
+
+    Merge branch 'main' of https://github.com/aaronnorrish/Agile-Project into main
+
+commit c5bca6760809441f4d7a5e5bb887cd88df067265
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Mon May 17 12:23:35 2021 +0800
+
+    Revert "testing + css changes"
+    
+    This reverts commit 4c13d2e384220a391b23a56e0102e98ef00f6dc3.
+
+commit 4c13d2e384220a391b23a56e0102e98ef00f6dc3
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Mon May 17 12:22:34 2021 +0800
+
+    testing + css changes
+
+commit afdd071ecb6e942d72eba39b7df187685d511477
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon May 17 00:10:05 2021 +0800
+
+    remove unique user name constraint, add comments to controllers.py
+
+commit 02cfa4632f3e1af694eec0a3d4fe977c477366ce
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sun May 16 23:24:39 2021 +0800
+
+    client side val for login and minor stylistic changes
+
+commit 9bfe2be61abbb9e11bce0af507e73631749edf34
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sun May 16 20:39:13 2021 +0800
+
+    refactor controller classes into functions
+
+commit 2927535cf782e59d0ed020bb068026edeaa7a355
+Merge: da690d1 8ac44e7
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sun May 16 18:32:44 2021 +0800
+
+    Merge branch 'main' of https://github.com/aaronnorrish/Agile-Project into main
+    synch branches
+
+commit da690d13bc127ea8066432d19800fad0a363181f
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sun May 16 18:30:47 2021 +0800
+
+    reset quiz form each time it is generated
+
+commit 8ac44e78c89144b07b76e9d2f9168ca96f4d6aa9
+Merge: ab9ac71 f7f347e
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Sun May 16 18:03:47 2021 +0800
+
+    Merge branch 'main' of https://github.com/aaronnorrish/Agile-Project into main
+
+commit ab9ac71254e20b9f840f2c0d14d226efba0a7dbd
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Sun May 16 18:03:41 2021 +0800
+
+    user tests for models.py
+
+commit f7f347ea18c03950050f434e062cda73dcac787c
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sun May 16 14:27:48 2021 +0800
+
+    add how to run app to readme and set up db script
+
+commit e7364562a1f0514ce82b03020861ff31fe57d687
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sun May 16 13:13:07 2021 +0800
+
+    remove alphabet and quiz tables from db
+
+commit cc3bc516db0d0183254367925c31e0df65c98c9b
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sun May 16 13:08:44 2021 +0800
+
+    refresh error pages
+
+commit fe04f810da18608eaaaa764a30aa2f6ea5b18f81
+Merge: 5323f0d 594dbf8
+Author: Aaron Norrish <aaron.norrish97@gmail.com>
+Date:   Sat May 15 17:11:13 2021 +0800
+
+    Merge pull request #11 from aaronnorrish/refactor_backend
+    
+    Merge refactor_backend with main
+
+commit 594dbf80c3b094f7a4341dcd54de9da157ddc99a
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat May 15 17:09:09 2021 +0800
+
+    display num users and quizzes on stats page
+
+commit dc9e0816a2a57c76f879aa3f43908d760f9ddbf5
+Merge: 5f99882 5323f0d
+Author: Aaron Norrish <aaron.norrish97@gmail.com>
+Date:   Sat May 15 13:49:38 2021 +0800
+
+    Merge pull request #10 from aaronnorrish/main
+    
+    merge new changes to main with refactor backend
+
+commit 5323f0d157c1bf1be862cd234ee7c5cd7621fc30
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat May 15 13:46:38 2021 +0800
+
+    fix div by 0 error when displaying progress
+
+commit 683f78742bb5ed27ab2add5fd75dbdb6e119aa3a
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat May 15 12:56:36 2021 +0800
+
+    fix incorrect fk reference in user answer table
+
+commit 1613af6f3dfd6cae469fa9ffd383db99f43211fb
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat May 15 12:31:06 2021 +0800
+
+    add db migrations for new master quiz table and user answers
+
+commit 5f99882a4a5e5ce5138b77958a0e0bcb07b1263a
+Merge: b7aaed0 ba74287
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat May 15 12:26:00 2021 +0800
+
+    Merge branch 'refactor_backend' of github.com:aaronnorrish/Agile-Project into refactor_backend
+    
+    synch local and remote refactor backend branch
+
+commit b7aaed01a1676136c639d77030a38e4cb8981751
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat May 15 12:25:22 2021 +0800
+
+    stash changes to sign up template and models
+
+commit 21adf61d4ca531f2fbe05e98b89341d94606e204
+Merge: 6e99bb3 ba74287
+Author: Aaron Norrish <aaron.norrish97@gmail.com>
+Date:   Sat May 15 12:19:51 2021 +0800
+
+    Merge pull request #9 from aaronnorrish/refactor_backend
+    
+    merge refactored backend
+
+commit ba74287b279b28046092575c3dfc3302f797cc43
+Merge: 620070b 6e99bb3
+Author: Aaron Norrish <aaron.norrish97@gmail.com>
+Date:   Sat May 15 12:19:43 2021 +0800
+
+    Merge branch 'main' into refactor_backend
+
+commit 6e99bb35d7bc0d8f3738508ac26db5fa89e6bb79
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Sat May 15 11:31:49 2021 +0800
+
+    delete extra pages
+
+commit 33df872c74d65b851f39995e41ea977d1cfe7e48
+Merge: 2aa545e 157984b
+Author: veronicarao <69199014+veronicarao@users.noreply.github.com>
+Date:   Sat May 15 11:23:12 2021 +0800
+
+    Merge pull request #8 from aaronnorrish/flask
+    
+    Implementing Quiz Models into Database
+
+commit 157984bd54b6194d328a646f3d73adab1311f6b1
+Merge: d999d39 2aa545e
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Sat May 15 11:16:16 2021 +0800
+
+    Merge branch 'main' into flask
+
+commit 620070b8c192c7c23af729819df2b71f0be4ac28
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Fri May 14 22:32:22 2021 +0800
+
+    add template w/ graph for usage stats page
+
+commit babc999fbfc7b08de9936a59caf6e02aba1b80fe
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Fri May 14 21:48:08 2021 +0800
+
+    edit get quiz score methods to work with new quiz table
+
+commit d999d399b56e53e13baa3fbbee8f4d20ddb166a8
+Author: Aaron Norrish <aaron.norrish97@gmail.com>
+Date:   Fri May 14 20:47:51 2021 +0800
+
+    fix merge error
+    
+    duplicate articles quiz route
+
+commit e47eaae0d40f30d798a3f3882d8af6bce84ce053
+Merge: dc6773c 32762d6
+Author: Aaron Norrish <aaron.norrish97@gmail.com>
+Date:   Fri May 14 20:44:15 2021 +0800
+
+    Merge pull request #6 from aaronnorrish/flask
+    
+    merge flask with refactor_backend
+
+commit 32762d69a109c98eaa2f03cd76929499141453d7
+Merge: ae4a07e dc6773c
+Author: Aaron Norrish <aaron.norrish97@gmail.com>
+Date:   Fri May 14 20:30:47 2021 +0800
+
+    Merge branch 'refactor_backend' into flask
+
+commit dc6773cf955bba6deef9920b677a5f4cee12f115
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Fri May 14 20:25:38 2021 +0800
+
+    add quizzes to solutions.txt
+
+commit d069d420f2e55bd287416c4364ea47796fc82e4d
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Fri May 14 20:21:37 2021 +0800
+
+    refactor quiz tables and forms into master table
+
+commit 2a87a68ca4864a6b9398c506dc85aeff9b07b482
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Fri May 14 17:01:02 2021 +0800
+
+    start to refactor backend
+
+commit ae4a07e261ac11396c76d0b154319357cabde6e2
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Fri May 14 15:07:10 2021 +0800
+
+    add routes to quizzes
+
+commit 9a1b59185a6a2ca5ad83eda30b033c77483ac3d3
+Merge: f9a4776 2d6c7d7
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Thu May 13 11:12:29 2021 +0800
+
+    Merge branch 'flask' of https://github.com/aaronnorrish/Agile-Project into flask
+
+commit 2d6c7d7e97535bdfb383112f32863b68b3e8685e
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Wed May 12 22:45:28 2021 +0800
+
+    implement displaying results and clean up html pages
+
+commit f9a4776923b4a841c04c744291567c1823eea930
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Wed May 12 17:14:35 2021 +0800
+
+    add missing error
+
+commit 2df4314fdbf72746ce34a959e4aad6c02a026e33
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Wed May 12 17:14:24 2021 +0800
+
+    add quizzes
+
+commit a4fe9070d5d459f95b28e30135f2b27bd3a167fb
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Wed May 12 16:43:10 2021 +0800
+
+    capitalise title
+
+commit 49770bee301bbee2170095cb6739ecae6385250d
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Wed May 12 16:42:59 2021 +0800
+
+    add cards
+
+commit d5efba8b6f4fac4c041ec150c7d0e505ee255f62
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Wed May 12 16:42:46 2021 +0800
+
+    added missing div
+
+commit beaaff6ffcee99f679713cb14dca80526d74fb73
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Wed May 12 15:32:26 2021 +0800
+
+    add solutions
+
+commit 6915278274671ee9d9c9f9151cea8e56510e1362
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Wed May 12 15:22:20 2021 +0800
+
+    changed question
+
+commit 6d41cf040e53e42c0284b588dbed7ce4fb30ab74
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Wed May 12 15:21:23 2021 +0800
+
+    changed double up question
+
+commit e98548b2472ecb2664869d1907fd19289fb66552
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Wed May 12 15:17:39 2021 +0800
+
+    add model for questions
+
+commit f985c992d7d704e6663da1995788889ea2a82adb
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Wed May 12 15:17:11 2021 +0800
+
+    added questions
+
+commit 29d43963494bca15fe6c019e6df40e272bd428bc
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Wed May 12 15:16:49 2021 +0800
+
+    change url links
+
+commit eb2727ffcbd1855dcf95a730dfe873555de44e85
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Tue May 11 17:34:44 2021 +0800
+
+    added routes
+
+commit 9f6f79307ecdabe09359e5f182910ebcbbdedd2f
+Merge: 1f70b99 f10d8d5
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Mon May 10 15:15:50 2021 +0800
+
+    Merge branch 'flask' of https://github.com/aaronnorrish/Agile-Project into flask
+
+commit f10d8d5b1ae0b6236a4cf20ca2408246f28937af
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon May 10 14:24:10 2021 +0800
+
+    implements results page
+
+commit a769cd1e484ea6a38f0df9814c9c371b5123ece2
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sun May 9 17:34:23 2021 +0800
+
+    add helper functions to retrieve user answers from form and to calculate score
+
+commit 42bedb73183a9a15597b15d486ea03a839a39e15
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sun May 9 17:33:13 2021 +0800
+
+    add helper function to quiz models that returns the stored answers
+
+commit 6f64a110f6ccd36e634583cda9cd9576743588ff
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sun May 9 15:57:14 2021 +0800
+
+    create helper functions to populate quiz forms and create result dictionary
+
+commit ba99a3111cda1381d0f5f9eb87113eeab7923047
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sun May 9 12:13:10 2021 +0800
+
+    update get next module function
+
+commit eefb6eb124ec1d2dba1d3f7da04b8ed414a9b021
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sun May 9 12:10:43 2021 +0800
+
+    refactor control logic from routes.py into controllers.py
+
+commit 23e1c23af678737b4b467d7339dbc296dce0cef7
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat May 8 13:16:57 2021 +0800
+
+    add db migrations
+
+commit 0e22bd5d5d718f2908419e9581e802cce2b80e99
+Author: Aaron Norrish <aaron.norrish97@gmail.com>
+Date:   Sat May 8 13:14:03 2021 +0800
+
+    Delete 04a4836390dd_users_table.py
+
+commit 1f70b999a71ef05b40c5e8b67cef21427a71d2bd
+Merge: 1284f95 bcf5ce5
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Sat May 8 12:41:30 2021 +0800
+
+    Merge branch 'flask' of https://github.com/aaronnorrish/Agile-Project into flask
+
+commit bcf5ce542b0f16fdd982fd9a7e7344003d188fd7
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat May 8 12:39:31 2021 +0800
+
+    add solutions for the alphabet and numbers quizzes
+
+commit 85cc8a4928b026af6b7aa288137479834bf21631
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat May 8 12:31:41 2021 +0800
+
+    add some basic unit tests
+
+commit 6b43fddf99159f8073a7f581f25b7ab6a2a20285
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat May 8 12:15:56 2021 +0800
+
+    enforce passwords must be equal
+
+commit c21cbb926dad94d6b9bb1b2d642a23dcaab7c5ea
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat May 8 12:12:52 2021 +0800
+
+    make error messages look nicer
+
+commit ddf89ae8776f38e763bc8a9100d5d3c1b16d9a15
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat May 8 12:11:29 2021 +0800
+
+    remove testQuiz model and change db field type for mc questions to integer
+
+commit 1284f95864f48d09a7f123c496991479cecc68ad
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Sat May 8 12:07:37 2021 +0800
+
+    Update index.html
+
+commit 30d1224e01e48bb26b1c9c55501e1404207fe90b
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Sat May 8 11:47:07 2021 +0800
+
+    Create verbs.html
+
+commit 63d5b3d0f9cc3d0b8262ef5f39460b756ca36d19
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Sat May 8 11:42:36 2021 +0800
+
+    added articles
+
+commit 2e96a748379cb2e5e20314b80a518f00f95aca17
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Sat May 8 11:35:37 2021 +0800
+
+    Create colours.html
+
+commit 23324bc7251f52b8b403992e94d72b76e43a2992
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Fri May 7 22:24:51 2021 +0800
+
+    enforce input strings are smaller than db field max
+
+commit a9194e7a4ea879f9557b49ced94573eb910ad848
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Fri May 7 21:44:44 2021 +0800
+
+    refactor quiz pages into a single jinja page
+
+commit 7607a8589c3cc5a055da0ea4d3ef68a46814c6c8
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Fri May 7 20:55:01 2021 +0800
+
+    fix heading of the numbers quiz
+
+commit 1b4d36f9f9fed7934708c88b0ce3b1e40b972557
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Fri May 7 14:16:12 2021 +0800
+
+    implement numbers quiz
+
+commit e04f794f146e5d4aa94855c94e6f8777faf447cc
+Author: Aaron Norrish <aaron.norrish97@gmail.com>
+Date:   Thu May 6 22:13:50 2021 +0800
+
+    Delete bootstrap.svg
+
+commit a8981ec9feabeb915a9ded6d173904164d66fa27
+Author: Aaron Norrish <aaron.norrish97@gmail.com>
+Date:   Thu May 6 22:13:42 2021 +0800
+
+    Delete style.css
+
+commit 0cac636e81d1907e9c224a3c0e5c27f28388fee6
+Author: Aaron Norrish <aaron.norrish97@gmail.com>
+Date:   Thu May 6 22:13:34 2021 +0800
+
+    Delete sign-up.html
+
+commit a32df09370efc3028c35362ab6c2f709dc70e5ed
+Author: Aaron Norrish <aaron.norrish97@gmail.com>
+Date:   Thu May 6 22:13:23 2021 +0800
+
+    Delete log-in.html
+
+commit 567905ebbb579f66a3f5946f131847d51e2212ea
+Author: Aaron Norrish <aaron.norrish97@gmail.com>
+Date:   Thu May 6 22:13:12 2021 +0800
+
+    Delete learn.html
+
+commit 9ff1da14e3f5233fe51d3b7b3d069927bcd320f6
+Author: Aaron Norrish <aaron.norrish97@gmail.com>
+Date:   Thu May 6 22:13:01 2021 +0800
+
+    Delete index.html
+
+commit 730c11b744222f9e8ef97fb88586b294406188de
+Author: Aaron Norrish <aaron.norrish97@gmail.com>
+Date:   Thu May 6 22:12:52 2021 +0800
+
+    Delete dashboard.html
+
+commit 2c6b21fc67dd81779d9d61722518247b98fc6716
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Thu May 6 19:29:06 2021 +0800
+
+    refactor greetings with jinja
+
+commit b760118618634c42e7ba90c5e9569b81da8f64f6
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Thu May 6 19:20:33 2021 +0800
+
+    move numbers to jinja file
+
+commit ac13458e37a5187d250d4c3ed89246bb237464f6
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Thu May 6 19:15:26 2021 +0800
+
+    fix error for opening a new quiz
+
+commit 64e147ed596b41592ab5afd34ddbdccd3895d2f9
+Merge: c9ccef5 1cfdbe2
+Author: Aaron Norrish <aaron.norrish97@gmail.com>
+Date:   Thu May 6 13:47:38 2021 +0800
+
+    Merge pull request #5 from aaronnorrish/test-quiz
+    
+    implement the alphabet quiz
+
+commit 1cfdbe22b6d0255585c2f35c5ade542a6e9e640b
+Merge: 0e283a9 c9ccef5
+Author: Aaron Norrish <aaron.norrish97@gmail.com>
+Date:   Thu May 6 13:47:27 2021 +0800
+
+    Merge branch 'flask' into test-quiz
+
+commit 0e283a9e673c2c51fa90180db5c2c1422a40adde
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Thu May 6 13:42:16 2021 +0800
+
+    update get progress and next module methods
+
+commit 92502060aa89fa97b8bf5b2b5707a096334ca653
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Wed May 5 17:49:40 2021 +0800
+
+    implement alphabet quiz
+
+commit b8714cd11d1365b78792bef795e375d80bf5318c
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Wed May 5 15:22:56 2021 +0800
+
+    synch test-quiz branch with flask
+
+commit 2aa545e2c33994fac7c872d631b2d865a930d12e
+Merge: b88257f c9ccef5
+Author: Aaron Norrish <aaron.norrish97@gmail.com>
+Date:   Wed May 5 15:12:12 2021 +0800
+
+    Merge pull request #4 from aaronnorrish/flask
+    
+    implement basic error logging and html pages
+
+commit 475d10e2167d503b32113f0605bf1194f407a9b7
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Wed May 5 15:08:52 2021 +0800
+
+    add code to test out a quiz db
+
+commit b88257f61c899f07d633960aeb340acba01792d5
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Wed May 5 12:56:39 2021 +0800
+
+    Create Questions.txt
+    
+    Questions
+
+commit c9ccef5d0b0cc5ec4780cd8f2aadc9e4b8b65365
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Wed May 5 12:49:17 2021 +0800
+
+    implement basic error logging and html pages
+
+commit 521ec980ca912518d362dcaf3b7d8f9b8680b63e
+Merge: 0e8f5cd 7691be8
+Author: Aaron Norrish <ge75ceb@mytum.de>
+Date:   Wed May 5 12:27:10 2021 +0800
+
+    Merge pull request #3 from aaronnorrish/flask
+    
+    Flask
+
+commit 7691be84d80e8dee27117dd1283e2796b94b1002
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Tue May 4 21:20:36 2021 +0800
+
+    remove incorrect href
+
+commit 5d1997b0440b94f37bb43bbab6d5c8416f76ea67
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Tue May 4 21:15:59 2021 +0800
+
+    add subtitle to articles card
+
+commit e5add50d2ca4cc6512c2f118337f4a5871f6855d
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Tue May 4 21:11:46 2021 +0800
+
+    add pronunciation table to alphabet.html
+
+commit 74b4f21c8ef5ade9db50923b1c626b431bceb6e2
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sun May 2 14:43:18 2021 +0800
+
+    correct submit field for signup form
+
+commit c23f01313e1cf26815478145a7cf297daefcd219
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Fri Apr 30 14:45:30 2021 +0800
+
+    refactor dashboard css
+
+commit cc69ed24436dbf6281ae5e7680d1093fde42098c
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Fri Apr 30 14:33:24 2021 +0800
+
+    refactor css for pre-login pages
+
+commit 9567368628b41e3a0f334ec75b8abef9d2d4592d
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Thu Apr 29 21:33:01 2021 +0800
+
+    refactor alphabet.html using jinja
+
+commit 6a7230c3eedf1679df3bf57b83acc6c9aec34321
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Thu Apr 29 21:31:59 2021 +0800
+
+    remove redundant html from dashboard template
+
+commit 0e8f5cd3c3473b09d3c26cdd75b25b1b5a3900d1
+Merge: e53df10 a54f337
+Author: Aaron Norrish <ge75ceb@mytum.de>
+Date:   Thu Apr 29 15:45:35 2021 +0800
+
+    Merge pull request #2 from aaronnorrish/flask
+    
+    merge flask branch with main
+
+commit a54f337152da2812ce1761087bfff775555dbad9
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Thu Apr 29 15:39:58 2021 +0800
+
+    remove collapsible functionality from navbar
+
+commit e53df107f30271480d6924df281cb7e5e606418c
+Merge: 1412664 a9b0af9
+Author: Aaron Norrish <ge75ceb@mytum.de>
+Date:   Thu Apr 29 14:07:02 2021 +0800
+
+    Merge pull request #1 from aaronnorrish/Info
+    
+    merge learning content branch
+
+commit db6b93af3a5639be8b26dcf3c378614756105177
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Tue Apr 27 22:00:31 2021 +0800
+
+    add database migrations
+
+commit 970f9af2e1793d4252887030fde183b74bbf38cc
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Tue Apr 27 21:57:53 2021 +0800
+
+    add sign up functionality
+
+commit 415b7dd3ce13027bbbac9ec354c7c0f14eb12d13
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon Apr 26 22:21:22 2021 +0800
+
+    update flaskenv for debugging
+
+commit 53f74ab115bff63a0f01990abc2eb5e240fece1c
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon Apr 26 22:16:55 2021 +0800
+
+    add database and login/logout functionality
+
+commit 7bcfc79c1b930f672e9cf3f9e249bb66283efc6e
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Mon Apr 26 19:53:01 2021 +0800
+
+    refactor log-in page to use wtforms and add config file
+
+commit a9b0af9418c6e8ec5db30df5fb7f65b3816265f5
+Author: veronicarao <23030918@student.uwa.edu.au>
+Date:   Mon Apr 26 18:41:24 2021 +0800
+
+    Adding Basic Information
+
+commit 6d87f29ed6652c2cef2ff88d8d8740e46ee4ee59
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat Apr 24 20:05:23 2021 +0800
+
+    add routing of dashboard pages
+
+commit 63b7c7366ac87a6d7dbeff7bf00e1e15d2bfb131
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat Apr 24 20:04:22 2021 +0800
+
+    add active class to navbar links using jinja
+
+commit 1ca6a6dad3815250e3b5471e2c05acbdbde6b8f7
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat Apr 24 19:49:16 2021 +0800
+
+    add active class to nav links using jinja
+
+commit c6843a22d9719f209f909d7e0a6ae9c61f7b9c87
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat Apr 24 19:11:20 2021 +0800
+
+    add routing of pre-login webpages
+
+commit bec05d49a9572df89b30135a64dc5826fc7001e2
+Author: Aaron Norrish <ge75ceb@mytum.de>
+Date:   Sat Apr 24 18:53:49 2021 +0800
+
+    move main.py to correct directory level
+
+commit 3806e9ae6f2048efb056b895e821c3d53c186c04
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat Apr 24 18:52:47 2021 +0800
+
+    move main.py to correct directory level
+
+commit ed5ca10aa6a6fee9bbdf46f2c8f258bd38ff98e6
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat Apr 24 18:36:17 2021 +0800
+
+    upload flask environment file
+
+commit 951b915acc96125c7c21ee4390941832d71fcfe0
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat Apr 24 18:35:01 2021 +0800
+
+    upload basic flask app with current pages refactored using jinja
+
+commit 2af8ea39e51d894b83b34f5d6f3d3a11d5dc28cd
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Sat Apr 24 18:32:57 2021 +0800
+
+    add a gitignore
+
+commit 141266442dd0032b6cb197d1faf53051505b7392
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Thu Apr 22 22:42:37 2021 +0800
+
+    bring navbar to front and remove sidnav padding
+
+commit e04b87ef4ae452be847052bfadfe6e6e8c69709a
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Thu Apr 22 22:30:45 2021 +0800
+
+    change page title to learn
+
+commit d666e344b5f67d508f9e5191fd7687ec961a1887
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Thu Apr 22 22:26:17 2021 +0800
+
+    add progress bar to dashboard
+
+commit 3b67633b7d2dc1eb0d32ac4eb029dbc03ee3db16
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Wed Apr 21 16:16:26 2021 +0800
+
+    make cards responsive
+
+commit 32230315a2f239ea8627414dd1d0db240aba0533
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Wed Apr 21 14:09:31 2021 +0800
+
+    add changes to login and index
+
+commit b99f25080fba7a99a6d6559312fd97845688bd61
+Merge: 8c4d697 ec03052
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Wed Apr 21 14:07:02 2021 +0800
+
+    remove table from dashboard
+
+commit 8c4d69718fbb7881e914370d23ba22c87d6ef4f9
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Wed Apr 21 14:01:33 2021 +0800
+
+    upload learn.html
+
+commit ec03052fee207fd76222e1812bb262e4f0d6cf41
+Author: veronicarao <69199014+veronicarao@users.noreply.github.com>
+Date:   Wed Apr 21 13:19:06 2021 +0800
+
+    Update README.md
+
+commit 826c3867dae5701eaa99069bb47ec30b76da4af4
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Fri Apr 16 15:38:13 2021 +0800
+
+    add icon to navbar, tab
+
+commit 8bfc34582cc38f002ad997191cb4760086570adb
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Fri Apr 16 15:37:50 2021 +0800
+
+    move navbar styling to external sheet
+
+commit a693c42116d3d02cecddb3acb0edb6749751564d
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Fri Apr 16 15:36:57 2021 +0800
+
+    add navbar to log in and sign up pages
+
+commit 40603dd869585c26534d7fb4a44edbc03370265b
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Fri Apr 16 15:36:26 2021 +0800
+
+    transfer nav styling to external sheet
+
+commit afa1ebed8d24149414d257d144fb84a3d41adf52
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Fri Apr 16 14:57:57 2021 +0800
+
+    upload blank homepage
+
+commit 56daaaacb136718d476e16d99f1837217a043107
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Fri Apr 16 13:13:00 2021 +0800
+
+    update to use latest version of bootstrap4
+
+commit 12687ed723e735c7b1e82621eeb71194f7c1f0be
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Thu Apr 15 22:39:03 2021 +0800
+
+    add blank sign up page
+
+commit ad86fa717edcbde61b76bc184304fb8c94a8a8d7
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Thu Apr 15 22:22:38 2021 +0800
+
+    change sign in to log in
+
+commit 109fa4b4ed74a91473e8a943f4b52b8f2b5f4394
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Thu Apr 15 22:03:47 2021 +0800
+
+    upload blank login page
+
+commit 7be0bf9e071bec5ff5bb833e02fda6c2e92218dd
+Author: ge75ceb <ge75ceb@mytum.de>
+Date:   Wed Apr 14 16:42:27 2021 +0800
+
+    create README
