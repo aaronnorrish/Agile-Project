@@ -1,6 +1,12 @@
 # CITS5505 Agile Web Dev Group Project: Online Formative Assessment
 Authors: Veronica Rao (23030918) and Aaron Norrish (21972015)
 
+## Purpose, Context and Assessment Mechanism
+This web application aims to assist users in developing their Italian language skills. 
+In doing so, this web application provides information pages, where a user can memorise definitions and read information about any chosen topic. To enhance this memorisation process, assessments are added for each topic, to allow a user to test out what they have learnt.
+The assessment consists a variety of means. This includes multiple choice questions, multiple selection questions and inserting the correct answer type of questions.
+After completing an assessment, a user is able to see what questions they have gotten correct and incorrect, and the correct solution is also given.
+
 ## Running the application
 ### Installation and Set-Up
 First navigate to the root directory and create a virtual environment:
@@ -38,12 +44,6 @@ flask run
 ```
 
 the app should now be up and running on local host, port 5000: http://localhost:5000/
-
-## Purpose, Context and Assessment Mechanism
-This web application aims to assist users in developing their Italian language skills. 
-In doing so, this web application provides information pages, where a user can memorise definitions and read information about any chosen topic. To enhance this memorisation process, assessments are added for each topic, to allow a user to test out what they have learnt.
-The assessment consists a variety of means. This includes multiple choice questions, multiple selection questions and inserting the correct answer type of questions.
-After completing an assessment, a user is able to see what questions they have gotten correct and incorrect, and the correct solution is also given.
 
 ## Unit Tests
 The unit tests for this web application tests functions created with the application. 
