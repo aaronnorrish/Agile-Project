@@ -1,6 +1,8 @@
 # CITS5505 Agile Web Dev Group Project: Online Formative Assessment
 Authors: Veronica Rao (23030918) and Aaron Norrish (21972015)
 
+A live version of the project can be found at the following address: https://la-bella-lingua.herokuapp.com/index.
+
 ## Purpose, Context and Assessment Mechanism
 This web application aims to assist users in developing their Italian language skills. 
 In doing so, this web application provides information pages, where a user can memorise definitions and read information about any chosen topic. To enhance this memorisation process, assessments are added for each topic, to allow a user to test out what they have learnt.
